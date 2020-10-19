@@ -1,0 +1,153 @@
+"0";"ID";"Massnahme";"Ebene1";"Ebene2";"Ebene3";"Wert";"Werttyp";"Parametername R";"...10"
+1;"ID";"N_018_Retentionsbodenfilter";"Kurzbeschreibung";"NA";"NA";"NA";"String";"kurzb";NA
+2;"ID";"N_018_Retentionsbodenfilter";"Umsetzungsbeispiel";"NA";"NA";"../Umsetzungsbeispiele/N_018_Retentionsbodenfilterbsp.PNG";"String(Image)";"bspfoto";NA
+3;"ID";"N_018_Retentionsbodenfilter";"Ressource";"Niederschlagswasser";"NA";"0";"Boolean";"cbgRessource";NA
+4;"ID";"N_018_Retentionsbodenfilter";"Ressource";"Schmutzwasser";"NA";"0";"Boolean";"cbgRessource";NA
+5;"ID";"N_018_Retentionsbodenfilter";"Ressource";"Baustoffe";"NA";"0";"Boolean";"cbgRessource";NA
+6;"ID";"N_018_Retentionsbodenfilter";"Ressource";"Energie";"NA";"0";"Boolean";"cbgRessource";NA
+7;"ID";"N_018_Retentionsbodenfilter";"Ressource";"Fläche";"NA";"0";"Boolean";"cbgRessource";NA
+8;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Niederschlagswasser";"Gewässerschutz";"0";"Boolean";"cbgniederschlagswasser";NA
+9;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Niederschlagswasser";"Bodenschutz";"0";"Boolean";"cbgniederschlagswasser";NA
+10;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Niederschlagswasser";"Überflutungsschutz";"0";"Boolean";"cbgniederschlagswasser";NA
+11;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Niederschlagswasser";"Klimaanpassung";"0";"Boolean";"cbgniederschlagswasser";NA
+12;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Baustoffe";"BOM Bill of Material";"0";"Boolean";"cbgbaustoffe";NA
+13;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Baustoffe";"Monomaterial";"0";"Boolean";"cbgbaustoffe";NA
+14;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Baustoffe";"Einsparung von Primärmaterialien";"0";"Boolean";"cbgbaustoffe";NA
+15;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Baustoffe";"Nachwachsender Rohstoff";"0";"Boolean";"cbgbaustoffe";NA
+16;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Baustoffe";"Rohstofferhalt";"0";"Boolean";"cbgbaustoffe";NA
+17;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Baustoffe";"Rohstoffverfügbarkeit";"0";"Boolean";"cbgbaustoffe";NA
+18;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Baustoffe";"Rohstoffaufwand (gesamt)";"0";"Boolean";"cbgbaustoffe";NA
+19;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Fläche";"Infrastrukturversorgung";"0";"Boolean";"cbgflaeche";NA
+20;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Fläche";"Nutzungsvielfalt";"0";"Boolean";"cbgflaeche";NA
+21;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Fläche";"Einsparung natürlicher Ressourcen";"0";"Boolean";"cbgflaeche";NA
+22;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Fläche";"Luftreinhaltung";"0";"Boolean";"cbgflaeche";NA
+23;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Fläche";"Biodiversität";"0";"Boolean";"cbgflaeche";NA
+24;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Fläche";"Aufenthalts-/ Freiraumqualität";"0";"Boolean";"cbgflaeche";NA
+25;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Schmutzwasser";"Gesundheitsvorsorge";"0";"Boolean";"cbgschmutzwasser";NA
+26;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Schmutzwasser";"Gewässerschutz";"0";"Boolean";"cbgschmutzwasser";NA
+27;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Schmutzwasser";"Trinwassereinsparung";"0";"Boolean";"cbgschmutzwasser";NA
+28;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Schmutzwasser";"Nährstoffgewinnung";"0";"Boolean";"cbgschmutzwasser";NA
+29;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Energie";"Elektrizität";"0";"Boolean";"cbgenergie";NA
+30;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Energie";"Wärme";"0";"Boolean";"cbgenergie";NA
+31;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Energie";"Brennstoffe";"0";"Boolean";"cbgenergie";NA
+32;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Energie";"Erzeugung";"0";"Boolean";"cbgenergie";NA
+33;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Energie";"Verteilung";"0";"Boolean";"cbgenergie";NA
+34;"ID";"N_018_Retentionsbodenfilter";"Wirkung/Funktion";"Energie";"Verbrauch";"0";"Boolean";"cbgenergie";NA
+35;"ID";"N_018_Retentionsbodenfilter";"Anwendungsebene";"Gebäudeebene";"NA";"0";"Boolean";"cbgAnwendungsebene";NA
+36;"ID";"N_018_Retentionsbodenfilter";"Anwendungsebene";"Grundstücksebene";"NA";"0";"Boolean";"cbgAnwendungsebene";NA
+37;"ID";"N_018_Retentionsbodenfilter";"Anwendungsebene";"Quartiersebene";"NA";"0";"Boolean";"cbgAnwendungsebene";NA
+38;"ID";"N_018_Retentionsbodenfilter";"Anwendungsebene";"Hinweis";"NA";"NA";"String";"hinw1";NA
+39;"ID";"N_018_Retentionsbodenfilter";"Flächenbedarf";"m²/EW";"NA";"NA";"Integer";"flaechenbedEW";NA
+40;"ID";"N_018_Retentionsbodenfilter";"Flächenbedarf";"XX";"NA";"NA";"Integer";"flaechenbedEinheit";NA
+41;"ID";"N_018_Retentionsbodenfilter";"Flächenbedarf";"m²/XX";"NA";"NA";"Integer";"fleachenbedXX";NA
+42;"ID";"N_018_Retentionsbodenfilter";"Flächenbedarf";"Hinweis";"NA";"NA";"String";"hinw2";NA
+43;"ID";"N_018_Retentionsbodenfilter";"Nutzungsdauer";"min";"NA";"NA";"Integer";"nutzdmin";NA
+44;"ID";"N_018_Retentionsbodenfilter";"Nutzungsdauer";"max";"NA";"NA";"Integer";"nutzdmax";NA
+45;"ID";"N_018_Retentionsbodenfilter";"Nutzungsdauer";"üblich";"NA";"NA";"Integer";"nutzdueblich";NA
+46;"ID";"N_018_Retentionsbodenfilter";"Nutzungsdauer";"Hinweis";"NA";"NA";"String";"hinw3";NA
+47;"ID";"N_018_Retentionsbodenfilter";"Entwicklungsstand";"Stand der Wissenschaft und Technik";"NA";"0";"Boolean";"cbgentwicklungsstand";NA
+48;"ID";"N_018_Retentionsbodenfilter";"Entwicklungsstand";"Stand der Technik";"NA";"0";"Boolean";"cbgentwicklungsstand";NA
+49;"ID";"N_018_Retentionsbodenfilter";"Entwicklungsstand";"Allgemein annerkannter Stand der Technik";"NA";"0";"Boolean";"cbgentwicklungsstand";NA
+50;"ID";"N_018_Retentionsbodenfilter";"Entwicklungsstand";"Hinweis";"NA";"NA";"String";"hinw4";NA
+51;"ID";"N_018_Retentionsbodenfilter";"Funktionsbeschreibung und Aufbau";"NA";"NA";"NA";"String";"funktiontxt";NA
+52;"ID";"N_018_Retentionsbodenfilter";"Systemskizze";"NA";"NA";"./Systemskizzen/N_018_Retentionsbodenfiltersys.PNG";"String(Image)";"sysskizze";NA
+53;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Fließtext";"NA";"NA";"String";"planbemtxt";NA
+54;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+55;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+56;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+57;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+58;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+59;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+60;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+61;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+62;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+63;"ID";"N_018_Retentionsbodenfilter";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+64;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Fließtext";"NA";"NA";"String";"aufwandtxt";NA
+65;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Investitionskosten";"Einheit";"NA";"String";"inve";NA
+66;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Investitionskosten";"min";"NA";"String";"invmin";NA
+67;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Investitionskosten";"max";"NA";"String";"invmax";NA
+68;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Investitionskosten";"üblich";"NA";"String";"invueblich";NA
+69;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten1";"Einheit";"NA";"String";"bet1e";NA
+70;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten1";"min";"NA";"String";"bet1min";NA
+71;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten1";"max";"NA";"String";"bet1max";NA
+72;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten1";"üblich";"NA";"String";"bet1ueblich";NA
+73;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten2";"Einheit";"NA";"String";"bet2e";NA
+74;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten2";"min";"NA";"String";"bet2min";NA
+75;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten2";"max";"NA";"String";"bet2max";NA
+76;"ID";"N_018_Retentionsbodenfilter";"Aufwand und Kosten";"Betriebskosten2";"üblich";"NA";"String";"bet2ueblich";NA
+77;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Fließtext";"NA";"NA";"String";"whinwtxt";NA
+78;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";"fließtext + freie Anzahl an Zeilen mit Paramterspalte und Wertespalte"
+79;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+80;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+81;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+82;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+83;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+84;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+85;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+86;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+87;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+88;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+89;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+90;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+91;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+92;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+93;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+94;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+95;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+96;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+97;"ID";"N_018_Retentionsbodenfilter";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+98;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Synergien";"Niederschlagswasser";"NA";"String";"synniederschlagswasser";NA
+99;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Synergien";"Schmutzwasser";"NA";"String";"synschmutzwasser";NA
+100;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Synergien";"Baustoffe";"NA";"String";"synbaustoffe";NA
+101;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Synergien";"Energie";"NA";"String";"sysnenergie";NA
+102;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Synergien";"Fläche";"NA";"String";"synflaeche";NA
+103;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Synergien";"Ökobilanz";"NA";"String";"synoekobilanz";NA
+104;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Niederschlagswasser";"NA";"String";"konfniederschlagswasser";NA
+105;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Schmutzwasser";"NA";"String";"konfschmutzwasser";NA
+106;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Baustoffe";"NA";"String";"konfbaustoffe";NA
+107;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Energie";"NA";"String";"konfenergie";NA
+108;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Fläche";"NA";"String";"konfflaeche";NA
+109;"ID";"N_018_Retentionsbodenfilter";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Ökobilanz";"NA";"String";"konfoekobilanz";NA
+110;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"1";"NA";"NA";"String";"selkombi1";NA
+111;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"2";"NA";"NA";"String";"selkombi2";NA
+112;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"3";"NA";"NA";"String";"selkombi3";NA
+113;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"4";"NA";"NA";"String";"selkombi4";NA
+114;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"5";"NA";"NA";"String";"selkombi5";NA
+115;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"6";"NA";"NA";"String";"selkombi6";NA
+116;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"7";"NA";"NA";"String";"selkombi7";NA
+117;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"8";"NA";"NA";"String";"selkombi8";NA
+118;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"9";"NA";"NA";"String";"selkombi9";NA
+119;"ID";"N_018_Retentionsbodenfilter";"Kombinationsmöglichkeiten";"10";"NA";"NA";"String";"selkombi10";NA
+120;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"1";"NA";"String";"vornach";NA
+121;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"2";"NA";"String";"vornach";NA
+122;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"3";"NA";"String";"vornach";NA
+123;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"4";"NA";"String";"vornach";NA
+124;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"5";"NA";"String";"vornach";NA
+125;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"6";"NA";"String";"vornach";NA
+126;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"7";"NA";"String";"vornach";NA
+127;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"8";"NA";"String";"vornach";NA
+128;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"9";"NA";"String";"vornach";NA
+129;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Vorteile";"10";"NA";"String";"vornach";NA
+130;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"1";"NA";"String";"vornach";NA
+131;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"2";"NA";"String";"vornach";NA
+132;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"3";"NA";"String";"vornach";NA
+133;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"4";"NA";"String";"vornach";NA
+134;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"5";"NA";"String";"vornach";NA
+135;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"6";"NA";"String";"vornach";NA
+136;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"7";"NA";"String";"vornach";NA
+137;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"8";"NA";"String";"vornach";NA
+138;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"9";"NA";"String";"vornach";NA
+139;"ID";"N_018_Retentionsbodenfilter";"Vor- und Nachteile";"Nachteile";"10";"NA";"String";"vornach";NA
+140;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"1";"Projektname";"NA";"String";"fallbsp";NA
+141;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"1";"Stadt";"NA";"String";"fallbsp";NA
+142;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"1";"Land";"NA";"String";"fallbsp";NA
+143;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"1";"Erläuterung";"NA";"String";"fallbsp";NA
+144;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"2";"Projektname";"NA";"String";"fallbsp";NA
+145;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"2";"Stadt";"NA";"String";"fallbsp";NA
+146;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"2";"Land";"NA";"String";"fallbsp";NA
+147;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"2";"Erläuterung";"NA";"String";"fallbsp";NA
+148;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"3";"Projektname";"NA";"String";"fallbsp";NA
+149;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"3";"Stadt";"NA";"String";"fallbsp";NA
+150;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"3";"Land";"NA";"String";"fallbsp";NA
+151;"ID";"N_018_Retentionsbodenfilter";"Fallbeispiele";"3";"Erläuterung";"NA";"String";"fallbsp";NA
+152;"ID";"N_018_Retentionsbodenfilter";"Literatur";"Struktur noch unklar";"Struktur noch unklar";"NA";"String";"noch in arbeit";NA

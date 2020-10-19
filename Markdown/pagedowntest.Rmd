@@ -1,0 +1,355 @@
+---
+title: "R2Q Maßnahmenkatalog Test"
+output:
+  pagedown::html_paged:
+    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
+    css: ["jss-fonts"]
+    toc: true
+    self_contained: false
+  pdf_document: default
+  html_document:
+    df_print: paged
+params:
+  x: N_004_Gründach
+theme: united
+header-includes:
+- \usepackage{tabularx}
+- \usepackage{booktabs}
+- \usepackage{fontspec}
+- \setmainfont{Calibri Light}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{xcolor}
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r ,echo=FALSE, message=FALSE,}
+library(tidyverse)
+library(knitr)
+library(stringr)
+library(readxl)
+library(kableExtra)
+datamassnahme <- read.table(text = gsub(fixed = TRUE, pattern = "_", replacement = "\\_", x = readLines(file(str_c("../Massnahmen/", params$x,".csv")), encoding = "UTF-8"), useBytes = TRUE), header = TRUE, sep=";")
+
+read_chunk("./ReadProcessFunction.R")
+read_chunk("./tablesfunction.R")
+
+# Parameter von RPF: e1, e2 = NA, e3 = NA, sa = 7    (sa: 7 = wert, 6 = Ebene 3, 5 = Ebene 2, 4 = Ebene 1)
+
+```
+```{r rpf,echo=FALSE, message=FALSE}
+#rpf ist eine externe Funktion die mit read_chunk eingelesen wurde
+```
+```{r xrpf,echo=FALSE, message=FALSE}
+
+```
+
+
+# *Kurzbeschreibung*
+
+`r rpf("Kurzbeschreibung")`
+
+## *Kurzinformation*
+
+
+### *Kurzbeschreibung*
+
+`r as.character(datamassnahme[2,3])`
+
+
+### *Umsetzungsbeispiel*
+
+
+
+```{r , fig.width = 8 , fig.height = 3 , echo=FALSE, message=FALSE, warning=FALSE}
+library(png)
+library(grid)
+library(gridExtra)
+library(knitr)
+library(kableExtra)
+namePNG <- stringi::stri_replace_all_fixed(
+  params$x, 
+  c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
+  c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+  vectorize_all = FALSE
+)
+
+jj <- rasterGrob(as.raster(readPNG(str_c("../Umsetzungsbeispiele/", namePNG, "bsp.PNG"))), interpolate = FALSE)
+grid.arrange(jj, jj, ncol = 2)
+```
+
+
+
+```{r , echo=FALSE}
+#Tabelle Ressource
+
+tf1 <- tibble(c(str_c( xrpf("Ressource", "Niederschlagswasser"), " Niederschlagswasser")),
+                  c(str_c( xrpf("Ressource", "Schmutzwasser"), " Schmutzwasser")),
+                  c(str_c( xrpf("Ressource", "Baustoffe"), " Baustoffe")),
+                  c(str_c( xrpf("Ressource", "Energie"), " Energie")),
+                  c(str_c( xrpf("Ressource", "Fläche"), " Fläche")),
+                  )
+```
+```{r ,results="asis", echo= FALSE}
+
+  kable_styling(kable(tf1, format = "html", col.names = c("Ressource","","","","")))%>%
+    row_spec(0,color = "#43d320")  #228B22
+```
+
+
+
+
+```{r , echo=FALSE}
+#Tabelle Wirkung/Funktion
+
+tf1 <- tibble(a = c("Niederschlagswasser","","Schmutzwasser","","Baustoffe","","","","Energie","",""),
+              b = c(str_c(xrpf("Wirkung/Funktion","Niederschlagswasser","Gewässerschutz")," Gewässerschutz"), 
+                str_c(xrpf("Wirkung/Funktion","Niederschlagswasser","Überflutungsschutz")," Überflutungsschutz"),
+                str_c(xrpf("Wirkung/Funktion","Schmutzwasser","Gesundheitsvorsorge")," Gesundheitsvorsorge"), 
+                str_c(xrpf("Wirkung/Funktion","Schmutzwasser","Trinwassereinsparung")," Trinwassereinsparung"),
+                
+                str_c(xrpf("Wirkung/Funktion","Baustoffe","BOM Bill of Material")," BOM Bill of Material"), 
+                str_c(xrpf("Wirkung/Funktion","Baustoffe","Einsparung von Primärmaterialien")," Einsparung von Primärmaterialien"),
+                str_c(xrpf("Wirkung/Funktion","Baustoffe","Rohstofferhalt")," Rohstofferhalt"), 
+                str_c(xrpf("Wirkung/Funktion","Baustoffe","Rohstoffaufwand (gesamt)")," Rohstoffaufwand (gesamt)"),
+                
+                str_c(xrpf("Wirkung/Funktion","Energie","Elektrizität")," Elektrizität"), 
+                str_c(xrpf("Wirkung/Funktion","Energie","Wärme")," Wärme"),
+                str_c(xrpf("Wirkung/Funktion","Energie","Brennstoffe")," Brennstoffe")),
+              
+              c = c(str_c(xrpf("Wirkung/Funktion","Niederschlagswasser","Bodenschutz")," Bodenschutz"), 
+                str_c(xrpf("Wirkung/Funktion","Niederschlagswasser","Klimaanpassung")," Klimaanpassung"),
+                str_c(xrpf("Wirkung/Funktion","Schmutzwasser","Gewässerschutz")," Gewässerschutz"), 
+                str_c(xrpf("Wirkung/Funktion","Schmutzwasser","Nährstoffgewinnung")," Nährstoffgewinnung"),
+                    
+                str_c(xrpf("Wirkung/Funktion","Baustoffe","Monomaterial")," Monomaterial"), 
+                str_c(xrpf("Wirkung/Funktion","Baustoffe","Nachwachsender Rohstoff")," Nachwachsender Rohstoff"),
+                str_c(xrpf("Wirkung/Funktion","Baustoffe","Rohstoffverfügbarkeit")," Rohstoffverfügbarkeit"), 
+                str_c(""),
+                
+                str_c(xrpf("Wirkung/Funktion","Energie","Erzeugung")," Erzeugung"), 
+                str_c(xrpf("Wirkung/Funktion","Energie","Verteilung")," Verteilung"),
+                str_c(xrpf("Wirkung/Funktion","Energie","Verbrauch")," Verbrauch"))
+              )
+
+
+```
+```{r ,results="asis", echo= FALSE}
+
+  kable_styling(kable(tf1, format = "html", col.names = c("Wirkung/Funktion","","")))%>%
+    row_spec(0,color = "#43d320") %>% #228B22 
+    column_spec(1, bold = T) %>%
+  #pack_rows(group_label = NULL,1,2) %>%
+  #pack_rows(group_label = NULL,3,4) %>%
+  #pack_rows(group_label = NULL,5,8) %>%
+  #pack_rows(group_label = NULL,9,11)
+  collapse_rows(columns = 1, valign = "top")
+```
+
+
+
+
+```{r , echo=FALSE}
+for(i in 8:11){
+  if(datamassnahme[i,6] == "Ja") {assign(paste("c", i, sep = ""), "X")} else {assign(paste("c", i, sep = ""), " ")}
+}
+```
+
+
+\begin{center}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\multicolumn{5}{|c|}{\textbf{`r datamassnahme[8,4]`}} \tabularnewline
+\hline
+`r datamassnahme[8,4]` & Schmutzwasser & Baustoffe & Energie & Fläche \\
+\hline
+[`r as.character(c8)`] Klimaregulation & [`r as.character(c8)`] Regenwasser & [`r as.character(c8)`] Regenwasser & [`r as.character(c8)`] Regenwasser & [`r as.character(c8)`] Regenwasser \\
+\hline
+[`r as.character(c9)`] Wasserregulation & [`r as.character(c9)`] Schmutzwasser & [`r as.character(c9)`] Schmutzwasser & [`r as.character(c9)`] Schmutzwasser & [`r as.character(c9)`] Schmutzwasser \\
+\hline
+[`r as.character(c10)`] Wasserreinigung & [`r as.character(c10)`] Baustoffe & [`r as.character(c10)`] Baustoffe & [`r as.character(c10)`] Baustoffe & [`r as.character(c10)`] Baustoffe \\
+\hline
+[`r as.character(c11)`] Erhaltung biol. Vielfalt & [`r as.character(c11)`] Energie & [`r as.character(c11)`] Energie & [`r as.character(c11)`] Energie & [`r as.character(c11)`] Energie \\
+\hline
+\end{tabular}
+\end{center}
+
+```{r , echo=FALSE}
+for(i in 12:15){
+  if(datamassnahme[i,6] == "Ja") {assign(paste("c", i, sep = ""), "X")} else {assign(paste("c", i, sep = ""), " ")}
+}
+```
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|X|X|X|}
+\hline
+\multicolumn{3}{|c|}{\textbf{`r datamassnahme[12,4]`}} \tabularnewline
+\hline
+[`r as.character(c12)`] Gebäudeebene & [`r as.character(c13)`] Grundstückebene & [`r as.character(c14)`] Quartiersebene \\
+\hline
+\multicolumn{3}{|c|}{\textbf{Hinweis:} `r datamassnahme[15,6]`} \\
+\hline
+\end{tabularx}
+\end{center}
+
+
+```{r , echo=FALSE}
+for(i in 16:18){
+  if(datamassnahme[i,6] == "Ja") {assign(paste("c", i, sep = ""), "X")} else {assign(paste("c", i, sep = ""), " ")}
+}
+```
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textbf{`r datamassnahme[16,4]`}} \tabularnewline
+\hline
+[`r as.character(c16)`] geringer Bedarf & [`r as.character(c17)`] mittlerer Bedarf & [`r as.character(c18)`] hoher Bedarf \\
+\hline
+\multicolumn{3}{|c|}{`r datamassnahme[19,6]`   `r datamassnahme[19,4]`} \\
+\hline
+\end{tabular}
+\end{center}
+
+```{r , echo=FALSE}
+for(i in 20:22){
+  if(datamassnahme[i,6] == "Ja") {assign(paste("c", i, sep = ""), "X")} else {assign(paste("c", i, sep = ""), " ")}
+}
+```
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{`r datamassnahme[20,4]`}} \tabularnewline
+\hline
+`r datamassnahme[20,4]` & `r datamassnahme[20,6]`  &`r datamassnahme[21,4]` & `r datamassnahme[21,6]`  & `r datamassnahme[22,4]` & `r datamassnahme[22,6]` \\
+\hline
+\multicolumn{6}{|c|}{\textbf{Hinweis:} `r datamassnahme[23,6]`} \\
+\hline
+\end{tabular}
+\end{center}
+
+```{r , echo=FALSE}
+for(i in 24:26){
+  if(datamassnahme[i,6] == "Ja") {assign(paste("c", i, sep = ""), "X")} else {assign(paste("c", i, sep = ""), " ")}
+}
+```
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{3}{|c|}{\textbf{`r datamassnahme[24,4]`}} \\
+\hline
+[`r as.character(c24)`]`r datamassnahme[24,4]` & [`r as.character(c25)`] `r datamassnahme[25,4]`  & [`r as.character(c26)`] `r datamassnahme[26,4]` \\
+\hline
+\multicolumn{3}{|c|}{\textbf{Hinweis:} `r datamassnahme[27,6]`} \\
+\hline
+\end{tabular}
+\end{center}
+
+## *Detailinformationen*
+
+### *Funktionsbeschreibung & Aufbau*
+
+`r datamassnahme[28,5]`
+
+### *Systemskizze*
+
+```{r , fig.width = 8 , fig.height = 3 , echo=FALSE, message=FALSE, warning=FALSE}
+library(png)
+library(grid)
+library(gridExtra)
+#j <- rasterGrob(as.raster(readPNG(as.character(datamassnahme[51,6]))), interpolate = FALSE)
+#grid.arrange(jj, jj, ncol = 2)
+```
+
+### Planung, Bemessung und rechtliche Aspekte
+
+`r datamassnahme[30,6]`
+
+### Aufwand
+
+`r datamassnahme[31,6]`
+
+### Weitergehende Hinweise
+
+`r datamassnahme[32,6]`
+
+### Ressourcenübergreifende Aspekte
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Ressource}} & \multicolumn{1}{|c|}{\textbf{Angaben}} \tabularnewline
+\hline
+\multicolumn{2}{|c|}{ \textbf{SYNERGIEN} } \tabularnewline
+\hline
+Regenwasser & `r datamassnahme[33,6]`\\
+\hline
+Schmutzwasser & `r datamassnahme[34,6]`\\
+\hline
+Baustoffe & `r datamassnahme[35,6]`\\
+\hline
+Energie & `r datamassnahme[36,6]`\\
+\hline
+Fläche & `r datamassnahme[37,6]`\\
+\hline
+Ökobilanz & `r datamassnahme[38,6]`\\
+\hline
+\multicolumn{2}{|c|}{ \textbf{ZIELKONFLIKTE} } \\
+\hline
+Regenwasser & `r datamassnahme[39,6]`\\
+\hline
+Schmutzwasser & `r datamassnahme[40,6]`\\
+\hline
+Baustoffe & `r datamassnahme[41,6]`\\
+\hline
+Energie & `r datamassnahme[42,6]`\\
+\hline
+Fläche & `r datamassnahme[43,6]`\\
+\hline
+Ökobilanz & `r datamassnahme[44,6]`\\
+\hline
+\end{tabularx}
+\end{center}
+
+
+\begin{center}
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Vorteile}} & \multicolumn{1}{|c|}{\textbf{Nachteile}} \tabularnewline
+\hline
+`r datamassnahme[45,6]` & `r datamassnahme[50,6]`\\
+\hline
+`r datamassnahme[46,6]` & `r datamassnahme[51,6]`\\
+\hline
+`r datamassnahme[47,6]` & `r datamassnahme[52,6]`\\
+\hline
+`r datamassnahme[48,6]` & `r datamassnahme[53,6]`\\
+\hline
+`r datamassnahme[49,6]` & `r datamassnahme[54,6]`\\
+\hline
+\end{tabularx}
+\end{center}
+
+### Umsetzungsbeispiele
+
+`r datamassnahme[55,6]`
+
+### Literatur
+
+`r datamassnahme[56,6]`

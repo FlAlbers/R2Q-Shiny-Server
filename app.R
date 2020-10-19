@@ -1,0 +1,1903 @@
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+
+library(shiny)
+library(RSQLite) 
+library(shinyMatrix)
+library(rhandsontable)
+library(readxl)
+library(dplyr)
+library(rmarkdown)
+library(shinycssloaders)
+library(shinybusy) 
+library(writexl)
+library(RMySQL)
+library(DBI)
+library(tidyverse)
+#data structure
+#conn <- dbConnect(RSQLite::SQLite(), "my-db.sqlite")
+#Daten <- dbReadTable(conn, "Daten")
+#dbDisconnect(conn)
+#list_Massnahmen <- Daten$Name %>% unique()
+#selected_row <- Daten[2,]
+
+ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
+
+wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
+wifuBaustoffe = c("BOM Bill of Material", "Monomaterial", "Einsparung von Primärmaterialien", "Nachwachsender Rohstoff", "Rohstofferhalt", "Rohstoffverfügbarkeit", "Rohstoffaufwand (gesamt)")
+wifuFlaeche = c("Infrastrukturversorgung", "Nutzungsvielfalt", "Einsparung natürlicher Ressourcen", "Luftreinhaltung", "Biodiversität", "Aufenthalts-/ Freiraumqualität")
+wifuSchmutzwasser = c("Gesundheitsvorsorge", "Gewässerschutz", "Trinwassereinsparung", "Nährstoffrückgewinnung")
+wifuEnergie = c("Elektrizität", "Wärme", "Brennstoffe", "Erzeugung", "Verteilung", "Verbrauch")
+
+anwendungsebenen = c("Gebäudeebene", "Grundstücksebene", "Quartiersebene")
+
+entwicklungsstaende = c("Stand der Wissenschaft und Technik", "Stand der Technik", "Allgemein annerkannter Stand der Technik")
+
+read_excel_allsheets <- function(filename, tibble = TRUE) {
+    sheets <- readxl::excel_sheets(filename)
+    x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+    if(tibble) x <- lapply(x, as_tibble)
+    names(x) <- sheets
+    x
+}
+save1 <- read_excel_allsheets("R2Q_Datensatz_leer.xlsx")
+
+getcon <- function(){
+    dbConnect(MySQL(), user = "Flemming", password = "vo5Otei9", dbname = "r2q", host = "185.149.214.79")
+}
+
+con <- getcon()
+list_Massnahmen <- dbGetQuery(con, "SELECT ressource, kategorieIndex, name, id FROM massnahmen");
+dbDisconnect(con)
+
+# list_Massnahmen <- read_excel("Massnahmenliste.xlsx")
+list_Massnahmen[["kategorieIndex"]] <- str_pad(list_Massnahmen[["kategorieIndex"]], 3, pad = "0")
+list_Massnahmen <- unite(list_Massnahmen, Massnahmen, ressource:name)
+
+massnahmen_dropdown <-append(list_Massnahmen$Massnahmen,NA)
+
+
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+    
+    # Application title
+    titlePanel("R2Q Maßnahmenkatalog"),
+    
+    # Sidebar with a slider input for number of bins 
+    sidebarLayout(
+        sidebarPanel(
+            selectInput(inputId = "Massnahme",
+                        label = "Maßnahme",
+                        multiple = FALSE, 
+                        choices = list_Massnahmen$Massnahmen,
+            ),
+            actionButton(inputId = "loaddata",label = "Daten laden"),
+            actionButton(inputId = "SaveMassnahme",label = "Speichern"),
+            
+            
+            br(),
+            br(),
+            br(),
+            
+            textOutput("message1")
+        ),
+        
+        # Show a plot of the generated distribution
+        mainPanel(
+            tabsetPanel(
+                id = "Eingabe",
+                
+                
+                #################
+                #TAB Kurzinformation
+                tabPanel("Kurzinformation",
+                         
+                         br(),
+                         HTML("<strong>Achtung: Am besten funktioniert die Anwendung maximiert, um überlappende Wörter vorzubeugen!</strong>"),
+                         br(),
+                         br(),
+                         br(),
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         #Kurzbeschreibung
+                         HTML("<strong>1. Kurzbeschreibung</strong>"),
+                         br(),
+                         br(),
+                         
+                         HTML("Folgende Befehle sind im Text möglich:"),
+                         br(),
+                         HTML("<strong>Fettgedruckt:</strong> **...**"),
+                         br(),
+                         HTML("<strong>Zeilenumbruch:</strong> hierfür müssen <strong>2 Leerzeichen</strong> an das Zeilenende gesetzt werden! <br> Dabei ist wichtig den Zeilenumbruch auch hier in der Eingabe mit Enter einzufügen."),
+                         br(),
+                         
+                         textAreaInput("kurzb", label = "",width = "200%"),
+                         
+                         
+                         br(),
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         #Umsetzungsbeispiel (Foto)
+                         
+                         strong("2. Umsetzungsbeispiel"),
+                         
+                         textInput("beschrbsp","Beschriftung"),
+                         
+                         fileInput("bspfoto", "Upload Bild", accept = c('image/png')),
+                         "Entsprechendes Bild im .png Format auswählen",
+                         br(),
+                         HTML("Letzter Upload:"),
+                         textOutput("messageUploadtimebsp"),
+                         
+                         #textInput("bspfoto", "Umsetzungsbeispiel (Foto)"),
+                         #HTML("Bitte <strong>Dateiname</strong> angeben mit der Endung <strong>...</strong>, ebenfalls stellen Sie bitte sicher, dass das Bild das entsprechende <strong>Format</strong> hat"),
+                         br(),
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         #Ressource
+                         checkboxGroupInput("cbgRessource", "3. Ressource", FALSE,
+                                            choices = ressourcen,
+                         ),
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         #Wirkung und Funktion
+                         strong("4. Wirkung und Funktion"),
+                         fluidRow(
+                             column( width = 3,
+                                     br(),
+                                     checkboxGroupInput("cbgniederschlagswasser", "Niederschlagswasser", 
+                                                        choices = wifuNiederschlagswasser,
+                                     )
+                             ),
+                             column( width = 3,
+                                     br(),
+                                     checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
+                                                        choices = wifuBaustoffe,
+                                                        
+                                                        
+                                     )
+                                     
+                             ),
+                             
+                             column( width = 3,
+                                     br(),
+                                     checkboxGroupInput("cbgflaeche", "Fläche", 
+                                                        choices = wifuFlaeche,
+                                                        )
+                                     
+                             ),
+                             
+                             
+                             
+                         ),
+                         fluidRow(
+                             column( width = 3,
+                                     br(),
+                                     checkboxGroupInput("cbgschmutzwasser", "Schmutzwasser", 
+                                                        choices = wifuSchmutzwasser,
+                                                        
+                                     )
+                             ),
+                             
+                             column( width = 3,
+                                     br(),
+                                     checkboxGroupInput("cbgenergie", "Energie", 
+                                                        choices = wifuEnergie,
+                                                        
+                                                        
+                                     )
+                                     
+                             ),
+                             
+                         ),
+                         
+                         
+                         
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         #Anwendungsebene
+                         checkboxGroupInput("cbgAnwendungsebene", "5. Anwendungsebene", choices = anwendungsebenen),
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         #Flächenbedarf
+                         strong("6. Flächenbedarf"),
+                         textInput("flaechenbedEW", "spezifische Fläche (m²/EW)"),
+                         textInput("flaechenbedEinheit", "Einheit für den spezifischen Flächenbedarf (m²/XX)"),
+                         as.character("Bitte nur eine Einheit für XX eingeben!"),
+                         br(),
+                         br(),
+                         textInput("flaechenbedXX", "spezifische Fläche (m²/XX)"),
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         
+                         #Nutzungsdauer
+                         fluidRow(
+                             column(width = 4,
+                                    strong("7. Nutzungsdauer (Jahre)"),
+                                    textInput("nutzdmin", "min")
+                             ),
+                             
+                             column(width = 4,
+                                    br(),
+                                    textInput("nutzdmax", "max")
+                             ),
+                             
+                             column(width = 4,
+                                    br(),
+                                    textInput("nutzdueblich", "üblich")
+                             ),
+                             
+                             column(width = 4,
+                                    br(),
+                             )
+                         ),
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         #Entwicklungsstand
+                         checkboxGroupInput("cbgentwicklungsstand", "8. Entwicklungsstand", choices = entwicklungsstaende),
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         
+                         textInput("hinw1", "Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand"),
+                         
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         br(), 
+                         
+                ),
+                
+                
+                
+                
+                
+                
+                
+                
+                #################
+                #TAB Detailinformation
+                
+                tabPanel("Detailinformation",
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),# br for Horizontal Space (empty line)
+                         
+                         #Funktionsbeschreibung und Aufbau
+                         HTML("<strong>9. Funktionsbeschreibung und Aufbau</strong>"),
+                         br(),
+                         br(),
+                         HTML("Folgende Befehle sind im Text möglich:"),
+                         br(),
+                         HTML("<strong>Fettgedruckt:</strong> **...**"),
+                         br(),
+                         HTML("<strong>Zeilenumbruch:</strong> hierfür müssen <strong>2 Leerzeichen</strong> an das Zeilenende gesetzt werden! <br> Dabei ist wichtig den Zeilenumbruch auch hier in der Eingabe mit Enter einzufügen."),
+                         br(),
+                         
+                         
+                         textAreaInput("funktiontxt", label = "", width = "200%"),
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         #Systemskizze
+                         #textInput("sysskizze", "10. Systemskizze Dateipfad"),
+                         #HTML("Bitte <strong>Dateiname</strong> angeben mit der Endung <strong>...</strong>, ebenfalls stellen Sie bitte sicher, dass das Bild das entsprechende <strong>Format</strong> hat"),
+                         
+                         strong("10. Systemskizze"),
+                         
+                         textInput("beschrsys","Beschriftung"),
+                         
+                         fileInput("sysskizze", "Upload Bild", accept = c('image/png')),
+                         "Entsprechendes Bild im .png Format auswählen",
+                         br(),
+                         HTML("Letzter Upload:"),
+                         textOutput("messageUploadtimesys"),
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         #Planung, Bemessung und rechtliche Aspekte
+                         textAreaInput("planbemtxt", label = "11. Planung, Bemessung und rechtliche Aspekte", width = "200%"),
+                         
+                         br(),
+                         
+                         wellPanel(
+                             rHandsontableOutput("planbemtab"),
+                         ),
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         #Aufwand und Kosten
+                         strong("12. Aufwand und Kosten"),
+                         br(),
+                         br(),
+                         textAreaInput("aufwandtxt", label = "Fließtext", width = "200%"),
+                         
+                         br(),
+                         strong("Investitionskosten 1 in €/XX"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("inv1e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv1min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv1max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv1ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         strong("Investitionskosten 2 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("inv2e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv2min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv2max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv2ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         strong("Investitionskosten 3 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("inv3e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv3min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv3max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv3ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         
+                         strong("Investitionskosten 4 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("inv4e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv4min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv4max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv4ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         strong("Investitionskosten 5 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("inv5e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv5min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv5max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("inv5ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         HTML("----------------------------------------------------------"),
+                         br(),
+                         
+                         strong("Betriebskosten 1 in €/XX"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("bet1e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet1min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet1max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet1ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         
+                         strong("Betriebskosten 2 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("bet2e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet2min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet2max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet2ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         
+                         strong("Betriebskosten 3 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("bet3e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet3min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet3max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet3ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         
+                         strong("Betriebskosten 4 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("bet4e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet4min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet4max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet4ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         strong("Betriebskosten 5 in €/XX (optional!!!)"),
+                         br(),
+                         fluidRow(
+                             column(width = 3,
+                                    textInput("bet5e", "Einheit für XX")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet5min", "min")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet5max", "max")
+                             ),
+                             
+                             column(width = 3,
+                                    textInput("bet5ueblich", "Üblich")
+                             )
+                         ),
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         
+                         #Weitergehende Hinweise
+                         
+                         
+                         #Fließtext + freie anzahl von Tabellen Zeilen  mit Parameter Spalte und Werte Spalte
+                         
+                         strong("13. Weitergehende Hinweise"),
+                         
+                         
+                         br(),
+                         br(),
+                         textAreaInput("whinwtxt", label="Fließtext", width = "200%"),
+                         
+                         wellPanel(
+                             rHandsontableOutput("whinw"),
+                         ),
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         
+                         
+                         
+                         
+                         
+                         #Ressourcenübergreifende Aspekte
+                         strong("14. Ressourcenübergreifende Aspekte"),
+                         fluidRow(
+                             column( width = 4,
+                                     br(),
+                                     strong("Synergien:"),
+                                     br(),
+                                     br(),
+                                     textInput("synniederschlagswasser", "Niederschlagswasser"),
+                                     textInput("synschmutzwasser", "Schmutzwasser"),
+                                     textInput("synbaustoffe", "Baustoffe"),
+                                     textInput("synenergie", "Energie"),
+                                     textInput("synflaeche", "Fläche"),
+                                     textInput("synoekobilanz", "Ökobilanz"),
+                             ),
+                             
+                             column( width = 4,
+                                     br(),
+                                     strong("Zielkonflikte:"),
+                                     br(),
+                                     br(),
+                                     textInput("konfniederschlagswasser", "Niederschlagswasser"),
+                                     textInput("konfschmutzwasser", "Schmutzwasser"),
+                                     textInput("konfbaustoffe", "Baustoffe"),
+                                     textInput("konfenergie", "Energie"),
+                                     textInput("konfflaeche", "Fläche"),
+                                     textInput("konfoekobilanz", "Ökobilanz"),
+                             )
+                             
+                         ),
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         
+                         
+                         
+                         #Platzhalter für Kombinationsmöglichkeiten 
+                         #mit Dropdownmenü auf andere Maßnahmen verweisen
+                         br(),
+                         
+                         
+                         strong("15. Kombinationsmöglichkeiten"),
+                         
+                         
+                         selectInput(inputId = "selkombi1",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi2",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi3",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi4",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi5",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi6",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi7",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi8",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi9",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         selectInput(inputId = "selkombi10",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         
+                         
+                         
+                         
+                         
+                         #textAreaInput("kombis", label = "13. Kombinationsmöglichkeiten",value = selected_row$kombis ,width = "200%"),
+                         #as.character("Aufzählung sinnvoller/möglicher Maßnahmenkombinationen"),
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         
+                         
+                         
+                         
+                         #Vor- und Nachteile
+                         
+                         
+                         strong("16. Vor- und Nachteile"),
+                         br(),
+                         
+                         
+                         wellPanel(
+                             rHandsontableOutput("vornach"),
+                         ),
+                         
+                         
+                         
+                         #fluidRow(
+                         # column( width = 4,
+                         #        br(),
+                         #     strong("Vorteile:"),
+                         #     br(),
+                         #    br(),
+                         #   textInput("vort1", "Vorteil 1"),
+                         #  textInput("vort2", "Vorteil 2"),
+                         # textInput("vort3", "Vorteil 3"),
+                         # textInput("vort4", "Vorteil 4"),
+                         #textInput("vort5", "Vorteil 5"), 
+                         #   ),
+                         #  
+                         # column( width = 4,
+                         #        br(),
+                         #       strong("Nachteile:"),
+                         #      br(),
+                         #     br(),
+                         #    textInput("nacht1", "Nachteil 1"),
+                         #   textInput("nacht2", "Nachteil 2"),
+                         #  textInput("nacht3", "Nachteil 3"),
+                         # textInput("nacht4", "Nachteil 4"),
+                         #textInput("nacht5", "Nachteil 5"), 
+                         #),
+                         
+                         # ),
+                         
+                         
+                         
+                         
+                         
+                         HTML("_____________________________________________________________________________________________"),
+                         br(),
+                         
+                         
+                         #Fallbeispiele
+                         
+                         strong("17. Fallbeispiele"),
+                         br(),
+                         
+                         
+                         wellPanel(
+                             rHandsontableOutput("fallbsp"),
+                         ),
+                         
+                         
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         
+                ),
+                
+                
+                
+                #################                
+                
+                
+                #TAB Bewertung
+                tabPanel("Bewertung"
+                         
+                ),
+                
+                
+                #################                
+                
+                
+                
+                
+                
+                
+                #TAB Vorschau
+                tabPanel("Vorschau",
+                         
+                         br(),
+                         br(),
+                         strong("Noch in Arbeit"),
+                         htmlOutput("loading"),
+                         br(),
+                         #actionButton(inputId = "viewpdf",label = "Vorschau anzeigen"),
+                         br(),
+                         br(),
+                         add_busy_bar(color = "#52f32b"), #Hex Color Corde
+                         br(),
+                         br(),
+                         
+                         
+                         #htmlOutput("vorschaupdf"),
+                         
+                         
+                         
+                         
+                         
+                         #renderDataTable(expr = as.data.frame(Daten)),
+                         
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         br(),
+                         
+                         
+                         #################
+                         
+                )
+            )
+        )
+    )
+)
+
+
+########################################################################################################################################################
+
+
+
+
+
+# Define server logic required to draw a histogram
+
+
+server <- function(input, output, session) {
+    
+    
+    
+    
+    
+    #Vorschau
+    
+    observeEvent(input$viewpdf, {
+        
+        #damit PDF-Ausgabe mit Iframe funktioniert müssen Dateien in den www-Ordner vom Workingdirectory                
+        outputname <- str_c("../Katalog/",input$Massnahme,".html")
+        rmdsource <- str_c("./Markdown/","R2Q_Test.Rmd")
+        render(rmdsource, output_file = outputname)
+        
+        file.copy(str_c("./Katalog/",input$Massnahme,".html"), str_c("./www/",input$Massnahme,".html"))
+        
+        output$vorschaupdf <- renderText({
+            return(paste('<iframe style="height:600px; width:100%" src="', str_c(input$Massnahme,".html"), '"></iframe>', sep = ""))
+        })
+    })
+    
+    
+    
+    
+    
+    
+    #Daten laden
+    
+    observeEvent(input$loaddata, {
+        
+        mid <- subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]
+        
+        con = getcon()
+        
+        #dbSendQuery(con, "SET CHARACTER SET utf8mb4;")
+        #dbExecute(con, "SET CHARACTER SET utf8mb4;")
+        loadedTable <- dbGetQuery(con, str_c("SELECT * FROM massnahmendaten WHERE massnahme_id = ", as.character(mid)))
+        #Encoding(loadedTable) <- "UTF-8"
+        dbDisconnect(con)
+        
+        save1 <- data.frame(loadedTable)
+        save1 <- add_column(save1, id = "id", .after = 0)
+        save1 <- add_column(save1, row = "bla", .after = 0)
+        enc2utf8(save1$wert)
+        #save1 <- read.csv2(str_c("./Massnahmen/",input$Massnahme,".csv"))
+        #massnahme <- as.character(input$Massnahme) 
+        
+        massnahme <- subset(list_Massnahmen, id == save1[1,3])[1,1]
+        
+        datamassnahme <- save1
+        
+        
+        #Kurzbeschreibung
+        
+        wertInTextArea <- function(wert, box){
+            if(wert=="NA"){
+                updateTextInput(session, box, value = "")
+            } else {
+                updateTextAreaInput(session, box, value = as.character(wert))
+            }
+        }
+        
+        wertInTextInput <- function(wert, box){
+            if(wert=="NA"){
+                updateTextInput(session, box, value = "")
+            } else {
+                updateTextInput(session, box, value = as.character(wert))
+            }
+        }
+        
+        clean <- function(s) {
+            if(is.na(s)){
+                ""
+            }else if(s == "NA"){
+                ""
+            }
+            s
+        }
+        
+        werte1 <- function(e1){
+            clean(subset(datamassnahme, ebene1 == e1)[1,7])
+        }
+        
+        werte2 <- function(e1, e2){
+            clean(subset(datamassnahme, ebene1 == e1 & ebene2 == e2)[1,7])
+        }
+        
+        werte3 <- function(e1, e2, e3){
+            clean(subset(datamassnahme, ebene1 == e1 & ebene2 == e2 & ebene3 == e3)[1,7])
+        }
+
+        wertEn <- function(ebenen) {
+            if(length(ebenen) == 1){
+                werte1(ebenen[1])
+            }else if(length(ebenen) == 2){
+                werte2(ebenen[1], ebenen[2])
+            }else if(length(ebenen) == 3){
+                werte3(ebenen[1], ebenen[2], ebenen[3])
+            }
+        }
+        
+        
+        
+       
+        
+        
+        
+        
+        
+        wertInTextArea(werte1("Kurzbeschreibung"), "kurzb")
+        
+        #Umsetzungsbeispiel
+        
+        wertInTextInput(werte1("Umsetzungsbeispiel"), "beschrbsp")
+        
+        namePNG <- stringi::stri_replace_all_fixed(
+            input$Massnahme, 
+            c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
+            c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+            vectorize_all = FALSE
+        )
+        
+        Uptime <- as.character(file.info(str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"))$ctime)
+        output$messageUploadtimebsp <- renderText(Uptime)
+        
+        strIsFalse <- function(w){
+            w != "0" && !is.na(w) && w != "NA" && w != ""
+        }
+        
+        cbGroup = function(ebenen, choices, cbg){
+            sel <- c() # Puffer für Wahrheitswerte der Ressourcen Checkboxen (cb)
+            
+            istCbAn <- function(cb){ # Wenn in der DB der wert der CB "An" ist, dann wird der Name der CB dem sel vector hinzugefügt
+                w <- wertEn(append(ebenen, cb))
+                if(strIsFalse(w)){
+                    sel <<- append(sel, cb)
+                }
+            }
+            
+            for(c in choices){
+                istCbAn(c)
+            }
+            if(length(sel) == 0){
+                sel = ""
+            }
+            updateCheckboxGroupInput(session, cbg, selected = sel )
+        }
+        
+        #Ressourcen
+        
+        cbGroup(c("Ressource"), ressourcen, "cbgRessource")
+        
+        #Wirkung und Funkion
+        #Niederschlagswasser
+        
+        cbGroup(c("Wirkung/Funktion", "Niederschlagswasser"), wifuNiederschlagswasser, "cbgniederschlagswasser")
+        
+        #Baustoffe
+        
+        cbGroup(c("Wirkung/Funktion", "Baustoffe"), wifuBaustoffe, "cbgbaustoffe")
+        
+        #Fläche
+        
+        cbGroup(c("Wirkung/Funktion", "Fläche"), wifuFlaeche, "cbgflaeche")
+        
+        #Schmutzwasser
+        
+        cbGroup(c("Wirkung/Funktion", "Schmutzwasser"), wifuSchmutzwasser, "cbgschmutzwasser")
+        
+        #Energie
+        
+        cbGroup(c("Wirkung/Funktion", "Energie"), wifuEnergie, "cbgenergie")
+
+        #Anwendungsebene
+        
+        cbGroup(c("Anwendungsebene"), anwendungsebenen, "cbgAnwendungsebene")
+        
+#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Anwendungsebene" & ebene2 == "Hinweis" )[1,1])
+#        if(datamassnahme[nr,7] == "NA"){
+#            updateTextInput(session, "hinw1", value = "")
+#        } else {
+#            updateTextInput(session, "hinw1", value = as.character(datamassnahme[nr,7]))}
+        
+        
+        #Flächenbedarf
+        
+        wertInTextInput(werte2("Flächenbedarf", "m²/EW"), "flaechenbedEW")
+        wertInTextInput(werte2("Flächenbedarf", "XX"), "flaechenbedEinheit")
+        wertInTextInput(werte2("Flächenbedarf", "m²/XX"), "flaechenbedXX")
+        
+        
+#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Flächenbedarf" & ebene2 == "Hinweis" )[1,1])
+#        if(datamassnahme[nr,7] == "NA"){
+#            updateTextInput(session, "hinw2", value = "")
+#        } else {
+#            updateTextInput(session, "hinw2", value = as.character(datamassnahme[nr,7]))}
+        
+        
+        #Nutzungsdauer
+        
+        wertInTextInput(werte2("Nutzungsdauer", "min"), "nutzdmin")
+        wertInTextInput(werte2("Nutzungsdauer", "max"), "nutzdmax")
+        wertInTextInput(werte2("Nutzungsdauer", "üblich"), "nutzdueblich")
+        
+#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Nutzungsdauer" & ebene2 == "Hinweis" )[1,1])
+#        if(datamassnahme[nr,7] == "NA"){
+#            updateTextInput(session, "hinw3", value = "")
+#        } else {
+#            updateTextInput(session, "hinw3", value = as.character(datamassnahme[nr,7]))}
+        
+        
+        #Entwicklungsstand
+        
+        cbGroup(c("Entwicklungsstand"), entwicklungsstaende, "cbgentwicklungsstand")
+        
+#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Entwicklungsstand" & ebene2 == "Hinweis" )[1,1])
+#        if(datamassnahme[nr,7] == "NA"){
+#            updateTextInput(session, "hinw4", value = "")
+#        } else {
+#            updateTextInput(session, "hinw4", value = as.character(datamassnahme[nr,7]))}
+        
+
+        
+        #Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand
+        
+        wertInTextInput(werte2("Sammelhinweis", "Hinweis"), "hinw1")
+        
+        #Funktionsbeschreibung  
+        
+        wertInTextArea(werte1("Funktionsbeschreibung und Aufbau"), "funktiontxt")
+        
+        #Systemskizze
+        
+        wertInTextInput(werte2("Systemskizze", "Beschriftung"), "beschrsys")
+        
+        namePNG <- stringi::stri_replace_all_fixed(
+            input$Massnahme, 
+            c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
+            c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+            vectorize_all = FALSE
+        )
+        
+        Uptime <- as.character(file.info(str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"))$ctime)
+        output$messageUploadtimesys <- renderText(Uptime)
+        
+        
+        
+        #Planung, Bemessung und rechtliche Aspekte
+        
+        wertInTextInput(werte2("Planung, Bemessung und rechtliche Aspekte", "Fließtext"), "planbemtxt")
+        
+        #Tabelle Planbem
+        
+        
+        DF4 <- tibble(Norm = c("","","","",""), Titel = c("","","","",""))
+        
+        DF4[1,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke1")
+        DF4[2,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke2")
+        DF4[3,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke3")
+        DF4[4,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke4")
+        DF4[5,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke5")
+        
+        DF4[1,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt1")
+        DF4[2,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt2")
+        DF4[3,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt3")
+        DF4[4,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt4")
+        DF4[5,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt5")
+        
+        output$planbemtab <- renderRHandsontable({rhandsontable(DF4, useTypes = TRUE, stretchH = "all")
+        })
+        
+        
+        
+        #Aufwand und Kosten
+        
+        wertInTextInput(werte2("Aufwand und Kosten", "Fließtext"), "aufwandtxt")
+        
+        for(i in 1:5){
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Investitionskosten", as.character(i)), "Einheit"), paste0("inv", as.character(i) ,"e"))
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Investitionskosten", as.character(i)), "min"), paste0("inv", as.character(i) ,"min"))
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Investitionskosten", as.character(i)), "max"), paste0("inv", as.character(i) ,"max"))
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Investitionskosten", as.character(i)), "üblich"), paste0("inv", as.character(i) ,"ueblich"))
+        }
+        
+        for(i in 1:5){
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "Einheit"), paste0("bet", as.character(i) ,"e"))
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "min"), paste0("bet", as.character(i) ,"min"))
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "max"), paste0("bet", as.character(i) ,"max"))
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "üblich"), paste0("bet", as.character(i) ,"ueblich"))
+        }
+        
+        #Weitergehende Hinweise
+        
+        wertInTextInput(werte2("Weitergehende Hinweise", "Fließtext"), "whinwtxt")
+        
+        DF1 <- tibble(Parameter = c("","","","","","","","","",""), Wert = c("","","","","","","","","",""))
+        
+        for(i in 1:10){
+            DF1[i,1] = werte3("Weitergehende Hinweise", "Parameter", as.character(i))
+            DF1[i,2] = werte3("Weitergehende Hinweise", "Wert", as.character(i))
+        }
+        
+        output$whinw <- renderRHandsontable({rhandsontable(DF1, useTypes = TRUE, stretchH = "all")
+        })
+        
+        
+        
+        #Ressourcenübergreifende Aspekte
+        
+        synergien <- function(e3, ti){
+            wertInTextInput(werte3("Ressourcenübergreifende Aspekte", "Synergien", e3), ti)
+        }
+        
+        synergien("Niederschlagswasser", "synniederschlagswasser")
+        synergien("Schmutzwasser", "synschmutzwasser")
+        synergien("Baustoffe", "synbaustoffe")
+        synergien("Energie", "synenergie")
+        synergien("Fläche", "synflaeche")
+        synergien("Ökobilanz", "synoekobilanz")
+        
+        zielkonflikte <- function(e3, ti){
+            wertInTextInput(werte3("Ressourcenübergreifende Aspekte", "Zielkonflikte", e3), ti)
+        }
+        
+        zielkonflikte("Niederschlagswasser", "konfniederschlagswasser")
+        zielkonflikte("Schmutzwasser", "konfschmutzwasser")
+        zielkonflikte("Baustoffe", "konfbaustoffe")
+        zielkonflikte("Energie", "konfenergie")
+        zielkonflikte("Fläche", "konfflaeche")
+        zielkonflikte("Ökobilanz", "konfoekobilanz")
+        
+        #Kombinationsmöglichkeiten
+
+        wertInSelectInput <- function(wert, box){
+            if(wert=="NA"){
+                updateSelectInput(session, box, selected = "NA")
+            } else {
+                updateSelectInput(session, box, selected = as.character(wert))
+            }
+        }
+        
+        for(i in 1:10){
+            wertInSelectInput(werte2("Kombinationsmöglichkeiten", as.character(i)), paste0("selkombi", as.character(i)))
+        }
+        
+        #Vor- und Nachteile
+        
+        DF2 <- tibble(Vorteile = c("","","","","","","","","",""), Nachteile = c("","","","","","","","","",""))
+        
+        for(i in 1:10){
+            DF2[i,1] = werte3("Vor- und Nachteile", "Vorteile", as.character(i))
+            DF2[i,2] = werte3("Vor- und Nachteile", "Nachteile", as.character(i))
+        }
+        
+        output$vornach <- renderRHandsontable({rhandsontable(DF2, useTypes = TRUE, stretchH = "all")
+        })
+        
+        #Fallbeispiele
+        
+        
+        DF3 <- tibble(Projektname = c("","",""), Stadt = c("","",""), Land = c("","",""), Erläuterung = c("","",""))
+        
+        for(i in 1:3){
+            DF3[i,1] = werte3("Fallbeispiele", as.character(i), "Projektname")
+            DF3[i,2] = werte3("Fallbeispiele", as.character(i), "Stadt")
+            DF3[i,3] = werte3("Fallbeispiele", as.character(i), "Land")
+            DF3[i,4] = werte3("Fallbeispiele", as.character(i), "Erläuterung")
+        }
+        
+        output$fallbsp <- renderRHandsontable({rhandsontable(DF3, useTypes = TRUE, stretchH = "all")
+        })
+      
+    })
+    
+    ###########################################################################################################  
+    
+    
+    
+    #Tabellen
+    
+    #Tabelle für Planung, Bemessung und rechtliche Aspekte
+    
+    
+    DF4 <- tibble(Norm_Regelwerk_Gesetz = c("","","","",""), Titel = c("","","","",""))
+    
+    observe({
+        if (!is.null(input$planbemtab)) {  
+            values[["previous"]] <- isolate(values[["DF4"]])
+            DF4 = hot_to_r(input$planbemtab)
+        } else {
+            if (is.null(values[["DF4"]]))  
+                DF4 <- DF4
+            else
+                DF4 <- values[["DF4"]]  
+        }
+        values[["DF4"]] <- DF4
+    })
+    
+    
+    output$planbemtab <- renderRHandsontable({
+        DF4 <- values[["DF4"]]
+        if (!is.null(DF4))
+            rhandsontable(DF4, useTypes = TRUE, stretchH = "all")
+    })
+    
+    
+    #Tabelle für Weitergehende Hinweise
+    
+    values <- reactiveValues()
+    
+    DF1 <- tibble(Parameter = c("","","","",""), Wert = c("","","","",""))
+    
+    
+    observe({
+        if (!is.null(input$whinw)) {  #wenn schon Daten in der Tabelle sind werden diese unter values[["previous]] abgespeichert
+            values[["previous"]] <- isolate(values[["DF1"]])
+            DF1 = hot_to_r(input$whinw)
+        } else {
+            if (is.null(values[["DF1"]]))  #wenn keine Daten unter values DF vorhanden sind, dann bleibt DF gleich
+                DF1 <- DF1
+            else
+                DF1 <- values[["DF1"]]  #wenn Daten unter values DF vorhanden sind, dann werden diese für DF genutzt
+        }
+        values[["DF1"]] <- DF1
+    })
+    
+    
+    output$whinw <- renderRHandsontable({
+        DF1 <- values[["DF1"]]
+        if (!is.null(DF1))
+            rhandsontable(DF1, useTypes = TRUE, stretchH = "all")
+        
+        
+    })
+    
+    #Tabelle Vor- und Nachteile
+    
+    DF2 <- tibble(Vorteile = c("","","","",""), Nachteile = c("","","","",""))
+    
+    observe({
+        if (!is.null(input$vornach)) {  #wenn schon Daten in der Tabelle sind werden diese unter values[["previous]] abgespeichert
+            values[["previous"]] <- isolate(values[["DF2"]])
+            DF2 = hot_to_r(input$vornach)
+        } else {
+            if (is.null(values[["DF2"]]))  #wenn keine Daten unter values DF vorhanden sind, dann bleibt DF gleich
+                DF2 <- DF2
+            else
+                DF2 <- values[["DF2"]]  #wenn Daten unter values DF vorhanden sind, dann werden diese für DF genutzt
+        }
+        values[["DF2"]] <- DF2
+    })
+    
+    
+    output$vornach <- renderRHandsontable({
+        DF2 <- values[["DF2"]]
+        if (!is.null(DF2))
+            rhandsontable(DF2, useTypes = TRUE, stretchH = "all")
+    })
+    
+    
+    
+    #Tabelle für Fallbeispiele
+    
+    
+    DF3 <- tibble(Projektname = c("","",""), Stadt = c("","",""), Land = c("","",""), Erläuterung = c("","",""))
+    
+    observe({
+        if (!is.null(input$fallbsp)) { 
+            values[["previous"]] <- isolate(values[["DF3"]])
+            DF3 = hot_to_r(input$fallbsp)
+        } else {
+            if (is.null(values[["DF3"]]))  
+                DF3 <- DF3
+            else
+                DF3 <- values[["DF3"]]  
+        }
+        values[["DF3"]] <- DF3
+    })
+    
+    
+    output$fallbsp <- renderRHandsontable({
+        DF3 <- values[["DF3"]]
+        if (!is.null(DF3))
+            rhandsontable(DF3, useTypes = TRUE, stretchH = "all")
+    })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    #############################################################################################################
+    #Saving Process
+    
+    observeEvent(input$SaveMassnahme, {
+        
+        ##Maßnahme auslesen
+        massnahme <- as.character(input$Massnahme) 
+        
+        save1 <- read_excel("R2Q_Datensatz_leer.xlsx")
+        save1$Massnahme <- massnahme
+        datamassnahme <- save1
+        
+        if(nrow(isolate(values[["DF1"]])) > nrow(subset(datamassnahme, ebene1 == "Weitergehende Hinweise" & ebene2 == "Parameter"))) {output$message1 <- renderText({"Es konnte nicht gespeichert werden, da für Weitergehende Hinweise mehr als 10 Zeilen vorhanden sind!"})} else {
+            
+            
+            read_excel_allsheets <- function(filename, tibble = TRUE) {
+                sheets <- readxl::excel_sheets(filename)
+                x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
+                if(tibble) x <- lapply(x, as_tibble)
+                names(x) <- sheets
+                x
+            }
+            
+            #############################################################################
+            
+            
+            
+            #Kurzbeschreibung
+            
+            
+            
+            TextInputToWert <- function(Box,e1,e2="NA",e3="NA") {
+                if (e2=="NA") {
+                    if(Box=="NA"||is.na(Box)){
+                        datamassnahme[datamassnahme$ebene1==e1,7] <<- ""
+                    } else {
+                        datamassnahme[datamassnahme$ebene1==e1,7] <<- as.character(Box)
+                    }
+                } else {
+                    if (e3=="NA") {
+                        if(Box=="NA"||is.na(Box)){
+                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 ,7] <<- ""
+                        } else {
+                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 ,7] <<- as.character(Box)
+                        }
+                    } else {
+                        if(Box=="NA"||is.na(Box)){
+                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 & datamassnahme$ebene3==e3 ,7] <<- ""
+                        } else {
+                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 & datamassnahme$ebene3==e3  ,7] <<- as.character(Box)
+                        }
+                    }
+                }
+            }
+            
+            CbgInputToWert <- function(Box,e1,e2="NA",e3="NA") {
+                InputWert <- data.frame(Box)
+                if (e2=="NA") {
+                    datamassnahme[datamassnahme$ebene1==e1 ,7] <<- "0"
+                    if (nrow(InputWert) == 0 ){} else 
+                    {
+                        for (i in 1:as.numeric(nrow(InputWert))) {
+                            E2Wert <- InputWert[i,1]
+                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==E2Wert ,7] <<- "1"
+                        }
+                    }
+                } else {
+                    if (e3=="NA") {
+                        datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2,7] <<- "0"
+                        if (nrow(InputWert) == 0 ){} else 
+                        {
+                            for (i in 1:as.numeric(nrow(InputWert))) {
+                                E3Wert <- InputWert[i,1]
+                                datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 & datamassnahme$ebene3==E3Wert ,7] <<- "1"
+                            }
+                        }
+                    }
+                }
+                
+                
+                
+            }
+            
+            
+            
+#            df$y %>%
+#            TextInputToWert("Aufwand und Kosten","Fließtext")
+            
+            input$kurzb %>% 
+                TextInputToWert("Kurzbeschreibung")
+            
+            ##Zeilennummer herausfiltern
+
+            
+            #Umsetzungsbeispiel(Foto)
+            namePNG <- stringi::stri_replace_all_fixed(
+                input$Massnahme, 
+                c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
+                c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+                vectorize_all = FALSE
+            )
+            param <- input$bspfoto
+            if (is.null(param)) {} else {}
+            file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG") )
+            
+            
+            str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG") %>% 
+                TextInputToWert("Umsetzungsbeispiel","Bild")
+            
+            input$beschrbsp %>% 
+                TextInputToWert("Umsetzungsbeispiel","Beschriftung")
+            
+            
+            Uptime <- as.character(file.info(str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"))$ctime)
+            output$messageUploadtimebsp <- renderText(Uptime)
+            
+            
+            
+            
+            
+            
+            #Ressource
+            
+            input$cbgRessource %>% 
+                CbgInputToWert("Ressource")
+            
+            
+            #Wirkung und Funktion
+            
+            ##Niederschlagswasser
+            input$cbgniederschlagswasser %>% 
+                CbgInputToWert("Wirkung/Funktion", "Niederschlagswasser")
+            ##Baustoffe
+            input$cbgbaustoffe %>% 
+                CbgInputToWert("Wirkung/Funktion", "Baustoffe")
+            ##Fläche
+            input$cbgflaeche %>% 
+                CbgInputToWert("Wirkung/Funktion", "Fläche")
+            ##Schmutzwasser
+            input$cbgschmutzwasser %>% 
+                CbgInputToWert("Wirkung/Funktion", "Schmutzwasser")
+            ##Energie
+            input$cbgenergie %>% 
+                CbgInputToWert("Wirkung/Funktion", "Energie")
+           
+            
+            
+            #Anwendungsebene
+            
+            input$cbgAnwendungsebene %>% 
+                CbgInputToWert("Anwendungsebene")
+            
+            ##Hinweis
+            
+            #input$hinw1 %>% 
+            #    TextInputToWert("Anwendungsebene", "Hinweis")
+            
+            #Flächenbedarf
+            
+            input$flaechenbedEW %>% 
+                TextInputToWert("Flächenbedarf", "m²/EW")
+            
+            input$flaechenbedEinheit %>% 
+                TextInputToWert("Flächenbedarf", "XX")
+            
+            input$flaechenbedXX %>% 
+                TextInputToWert("Flächenbedarf", "m²/XX")
+            
+            
+            #input$hinw2 %>% 
+            #    TextInputToWert("Flächenbedarf", "Hinweis")
+            
+            #Nutzungsdauer
+            
+            input$nutzdmin %>% 
+                TextInputToWert("Nutzungsdauer", "min")
+            
+            input$nutzdmax %>% 
+                TextInputToWert("Nutzungsdauer", "max")
+            
+            input$nutzdueblich %>% 
+                TextInputToWert("Nutzungsdauer", "üblich")
+            
+            
+            #input$hinw3 %>% 
+            #    TextInputToWert("Nutzungsdauer", "Hinweis")
+            
+            
+            #Entwicklungsstand
+            
+            input$cbgentwicklungsstand %>% 
+                CbgInputToWert("Entwicklungsstand")
+            
+            #Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand
+            
+            input$hinw1 %>% 
+                TextInputToWert("Sammelhinweis", "Hinweis")
+            
+            #######################
+            
+            #Detailinformation
+            #Funktionsbeschreibung und Aufbau
+            
+            input$funktiontxt %>% 
+                TextInputToWert("Funktionsbeschreibung und Aufbau")
+            
+            #Systemskizze
+            namePNG <- stringi::stri_replace_all_fixed(
+                input$Massnahme, 
+                c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
+                c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+                vectorize_all = FALSE
+            )
+            param <- input$sysskizze
+            if (is.null(param)) {} else {}
+            file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") )
+            
+            str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") %>% 
+                TextInputToWert("Systemskizze","Beschriftung")
+            
+            
+            input$beschrsys %>% 
+                TextInputToWert("Systemskizze","Beschriftung")
+            
+            
+            Uptime <- as.character(file.info(str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"))$ctime)
+            output$messageUploadtimebsys <- renderText(Uptime)
+            
+            
+            #param <- as.character(input$sysskizze)
+            #nr <- as.numeric(subset(datamassnahme, ebene1 == "Systemskizze")[1,1])
+            #if (param == "") {
+            #  datamassnahme[nr,7] <- as.character("NA")
+            #} else
+            #{datamassnahme[nr,7] <- param}
+            
+            
+            #Planung, Bemessung und rechtliche Aspekte
+            
+            input$planbemtxt %>% 
+                TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Fließtext")
+            
+            
+            param <- isolate(values[["DF4"]])
+            
+            for (i in 1:5) {
+                TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
+                TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
+            }
+            
+            for (i in 1:nrow(param)) {
+                param[i,1] %>% 
+                    TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
+                param[i,2] %>% 
+                    TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
+            }
+            
+            
+            #Aufwand und Kosten
+            
+            input$aufwandtxt %>% 
+                TextInputToWert("Aufwand und Kosten","Fließtext")
+            
+            input$inv1e %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten1","Einheit")
+            input$inv1min %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten1","min")
+            input$inv1max %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten1","max")
+            input$inv1ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten1","üblich")
+            
+            input$inv2e %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten2","Einheit")
+            input$inv2min %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten2","min")
+            input$inv2max %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten2","max")
+            input$inv2ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten2","üblich")
+            
+            input$inv3e %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten3","Einheit")
+            input$inv3min %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten3","min")
+            input$inv3max %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten3","max")
+            input$inv3ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten3","üblich")
+            
+            input$inv4e %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten4","Einheit")
+            input$inv4min %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten4","min")
+            input$inv4max %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten4","max")
+            input$inv4ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten4","üblich")
+            
+            input$inv5e %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten5","Einheit")
+            input$inv5min %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten5","min")
+            input$inv5max %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten5","max")
+            input$inv5ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Investitionskosten5","üblich")
+            
+            
+            input$bet1e %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten1","Einheit")
+            input$bet1min %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten1","min")
+            input$bet1max %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten1","max")
+            input$bet1ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten1","üblich")
+            
+            input$bet2e %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten2","Einheit")
+            input$bet2min %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten2","min")
+            input$bet2max %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten2","max")
+            input$bet2ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten2","üblich")
+            
+            input$bet3e %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten3","Einheit")
+            input$bet3min %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten3","min")
+            input$bet3max %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten3","max")
+            input$bet3ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten3","üblich")
+            
+            input$bet4e %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten4","Einheit")
+            input$bet4min %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten4","min")
+            input$bet4max %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten4","max")
+            input$bet4ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten4","üblich")
+            
+            input$bet5e %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten5","Einheit")
+            input$bet5min %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten5","min")
+            input$bet5max %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten5","max")
+            input$bet5ueblich %>% 
+                TextInputToWert("Aufwand und Kosten","Betriebskosten5","üblich")
+            
+            
+            #Weitergehende Hinweise
+            
+            input$whinwtxt %>% 
+                TextInputToWert("Weitergehende Hinweise","Fließtext")
+            
+            
+            param <- isolate(values[["DF1"]])
+            
+            for (i in 1:10) {
+                TextInputToWert("NA","Weitergehende Hinweise","Parameter",as.character(i))
+                TextInputToWert("NA","Weitergehende Hinweise","Wert",as.character(i))
+            }
+            
+            for (i in 1:nrow(param)) {
+                param[i,1] %>% 
+                    TextInputToWert("Weitergehende Hinweise","Parameter",as.character(i))
+                param[i,2] %>% 
+                    TextInputToWert("Weitergehende Hinweise","Wert",as.character(i))
+            }
+            
+            
+            #Ressourcenübergreifende Aspekte
+            ##Synergien
+            
+            input$synniederschlagswasser %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Niederschlagswasser")
+            input$synschmutzwasser %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Schmutzwasser")
+            input$synbaustoffe %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Baustoffe")
+            input$synenergie %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Energie")
+            input$synflaeche %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Fläche")
+            input$synoekobilanz %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Ökobilanz")
+            
+            ##Zielkonflikte
+            input$konfniederschlagswasser %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Niederschlagswasser")
+            input$konfschmutzwasser %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Schmutzwasser")
+            input$konfbaustoffe %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Baustoffe")
+            input$konfenergie %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Energie")
+            input$konfflaeche %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Fläche")
+            input$konfoekobilanz %>% 
+                TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Ökobilanz")
+            
+            
+            
+            
+            #Kombinationsmöglichkeiten
+            
+            input$selkombi1 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","1")
+            input$selkombi2 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","2")
+            input$selkombi3 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","3")
+            input$selkombi4 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","4")
+            input$selkombi5 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","5")
+            input$selkombi6 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","6")
+            input$selkombi7 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","7")
+            input$selkombi8 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","8")
+            input$selkombi9 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","9")
+            input$selkombi10 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","10")
+            
+            
+            #Vor- und Nachteile
+            
+            param <- isolate(values[["DF2"]])
+            
+            for (i in 1:10) {
+                TextInputToWert("NA","Vor- und Nachteile","Vorteile",as.character(i))
+                TextInputToWert("NA","Vor- und Nachteile","Nachteile",as.character(i))
+            }
+            
+            for (i in 1:nrow(param)) {
+                param[i,1] %>% 
+                    TextInputToWert("Vor- und Nachteile","Vorteile",as.character(i))
+                param[i,2] %>% 
+                    TextInputToWert("Vor- und Nachteile","Nachteile",as.character(i))
+            }
+            
+            #Fallbeispiele
+            
+            
+            param <- isolate(values[["DF3"]])
+            
+            for (i in 1:3) {
+                TextInputToWert("NA","Fallbeispiele",as.character(i),"Projektname")
+                TextInputToWert("NA","Fallbeispiele",as.character(i),"Stadt")
+                TextInputToWert("NA","Fallbeispiele",as.character(i),"Land")
+                TextInputToWert("NA","Fallbeispiele",as.character(i),"Erläuterung")
+            }
+            
+            for (i in 1:nrow(param)) {
+                param[i,1] %>% 
+                    TextInputToWert("Fallbeispiele",as.character(i),"Projektname")
+                param[i,2] %>% 
+                    TextInputToWert("Fallbeispiele",as.character(i),"Stadt")
+                param[i,1] %>% 
+                    TextInputToWert("Fallbeispiele",as.character(i),"Land")
+                param[i,2] %>% 
+                    TextInputToWert("Fallbeispiele",as.character(i),"Erläuterung")
+            }
+            
+            
+            ############
+            
+            save1 <- datamassnahme
+            #write.csv2(save1[[massnahme]], str_c("./Massnahmen/",input$Massnahme,".csv"), row.names = FALSE)
+            
+            mid <- subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]
+            
+            con = getcon()
+            dbExecute(con, "SET CHARACTER SET utf8mb4;")
+            
+            s <- function(wert){
+                if(is.na(wert)){
+                    "NULL"
+                }
+                else{
+                    ret = gsub("'", "''", as.character(wert))
+                    Encoding(ret) <- "UTF-8"
+                    ret
+                }
+            }
+            
+            for(i in 1:nrow(save1)){
+                query <- str_c("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(mid), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s("save1[i,7] ÄÄÄÄ"), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
+                # Encoding(query) <- "UTF-8"
+                print(query)
+                dbExecute(con, query);
+            }
+            dbDisconnect(con)
+                
+            #write_xlsx(save1[[massnahme]], str_c("./Massnahmen/",input$Massnahme,".xlsx"))
+            output$message1 <- renderText({"Maßnahme wurde gespeichert."})
+            
+            
+        }})
+    
+    #####################################
+    
+    #observeEvent(input$SaveMassnahme, {
+    # massnahme <- input$Massnahme
+    # finalDF1 <- isolate(values[["DF1"]])
+    # write.csv(finalDF1, file="TabelleHinweise.CSV")
+    #}
+    #)
+    
+    
+    #  DF_NA <- data.frame(Parameter = c("NA", "NA", "NA", "NA", "NA"),
+    #                    Wert = c("NA", "NA", "NA", "NA", "NA"),
+    #                    stringsAsFactors = FALSE)
+    #
+    #DF = data.frame(val = 1:10, bool = TRUE, big = LETTERS[1:10],
+    #                small = letters[1:10],
+    #                dt = seq(from = Sys.Date(), by = "days", length.out = 10),
+    #                stringsAsFactors = FALSE)
+    #
+    #observeEvent(input$SaveMassnahme, {
+    #output$test <- renderPrint({ input$Massnahme })
+    #})
+    #  
+    #  
+    #  
+    #  
+    # output$distPlot <- renderPlot({
+    #     # generate bins based on input$bins from ui.R
+    #     x    <- faithful[, 2]
+    #     bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    # 
+    #     # draw the histogram with the specified number of bins
+    #     hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    # })
+}
+
+# Run the application 
+shinyApp(ui = ui, server = server)
+

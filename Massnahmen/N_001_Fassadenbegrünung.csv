@@ -1,0 +1,183 @@
+"0";"ID";"Massnahme";"Ebene1";"Ebene2";"Ebene3";"Wert";"Werttyp";"Parametername R";"...10"
+1;"ID";"N_001_Fassadenbegrünung";"Kurzbeschreibung";"NA";"NA";"NA";"String";"kurzb";NA
+2;"ID";"N_001_Fassadenbegrünung";"Umsetzungsbeispiel";"Bild";"NA";"../Umsetzungsbeispiele/N_001_Fassadenbegruenungbsp.PNG";"String(Image)";"bspfoto";NA
+3;"ID";"N_001_Fassadenbegrünung";"Umsetzungsbeispiel";"Beschriftung";"NA";"Beschr";"String";"beschrbsp";NA
+4;"ID";"N_001_Fassadenbegrünung";"Ressource";"Niederschlagswasser";"NA";"0";"Boolean";"cbgRessource";NA
+5;"ID";"N_001_Fassadenbegrünung";"Ressource";"Schmutzwasser";"NA";"0";"Boolean";"cbgRessource";NA
+6;"ID";"N_001_Fassadenbegrünung";"Ressource";"Baustoffe";"NA";"0";"Boolean";"cbgRessource";NA
+7;"ID";"N_001_Fassadenbegrünung";"Ressource";"Energie";"NA";"0";"Boolean";"cbgRessource";NA
+8;"ID";"N_001_Fassadenbegrünung";"Ressource";"Fläche";"NA";"0";"Boolean";"cbgRessource";NA
+9;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Niederschlagswasser";"Gewässerschutz";"0";"Boolean";"cbgniederschlagswasser";NA
+10;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Niederschlagswasser";"Bodenschutz";"0";"Boolean";"cbgniederschlagswasser";NA
+11;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Niederschlagswasser";"Überflutungsschutz";"0";"Boolean";"cbgniederschlagswasser";NA
+12;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Niederschlagswasser";"Klimaanpassung";"0";"Boolean";"cbgniederschlagswasser";NA
+13;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Baustoffe";"BOM Bill of Material";"0";"Boolean";"cbgbaustoffe";NA
+14;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Baustoffe";"Monomaterial";"0";"Boolean";"cbgbaustoffe";NA
+15;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Baustoffe";"Einsparung von Primärmaterialien";"0";"Boolean";"cbgbaustoffe";NA
+16;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Baustoffe";"Nachwachsender Rohstoff";"0";"Boolean";"cbgbaustoffe";NA
+17;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Baustoffe";"Rohstofferhalt";"0";"Boolean";"cbgbaustoffe";NA
+18;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Baustoffe";"Rohstoffverfügbarkeit";"0";"Boolean";"cbgbaustoffe";NA
+19;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Baustoffe";"Rohstoffaufwand (gesamt)";"0";"Boolean";"cbgbaustoffe";NA
+20;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Fläche";"Infrastrukturversorgung";"0";"Boolean";"cbgflaeche";NA
+21;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Fläche";"Nutzungsvielfalt";"0";"Boolean";"cbgflaeche";NA
+22;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Fläche";"Einsparung natürlicher Ressourcen";"0";"Boolean";"cbgflaeche";NA
+23;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Fläche";"Luftreinhaltung";"0";"Boolean";"cbgflaeche";NA
+24;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Fläche";"Biodiversität";"0";"Boolean";"cbgflaeche";NA
+25;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Fläche";"Aufenthalts-/ Freiraumqualität";"0";"Boolean";"cbgflaeche";NA
+26;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Schmutzwasser";"Gesundheitsvorsorge";"0";"Boolean";"cbgschmutzwasser";NA
+27;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Schmutzwasser";"Gewässerschutz";"0";"Boolean";"cbgschmutzwasser";NA
+28;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Schmutzwasser";"Trinwassereinsparung";"0";"Boolean";"cbgschmutzwasser";NA
+29;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Schmutzwasser";"Nährstoffrückgewinnung";"0";"Boolean";"cbgschmutzwasser";NA
+30;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Energie";"Elektrizität";"0";"Boolean";"cbgenergie";NA
+31;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Energie";"Wärme";"0";"Boolean";"cbgenergie";NA
+32;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Energie";"Brennstoffe";"0";"Boolean";"cbgenergie";NA
+33;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Energie";"Erzeugung";"0";"Boolean";"cbgenergie";NA
+34;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Energie";"Verteilung";"0";"Boolean";"cbgenergie";NA
+35;"ID";"N_001_Fassadenbegrünung";"Wirkung/Funktion";"Energie";"Verbrauch";"0";"Boolean";"cbgenergie";NA
+36;"ID";"N_001_Fassadenbegrünung";"Anwendungsebene";"Gebäudeebene";"NA";"0";"Boolean";"cbgAnwendungsebene";NA
+37;"ID";"N_001_Fassadenbegrünung";"Anwendungsebene";"Grundstücksebene";"NA";"0";"Boolean";"cbgAnwendungsebene";NA
+38;"ID";"N_001_Fassadenbegrünung";"Anwendungsebene";"Quartiersebene";"NA";"0";"Boolean";"cbgAnwendungsebene";NA
+39;"ID";"N_001_Fassadenbegrünung";"Anwendungsebene";"Hinweis";"NA";"NA";"String";"hinw1";NA
+40;"ID";"N_001_Fassadenbegrünung";"Flächenbedarf";"m²/EW";"NA";"NA";"Integer";"flaechenbedEW";NA
+41;"ID";"N_001_Fassadenbegrünung";"Flächenbedarf";"XX";"NA";"NA";"Integer";"flaechenbedEinheit";NA
+42;"ID";"N_001_Fassadenbegrünung";"Flächenbedarf";"m²/XX";"NA";"NA";"Integer";"fleachenbedXX";NA
+43;"ID";"N_001_Fassadenbegrünung";"Flächenbedarf";"Hinweis";"NA";"NA";"String";"hinw2";NA
+44;"ID";"N_001_Fassadenbegrünung";"Nutzungsdauer";"min";"NA";"NA";"Integer";"nutzdmin";NA
+45;"ID";"N_001_Fassadenbegrünung";"Nutzungsdauer";"max";"NA";"NA";"Integer";"nutzdmax";NA
+46;"ID";"N_001_Fassadenbegrünung";"Nutzungsdauer";"üblich";"NA";"NA";"Integer";"nutzdueblich";NA
+47;"ID";"N_001_Fassadenbegrünung";"Nutzungsdauer";"Hinweis";"NA";"NA";"String";"hinw3";NA
+48;"ID";"N_001_Fassadenbegrünung";"Entwicklungsstand";"Stand der Wissenschaft und Technik";"NA";"0";"Boolean";"cbgentwicklungsstand";NA
+49;"ID";"N_001_Fassadenbegrünung";"Entwicklungsstand";"Stand der Technik";"NA";"0";"Boolean";"cbgentwicklungsstand";NA
+50;"ID";"N_001_Fassadenbegrünung";"Entwicklungsstand";"Allgemein annerkannter Stand der Technik";"NA";"0";"Boolean";"cbgentwicklungsstand";NA
+51;"ID";"N_001_Fassadenbegrünung";"Entwicklungsstand";"Hinweis";"NA";"NA";"String";"hinw4";NA
+52;"ID";"N_001_Fassadenbegrünung";"Funktionsbeschreibung und Aufbau";"NA";"NA";"NA";"String";"funktiontxt";NA
+53;"ID";"N_001_Fassadenbegrünung";"Systemskizze";"Bild";"NA";"./Systemskizzen/N_001_Fassadenbegruenungsys.PNG";"String(Image)";"sysskizze";NA
+54;"ID";"N_001_Fassadenbegrünung";"Systemskizze";"Beschriftung";"NA";"Beschr";"String";"beschrsys";NA
+55;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Fließtext";"NA";"NA";"String";"planbemtxt";NA
+56;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+57;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+58;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+59;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+60;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Normen/Regelwerke";"NA";"NA";"String";"planbemtab";NA
+61;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+62;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+63;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+64;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+65;"ID";"N_001_Fassadenbegrünung";"Planung, Bemessung und rechtliche Aspekte";"Titel/Inhalt";"NA";"NA";"String";"planbemtab";NA
+66;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Fließtext";"NA";"NA";"String";"aufwandtxt";NA
+67;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten1";"Einheit";"NA";"String";"inv1e";NA
+68;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten1";"min";"NA";"String";"inv1min";NA
+69;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten1";"max";"NA";"String";"inv1max";NA
+70;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten1";"üblich";"NA";"String";"inv1ueblich";NA
+71;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten2";"Einheit";"NA";"String";"inv2e";NA
+72;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten2";"min";"NA";"String";"inv2min";NA
+73;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten2";"max";"NA";"String";"inv2max";NA
+74;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten2";"üblich";"NA";"String";"inv2ueblich";NA
+75;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten3";"Einheit";"NA";"String";"inv3e";NA
+76;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten3";"min";"NA";"String";"inv3min";NA
+77;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten3";"max";"NA";"String";"inv3max";NA
+78;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten3";"üblich";"NA";"String";"inv3ueblich";NA
+79;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten4";"Einheit";"NA";"String";"inv4e";NA
+80;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten4";"min";"NA";"String";"inv4min";NA
+81;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten4";"max";"NA";"String";"inv4max";NA
+82;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten4";"üblich";"NA";"String";"inv4ueblich";NA
+83;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten5";"Einheit";"NA";"String";"inv5e";NA
+84;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten5";"min";"NA";"String";"inv5min";NA
+85;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten5";"max";"NA";"String";"inv5max";NA
+86;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Investitionskosten5";"üblich";"NA";"String";"inv5ueblich";NA
+87;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten1";"Einheit";"NA";"String";"bet1e";NA
+88;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten1";"min";"NA";"String";"bet1min";NA
+89;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten1";"max";"NA";"String";"bet1max";NA
+90;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten1";"üblich";"NA";"String";"bet1ueblich";NA
+91;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten2";"Einheit";"NA";"String";"bet2e";NA
+92;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten2";"min";"NA";"String";"bet2min";NA
+93;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten2";"max";"NA";"String";"bet2max";NA
+94;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten2";"üblich";"NA";"String";"bet2ueblich";NA
+95;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten3";"Einheit";"NA";"String";"bet3e";NA
+96;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten3";"min";"NA";"String";"bet3min";NA
+97;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten3";"max";"NA";"String";"bet3max";NA
+98;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten3";"üblich";"NA";"String";"bet3ueblich";NA
+99;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten4";"Einheit";"NA";"String";"bet4e";NA
+100;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten4";"min";"NA";"String";"bet4min";NA
+101;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten4";"max";"NA";"String";"bet4max";NA
+102;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten4";"üblich";"NA";"String";"bet4ueblich";NA
+103;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten5";"Einheit";"NA";"String";"bet5e";NA
+104;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten5";"min";"NA";"String";"bet5min";NA
+105;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten5";"max";"NA";"String";"bet5max";NA
+106;"ID";"N_001_Fassadenbegrünung";"Aufwand und Kosten";"Betriebskosten5";"üblich";"NA";"String";"bet5ueblich";NA
+107;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Fließtext";"NA";"NA";"String";"whinwtxt";NA
+108;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";"fließtext + freie Anzahl an Zeilen mit Paramterspalte und Wertespalte"
+109;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+110;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+111;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+112;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+113;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+114;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+115;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+116;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+117;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Parameter";"NA";"NA";"String";"whinw";NA
+118;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+119;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+120;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+121;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+122;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+123;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+124;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+125;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+126;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+127;"ID";"N_001_Fassadenbegrünung";"Weitergehende Hinweise";"Wert";"NA";"NA";"String";"whinw";NA
+128;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Synergien";"Niederschlagswasser";"NA";"String";"synniederschlagswasser";NA
+129;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Synergien";"Schmutzwasser";"NA";"String";"synschmutzwasser";NA
+130;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Synergien";"Baustoffe";"NA";"String";"synbaustoffe";NA
+131;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Synergien";"Energie";"NA";"String";"sysnenergie";NA
+132;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Synergien";"Fläche";"NA";"String";"synflaeche";NA
+133;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Synergien";"Ökobilanz";"NA";"String";"synoekobilanz";NA
+134;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Niederschlagswasser";"NA";"String";"konfniederschlagswasser";NA
+135;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Schmutzwasser";"NA";"String";"konfschmutzwasser";NA
+136;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Baustoffe";"NA";"String";"konfbaustoffe";NA
+137;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Energie";"NA";"String";"konfenergie";NA
+138;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Fläche";"NA";"String";"konfflaeche";NA
+139;"ID";"N_001_Fassadenbegrünung";"Ressourcenübergreifende Aspekte";"Zielkonflikte";"Ökobilanz";"NA";"String";"konfoekobilanz";NA
+140;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"1";"NA";"NA";"String";"selkombi1";NA
+141;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"2";"NA";"NA";"String";"selkombi2";NA
+142;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"3";"NA";"NA";"String";"selkombi3";NA
+143;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"4";"NA";"NA";"String";"selkombi4";NA
+144;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"5";"NA";"NA";"String";"selkombi5";NA
+145;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"6";"NA";"NA";"String";"selkombi6";NA
+146;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"7";"NA";"NA";"String";"selkombi7";NA
+147;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"8";"NA";"NA";"String";"selkombi8";NA
+148;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"9";"NA";"NA";"String";"selkombi9";NA
+149;"ID";"N_001_Fassadenbegrünung";"Kombinationsmöglichkeiten";"10";"NA";"NA";"String";"selkombi10";NA
+150;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"1";"NA";"String";"vornach";NA
+151;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"2";"NA";"String";"vornach";NA
+152;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"3";"NA";"String";"vornach";NA
+153;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"4";"NA";"String";"vornach";NA
+154;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"5";"NA";"String";"vornach";NA
+155;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"6";"NA";"String";"vornach";NA
+156;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"7";"NA";"String";"vornach";NA
+157;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"8";"NA";"String";"vornach";NA
+158;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"9";"NA";"String";"vornach";NA
+159;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Vorteile";"10";"NA";"String";"vornach";NA
+160;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"1";"NA";"String";"vornach";NA
+161;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"2";"NA";"String";"vornach";NA
+162;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"3";"NA";"String";"vornach";NA
+163;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"4";"NA";"String";"vornach";NA
+164;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"5";"NA";"String";"vornach";NA
+165;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"6";"NA";"String";"vornach";NA
+166;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"7";"NA";"String";"vornach";NA
+167;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"8";"NA";"String";"vornach";NA
+168;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"9";"NA";"String";"vornach";NA
+169;"ID";"N_001_Fassadenbegrünung";"Vor- und Nachteile";"Nachteile";"10";"NA";"String";"vornach";NA
+170;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"1";"Projektname";"NA";"String";"fallbsp";NA
+171;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"1";"Stadt";"NA";"String";"fallbsp";NA
+172;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"1";"Land";"NA";"String";"fallbsp";NA
+173;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"1";"Erläuterung";"NA";"String";"fallbsp";NA
+174;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"2";"Projektname";"NA";"String";"fallbsp";NA
+175;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"2";"Stadt";"NA";"String";"fallbsp";NA
+176;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"2";"Land";"NA";"String";"fallbsp";NA
+177;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"2";"Erläuterung";"NA";"String";"fallbsp";NA
+178;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"3";"Projektname";"NA";"String";"fallbsp";NA
+179;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"3";"Stadt";"NA";"String";"fallbsp";NA
+180;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"3";"Land";"NA";"String";"fallbsp";NA
+181;"ID";"N_001_Fassadenbegrünung";"Fallbeispiele";"3";"Erläuterung";"NA";"String";"fallbsp";NA
+182;"ID";"N_001_Fassadenbegrünung";"Literatur";"Struktur noch unklar";"Struktur noch unklar";"NA";"String";"noch in arbeit";NA
