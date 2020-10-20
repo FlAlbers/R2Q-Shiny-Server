@@ -49,7 +49,7 @@ read_excel_allsheets <- function(filename, tibble = TRUE) {
 save1 <- read_excel_allsheets("R2Q_Datensatz_leer.xlsx")
 
 getcon <- function(){
-    dbConnect(MySQL(), user = "Flemming", password = "vo5Otei9", dbname = "r2q", host = "185.149.214.79",encoding = 'UTF-8')
+    dbConnect(MySQL(), user = "Flemming", password = "vo5Otei9", dbname = "r2q", host = "185.149.214.79")
 }
 
 con <- getcon()
@@ -972,7 +972,7 @@ server <- function(input, output, session) {
         
         #Umsetzungsbeispiel
         
-        wertInTextInput(werte1("Umsetzungsbeispiel"), "beschrbsp")
+        wertInTextInput(werte2("Umsetzungsbeispiel","Beschriftung"), "beschrbsp")
         
         namePNG <- stringi::stri_replace_all_fixed(
             input$Massnahme, 
@@ -981,8 +981,10 @@ server <- function(input, output, session) {
             vectorize_all = FALSE
         )
         
-        Uptime <- as.character(file.info(str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"))$ctime)
-        output$messageUploadtimebsp <- renderText(Uptime)
+        if (werte2("Umsetzungsbeispiel","uptime")=="NA") {
+            output$messageUploadtimebsp <- renderText("keine Information")
+        } else {output$messageUploadtimebsp <- renderText(werte2("Umsetzungsbeispiel","uptime"))}
+        
         
         strIsFalse <- function(w){
             w != "0" && !is.na(w) && w != "NA" && w != ""
@@ -1100,6 +1102,12 @@ server <- function(input, output, session) {
             c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
             vectorize_all = FALSE
         )
+        
+        
+        if (werte2("Systemskizze","uptime")=="NA") {
+            output$messageUploadtimebsp <- renderText("keine Information")
+        } else {output$messageUploadtimebsp <- renderText(werte2("Systemskizze","uptime"))}
+        
         
         Uptime <- as.character(file.info(str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"))$ctime)
         output$messageUploadtimesys <- renderText(Uptime)
@@ -1230,7 +1238,7 @@ server <- function(input, output, session) {
         
         output$fallbsp <- renderRHandsontable({rhandsontable(DF3, useTypes = TRUE, stretchH = "all")
         })
-      
+        output$message1 <- renderText({"Maßnahme wurde geladen."})
     })
     
     ###########################################################################################################  
@@ -1386,24 +1394,26 @@ server <- function(input, output, session) {
             
             
             TextInputToWert <- function(Box,e1,e2="NA",e3="NA") {
+                rt <- renderText({Box})
+                val <-  rt()
                 if (e2=="NA") {
-                    if(Box=="NA"||is.na(Box)){
+                    if(val=="NA"||is.na(val)){
                         datamassnahme[datamassnahme$ebene1==e1,7] <<- ""
                     } else {
-                        datamassnahme[datamassnahme$ebene1==e1,7] <<- as.character(Box)
+                        datamassnahme[datamassnahme$ebene1==e1,7] <<- as.character(val)
                     }
                 } else {
                     if (e3=="NA") {
-                        if(Box=="NA"||is.na(Box)){
+                        if(val=="NA"||is.na(val)){
                             datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 ,7] <<- ""
                         } else {
-                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 ,7] <<- as.character(Box)
+                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 ,7] <<- as.character(val)
                         }
                     } else {
-                        if(Box=="NA"||is.na(Box)){
+                        if(val=="NA"||is.na(val)){
                             datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 & datamassnahme$ebene3==e3 ,7] <<- ""
                         } else {
-                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 & datamassnahme$ebene3==e3  ,7] <<- as.character(Box)
+                            datamassnahme[datamassnahme$ebene1==e1 & datamassnahme$ebene2==e2 & datamassnahme$ebene3==e3  ,7] <<- as.character(val)
                         }
                     }
                 }
@@ -1466,9 +1476,15 @@ server <- function(input, output, session) {
             input$beschrbsp %>% 
                 TextInputToWert("Umsetzungsbeispiel","Beschriftung")
             
+            if (is.null(param)) {} else {
+                as.character(Sys.time()) %>% 
+                    TextInputToWert("Umsetzungsbeispiel","uptime")
+                
+                output$messageUploadtimebsp <- renderText(as.character(Sys.time()))
+            }
             
-            Uptime <- as.character(file.info(str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"))$ctime)
-            output$messageUploadtimebsp <- renderText(Uptime)
+            
+            
             
             
             
@@ -1568,20 +1584,22 @@ server <- function(input, output, session) {
                 vectorize_all = FALSE
             )
             param <- input$sysskizze
-            if (is.null(param)) {} else {}
             file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") )
             
             str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") %>% 
-                TextInputToWert("Systemskizze","Beschriftung")
+                TextInputToWert("Systemskizze","Bild")
             
             
             input$beschrsys %>% 
                 TextInputToWert("Systemskizze","Beschriftung")
             
             
-            Uptime <- as.character(file.info(str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"))$ctime)
-            output$messageUploadtimebsys <- renderText(Uptime)
-            
+            if (is.null(param)) {} else {
+                as.character(Sys.time()) %>% 
+                    TextInputToWert("Systemskizze","uptime")
+                
+                output$messageUploadtimesys <- renderText(as.character(Sys.time()))
+            }
             
             #param <- as.character(input$sysskizze)
             #nr <- as.numeric(subset(datamassnahme, ebene1 == "Systemskizze")[1,1])
@@ -1605,9 +1623,9 @@ server <- function(input, output, session) {
             }
             
             for (i in 1:nrow(param)) {
-                param[i,1] %>% 
+                as.character(param[i,1]) %>%
                     TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
-                param[i,2] %>% 
+                as.character(param[i,2]) %>% 
                     TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
             }
             
@@ -1723,9 +1741,9 @@ server <- function(input, output, session) {
             }
             
             for (i in 1:nrow(param)) {
-                param[i,1] %>% 
+                as.character(param[i,1]) %>% 
                     TextInputToWert("Weitergehende Hinweise","Parameter",as.character(i))
-                param[i,2] %>% 
+                as.character(param[i,2]) %>% 
                     TextInputToWert("Weitergehende Hinweise","Wert",as.character(i))
             }
             
@@ -1797,9 +1815,9 @@ server <- function(input, output, session) {
             }
             
             for (i in 1:nrow(param)) {
-                param[i,1] %>% 
+                as.character(param[i,1]) %>% 
                     TextInputToWert("Vor- und Nachteile","Vorteile",as.character(i))
-                param[i,2] %>% 
+                as.character(param[i,2]) %>% 
                     TextInputToWert("Vor- und Nachteile","Nachteile",as.character(i))
             }
             
@@ -1816,13 +1834,13 @@ server <- function(input, output, session) {
             }
             
             for (i in 1:nrow(param)) {
-                param[i,1] %>% 
+                as.character(param[i,1]) %>% 
                     TextInputToWert("Fallbeispiele",as.character(i),"Projektname")
-                param[i,2] %>% 
+                as.character(param[i,2]) %>% 
                     TextInputToWert("Fallbeispiele",as.character(i),"Stadt")
-                param[i,1] %>% 
+                as.character(param[i,3]) %>% 
                     TextInputToWert("Fallbeispiele",as.character(i),"Land")
-                param[i,2] %>% 
+                as.character(param[i,4]) %>% 
                     TextInputToWert("Fallbeispiele",as.character(i),"Erläuterung")
             }
             
@@ -1849,7 +1867,7 @@ server <- function(input, output, session) {
             }
             
             for(i in 1:nrow(save1)){
-                query <- str_c("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(mid), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
+                query <- paste0("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(mid), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
                 # Encoding(query) <- "UTF-8"
                 print(query)
                 dbExecute(con, query);
