@@ -49,7 +49,7 @@ read_excel_allsheets <- function(filename, tibble = TRUE) {
 save1 <- read_excel_allsheets("R2Q_Datensatz_leer.xlsx")
 
 getcon <- function(){
-    dbConnect(MySQL(), user = "Flemming", password = "vo5Otei9", dbname = "r2q", host = "185.149.214.79")
+    dbConnect(MySQL(), user = "Flemming", password = "vo5Otei9", dbname = "r2q", host = "185.149.214.79",encoding = 'UTF-8')
 }
 
 con <- getcon()
@@ -1849,7 +1849,7 @@ server <- function(input, output, session) {
             }
             
             for(i in 1:nrow(save1)){
-                query <- str_c("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(mid), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s("save1[i,7] ÄÄÄÄ"), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
+                query <- str_c("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(mid), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
                 # Encoding(query) <- "UTF-8"
                 print(query)
                 dbExecute(con, query);
