@@ -902,7 +902,6 @@ server <- function(input, output, session) {
         save1 <- data.frame(loadedTable)
         save1 <- add_column(save1, id = "id", .after = 0)
         save1 <- add_column(save1, row = "bla", .after = 0)
-        enc2utf8(save1$wert)
         #save1 <- read.csv2(str_c("./Massnahmen/",input$Massnahme,".csv"))
         #massnahme <- as.character(input$Massnahme) 
         
@@ -1847,10 +1846,22 @@ server <- function(input, output, session) {
             
             ############
             
+            mid <- subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]
+            
+            for (i in 1:nrow(datamassnahme)) {
+                datamassnahme[i,2] <- as.character(mid) 
+            }
+            
+            #add_column(datamassnahme, as.character(mid), .before = "0")
+            
+            view(datamassnahme)
+            
             save1 <- datamassnahme
             #write.csv2(save1[[massnahme]], str_c("./Massnahmen/",input$Massnahme,".csv"), row.names = FALSE)
             
-            mid <- subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]
+            
+            
+            
             
             con = getcon()
             dbExecute(con, "SET CHARACTER SET utf8mb4;")
@@ -1867,7 +1878,7 @@ server <- function(input, output, session) {
             }
             
             for(i in 1:nrow(save1)){
-                query <- paste0("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(mid), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
+                query <- paste0("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(save1[i,2]), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
                 # Encoding(query) <- "UTF-8"
                 print(query)
                 dbExecute(con, query);
