@@ -819,10 +819,10 @@ ui <- fluidPage(
                          
                          br(),
                          br(),
-                         strong("Noch in Arbeit"),
+                         #strong("Noch in Arbeit"),
                          htmlOutput("loading"),
                          br(),
-                         #actionButton(inputId = "viewpdf",label = "Vorschau anzeigen"),
+                         actionButton(inputId = "viewpdf",label = "Vorschau anzeigen"),
                          br(),
                          br(),
                          add_busy_bar(color = "#52f32b"), #Hex Color Corde
@@ -875,14 +875,13 @@ server <- function(input, output, session) {
     observeEvent(input$viewpdf, {
         
         #damit PDF-Ausgabe mit Iframe funktioniert müssen Dateien in den www-Ordner vom Workingdirectory                
-        outputname <- str_c("../Katalog/",input$Massnahme,".html")
-        rmdsource <- str_c("./Markdown/","R2Q_Test.Rmd")
-        render(rmdsource, output_file = outputname)
         
-        file.copy(str_c("./Katalog/",input$Massnahme,".html"), str_c("./www/",input$Massnahme,".html"))
+        system(str_c("java -jar target/r2q-pdf-gen-0.3.0-jar-with-dependencies.jar ",input$Massnahme,".pdf ", as.character(subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2])))
+        
+        file.copy(str_c("/home/user/R2QPdfGen/",input$Massnahme,".pdf"), str_c("./www/",input$Massnahme,".pdf"))
         
         output$vorschaupdf <- renderText({
-            return(paste('<iframe style="height:600px; width:100%" src="', str_c(input$Massnahme,".html"), '"></iframe>', sep = ""))
+            return(paste('<iframe style="height:600px; width:100%" src="', str_c(input$Massnahme,".pdf"), '"></iframe>', sep = ""))
         })
     })
     
