@@ -114,9 +114,15 @@ ui <- fluidPage(
                          
                          HTML("Folgende Befehle sind im Text möglich:"),
                          br(),
-                         HTML("<strong>Fettgedruckt:</strong> **...**"),
+                         HTML("<strong>Kursiv:</strong> *text*"),
                          br(),
-                         HTML("<strong>Zeilenumbruch:</strong> hierfür müssen <strong>2 Leerzeichen</strong> an das Zeilenende gesetzt werden! <br> Dabei ist wichtig den Zeilenumbruch auch hier in der Eingabe mit Enter einzufügen."),
+                         HTML("<strong>Fettgedruckt:</strong> **text**"),
+                         br(),
+                         HTML("<strong>Kursiv und Fettgedruckt:</strong> ***text***"),
+                         br(),
+                         HTML("<strong>Zeilenumbruch:</strong> hierfür muss <strong>zwei mal Enter</strong>, bzw zwei Zeilenumbrüche getätigt werden."),
+                         br(),
+                         HTML("Ergänzend sind noch weitere Markdown befehle möglich."),
                          br(),
                          
                          textAreaInput("kurzb", label = "",width = "200%"),
@@ -975,8 +981,8 @@ server <- function(input, output, session) {
         
         namePNG <- stringi::stri_replace_all_fixed(
             input$Massnahme, 
-            c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
-            c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+            c("ä", "ö", "ü", "Ä", "Ö", "Ü"," "), 
+            c("ae", "oe", "ue", "Ae", "Oe", "Ue", "_"), 
             vectorize_all = FALSE
         )
         
@@ -1097,8 +1103,8 @@ server <- function(input, output, session) {
         
         namePNG <- stringi::stri_replace_all_fixed(
             input$Massnahme, 
-            c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
-            c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+            c("ä", "ö", "ü", "Ä", "Ö", "Ü"," "), 
+            c("ae", "oe", "ue", "Ae", "Oe", "Ue","_"), 
             vectorize_all = FALSE
         )
         
@@ -1456,10 +1462,11 @@ server <- function(input, output, session) {
             #Umsetzungsbeispiel(Foto)
             namePNG <- stringi::stri_replace_all_fixed(
                 input$Massnahme, 
-                c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
-                c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+                c("ä", "ö", "ü", "Ä", "Ö", "Ü"," "), 
+                c("ae", "oe", "ue", "Ae", "Oe", "Ue","_"), 
                 vectorize_all = FALSE
             )
+            
             param <- input$bspfoto
             if (is.null(param)) {} else {}
             file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG") )
@@ -1574,8 +1581,8 @@ server <- function(input, output, session) {
             #Systemskizze
             namePNG <- stringi::stri_replace_all_fixed(
                 input$Massnahme, 
-                c("ä", "ö", "ü", "Ä", "Ö", "Ü"), 
-                c("ae", "oe", "ue", "Ae", "Oe", "Ue"), 
+                c("ä", "ö", "ü", "Ä", "Ö", "Ü"," "), 
+                c("ae", "oe", "ue", "Ae", "Oe", "Ue","_"), 
                 vectorize_all = FALSE
             )
             param <- input$sysskizze
@@ -1848,14 +1855,7 @@ server <- function(input, output, session) {
                 datamassnahme[i,2] <- as.character(mid) 
             }
             
-            #add_column(datamassnahme, as.character(mid), .before = "0")
-            
-            view(datamassnahme)
-            
             save1 <- datamassnahme
-            #write.csv2(save1[[massnahme]], str_c("./Massnahmen/",input$Massnahme,".csv"), row.names = FALSE)
-            
-            
             
             
             
