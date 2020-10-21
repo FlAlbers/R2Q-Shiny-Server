@@ -913,7 +913,7 @@ server <- function(input, output, session) {
         #Kurzbeschreibung
         
         wertInTextArea <- function(wert, box){
-            if(wert=="NA"){
+            if(is.na(wert)||wert=="NA"){
                 updateTextInput(session, box, value = "")
             } else {
                 updateTextAreaInput(session, box, value = as.character(wert))
@@ -921,7 +921,7 @@ server <- function(input, output, session) {
         }
         
         wertInTextInput <- function(wert, box){
-            if(wert=="NA"){
+            if(is.na(wert)||wert=="NA"){
                 updateTextInput(session, box, value = "")
             } else {
                 updateTextInput(session, box, value = as.character(wert))
@@ -980,7 +980,7 @@ server <- function(input, output, session) {
             vectorize_all = FALSE
         )
         
-        if (werte2("Umsetzungsbeispiel","uptime")=="NA") {
+        if (is.na(werte2("Umsetzungsbeispiel","uptime"))||werte2("Umsetzungsbeispiel","uptime")=="NA") {
             output$messageUploadtimebsp <- renderText("keine Information")
         } else {output$messageUploadtimebsp <- renderText(werte2("Umsetzungsbeispiel","uptime"))}
         
@@ -1103,13 +1103,9 @@ server <- function(input, output, session) {
         )
         
         
-        if (werte2("Systemskizze","uptime")=="NA") {
-            output$messageUploadtimebsp <- renderText("keine Information")
-        } else {output$messageUploadtimebsp <- renderText(werte2("Systemskizze","uptime"))}
-        
-        
-        Uptime <- as.character(file.info(str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"))$ctime)
-        output$messageUploadtimesys <- renderText(Uptime)
+        if (is.na(werte2("Systemskizze","uptime"))||werte2("Systemskizze","uptime")=="NA") {
+            output$messageUploadtimesys <- renderText("keine Information")
+        } else {output$messageUploadtimesys <- renderText(werte2("Systemskizze","uptime"))}
         
         
         
@@ -1200,7 +1196,7 @@ server <- function(input, output, session) {
         #Kombinationsmöglichkeiten
 
         wertInSelectInput <- function(wert, box){
-            if(wert=="NA"){
+            if(is.na(wert)||wert=="NA"){
                 updateSelectInput(session, box, selected = "NA")
             } else {
                 updateSelectInput(session, box, selected = as.character(wert))
