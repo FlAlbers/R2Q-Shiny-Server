@@ -880,7 +880,7 @@ server <- function(input, output, session) {
         syscommand <- paste0("java -jar /home/shiny/R2QPdfGen/target/r2q-pdf-gen-0.3.0-jar-with-dependencies.jar ",pdfOutPath,input$Massnahme,".pdf ", as.character(subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]))
         
         system(syscommand)
-        file.copy(str_c(pdfOutPath,input$Massnahme,".pdf"), str_c("./www/",input$Massnahme,".pdf"))
+        file.copy(str_c(pdfOutPath,input$Massnahme,".pdf"), str_c("./www/",input$Massnahme,".pdf"),overwrite = TRUE)
         
         output$vorschaupdf <- renderText({
             return(paste('<iframe style="height:600px; width:100%" src="', str_c(input$Massnahme,".pdf"), '"></iframe>', sep = ""))
