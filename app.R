@@ -874,18 +874,18 @@ server <- function(input, output, session) {
     
     observeEvent(input$viewpdf, {
         
-        system("whoami >> /tmp/daschreibtderdashin.txt")
+        #system("whoami >> /tmp/daschreibtderdashin.txt")
         
         #damit PDF-Ausgabe mit Iframe funktioniert müssen Dateien in den www-Ordner vom Workingdirectory                
-        #syscommand <- paste0("java -jar /home/shiny/R2QPdfGen/target/r2q-pdf-gen-0.3.0-jar-with-dependencies.jar ","R2QPdfGen/",input$Massnahme,".pdf ", as.character(subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]))
+        syscommand <- paste0("java -jar /home/shiny/R2QPdfGen/target/r2q-pdf-gen-0.3.0-jar-with-dependencies.jar ","R2QPdfGen/",input$Massnahme,".pdf ", as.character(subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]))
         
-        #system(syscommand)
+        system(syscommand)
         
-        #file.copy(str_c("/home/user/",input$Massnahme,".pdf"), str_c("./www/",input$Massnahme,".pdf"))
+        file.copy(str_c("/home/user/",input$Massnahme,".pdf"), str_c("./www/",input$Massnahme,".pdf"))
         
-        #output$vorschaupdf <- renderText({
-        #    return(paste('<iframe style="height:600px; width:100%" src="', str_c(input$Massnahme,".pdf"), '"></iframe>', sep = ""))
-        #})
+        output$vorschaupdf <- renderText({
+            return(paste('<iframe style="height:600px; width:100%" src="', str_c(input$Massnahme,".pdf"), '"></iframe>', sep = ""))
+        })
     })
     
     
