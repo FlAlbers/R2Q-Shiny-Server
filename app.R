@@ -1470,7 +1470,7 @@ server <- function(input, output, session) {
             
             param <- input$bspfoto
             if (is.null(param)) {} else {}
-            file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG") )
+            file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
             
             
             str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG") %>% 
@@ -1587,7 +1587,7 @@ server <- function(input, output, session) {
                 vectorize_all = FALSE
             )
             param <- input$sysskizze
-            file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") )
+            file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"), overwrite = TRUE )
             
             str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") %>% 
                 TextInputToWert("Systemskizze","Bild")
