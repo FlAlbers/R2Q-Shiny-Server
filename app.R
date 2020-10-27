@@ -876,7 +876,7 @@ server <- function(input, output, session) {
         
         #system("whoami >> /tmp/daschreibtderdashin.txt")
         pdfOutPath <- "/home/shiny/r2q_app/Katalog/"
-        pdfWWWPath <- "/home/shiny/r2q_app/www/"
+        pdfWWWPath <- "r2q_app/"
         #damit PDF-Ausgabe mit Iframe funktioniert müssen Dateien in den www-Ordner vom Workingdirectory                
         syscommand <- paste0("java -jar /home/shiny/R2QPdfGen/target/r2q-pdf-gen-0.3.0-jar-with-dependencies.jar ",pdfOutPath,input$Massnahme,".pdf ", as.character(subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]))
         
