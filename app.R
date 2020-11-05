@@ -27,7 +27,7 @@ library(tidyverse)
 #list_Massnahmen <- Daten$Name %>% unique()
 #selected_row <- Daten[2,]
 
-options(shiny.maxRequestSize = 30*1024^2)
+#options(shiny.maxRequestSize = 30*1024^2)
 
 ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
 
