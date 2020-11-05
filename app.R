@@ -1487,12 +1487,16 @@ server <- function(input, output, session) {
             
             if (is.null(param)) {} else {
             if (gsub("^.*\\.","",as.character(param$datapath))=="jpg") {
+                imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
+                if (file.exists(imagepath)){file.remove(imagepath)}
             file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.jpg"), overwrite = TRUE )
-            str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg") %>% 
+             imagepath %>% 
                 TextInputToWert("Umsetzungsbeispiel","Bild")
             } else {
+                imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG")
+                if (file.exists(imagepath)){file.remove(imagepath)}
                 file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
-                str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG") %>% 
+                imagepath %>% 
                     TextInputToWert("Umsetzungsbeispiel","Bild")
                 }
             }
@@ -1612,16 +1616,16 @@ server <- function(input, output, session) {
             
             if (is.null(param)) {} else {
             if (gsub("^.*\\.","",param$datapath)=="jpg") {
-                
-                
-                file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.jpg"), overwrite = TRUE )
-                
-                str_c(file.path("./Systemskizzen", namePNG),"sys.jpg") %>% 
+                imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.jpg")
+                if (file.exists(imagepath)){file.remove(imagepath)}
+                file.copy(param$datapath, imagepath, overwrite = TRUE )
+                imagepath %>% 
                     TextInputToWert("Systemskizze","Bild")
             } else {
-                file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"), overwrite = TRUE )
-                
-                str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") %>% 
+                imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.PNG")
+                if (file.exists(imagepath)){file.remove(imagepath)}
+                file.copy(param$datapath, imagepath, overwrite = TRUE )
+                imagepath %>% 
                     TextInputToWert("Systemskizze","Bild")
             }
             }
