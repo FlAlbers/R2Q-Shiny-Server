@@ -141,8 +141,8 @@ ui <- fluidPage(
                          
                          textInput("beschrbsp","Beschriftung"),
                          
-                         fileInput("bspfoto", "Upload Bild", accept = c('image/png')),
-                         "Entsprechendes Bild im .png Format auswählen",
+                         fileInput("bspfoto", "Upload Bild", accept = c('image/png','image/jpg')),
+                         "Entsprechendes Bild im .png oder .jpg Format auswählen",
                          br(),
                          HTML("Letzter Upload:"),
                          textOutput("messageUploadtimebsp"),
@@ -313,11 +313,16 @@ ui <- fluidPage(
                          br(),
                          HTML("Folgende Befehle sind im Text möglich:"),
                          br(),
-                         HTML("<strong>Fettgedruckt:</strong> **...**"),
+                         HTML("<strong>Kursiv:</strong> *text*"),
                          br(),
-                         HTML("<strong>Zeilenumbruch:</strong> hierfür müssen <strong>2 Leerzeichen</strong> an das Zeilenende gesetzt werden! <br> Dabei ist wichtig den Zeilenumbruch auch hier in der Eingabe mit Enter einzufügen."),
+                         HTML("<strong>Fettgedruckt:</strong> **text**"),
                          br(),
-                         
+                         HTML("<strong>Kursiv und Fettgedruckt:</strong> ***text***"),
+                         br(),
+                         HTML("<strong>Zeilenumbruch:</strong> hierfür muss <strong>zwei mal Enter</strong>, bzw zwei Zeilenumbrüche getätigt werden."),
+                         br(),
+                         HTML("Ergänzend sind noch weitere Markdown befehle möglich."),
+                         br(),
                          
                          textAreaInput("funktiontxt", label = "", width = "200%"),
                          
@@ -334,8 +339,8 @@ ui <- fluidPage(
                          
                          textInput("beschrsys","Beschriftung"),
                          
-                         fileInput("sysskizze", "Upload Bild", accept = c('image/png')),
-                         "Entsprechendes Bild im .png Format auswählen",
+                         fileInput("sysskizze", "Upload Bild", accept = c('image/png','image/jpg')),
+                         "Entsprechendes Bild im .png oder .jpg Format auswählen",
                          br(),
                          HTML("Letzter Upload:"),
                          textOutput("messageUploadtimesys"),
@@ -1479,12 +1484,18 @@ server <- function(input, output, session) {
             )
             
             param <- input$bspfoto
-            if (is.null(param)) {} else {}
-            file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
             
-            
-            str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG") %>% 
+            if (is.null(param)) {} else {
+            if (gsub("^.*\\.","",as.character(param$datapath))=="jpg") {
+            file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.jpg"), overwrite = TRUE )
+            str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg") %>% 
                 TextInputToWert("Umsetzungsbeispiel","Bild")
+            } else {
+                file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
+                str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG") %>% 
+                    TextInputToWert("Umsetzungsbeispiel","Bild")
+                }
+            }
             
             input$beschrbsp %>% 
                 TextInputToWert("Umsetzungsbeispiel","Beschriftung")
@@ -1596,13 +1607,25 @@ server <- function(input, output, session) {
                 c("ae", "oe", "ue", "Ae", "Oe", "Ue","_"), 
                 vectorize_all = FALSE
             )
+            
             param <- input$sysskizze
-            file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"), overwrite = TRUE )
             
-            str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") %>% 
-                TextInputToWert("Systemskizze","Bild")
-            
-            
+            if (is.null(param)) {} else {
+            if (gsub("^.*\\.","",param$datapath)=="jpg") {
+                
+                
+                file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.jpg"), overwrite = TRUE )
+                
+                str_c(file.path("./Systemskizzen", namePNG),"sys.jpg") %>% 
+                    TextInputToWert("Systemskizze","Bild")
+            } else {
+                file.copy(param$datapath, str_c(file.path("./Systemskizzen", namePNG),"sys.PNG"), overwrite = TRUE )
+                
+                str_c(file.path("./Systemskizzen", namePNG),"sys.PNG") %>% 
+                    TextInputToWert("Systemskizze","Bild")
+            }
+            }
+                
             input$beschrsys %>% 
                 TextInputToWert("Systemskizze","Beschriftung")
             
