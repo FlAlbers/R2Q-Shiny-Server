@@ -615,12 +615,19 @@ ui <- fluidPage(
                                      strong("Synergien:"),
                                      br(),
                                      br(),
-                                     textInput("synniederschlagswasser", "Niederschlagswasser"),
-                                     textInput("synschmutzwasser", "Schmutzwasser"),
-                                     textInput("synbaustoffe", "Baustoffe"),
-                                     textInput("synenergie", "Energie"),
-                                     textInput("synflaeche", "Fläche"),
-                                     textInput("synoekobilanz", "Ökobilanz"),
+                                     textAreaInput("synniederschlagswasser", "Niederschlagswasser", width = "100%", height = "70%" ),
+                                     textAreaInput("synschmutzwasser", "Schmutzwasser", width = "100%", height = "70%" ),
+                                     textAreaInput("synbaustoffe", "Baustoffe", width = "100%", height = "70%" ),
+                                     textAreaInput("synenergie", "Energie", width = "100%", height = "70%" ),
+                                     textAreaInput("synflaeche", "Fläche", width = "100%", height = "70%" ),
+                                     textAreaInput("synoekobilanz", "Ökobilanz", width = "100%", height = "70%" ),
+                                     
+                                     #textInput("synniederschlagswasser", "Niederschlagswasser"),
+                                     #textInput("synschmutzwasser", "Schmutzwasser"),
+                                     #textInput("synbaustoffe", "Baustoffe"),
+                                     #textInput("synenergie", "Energie"),
+                                     #textInput("synflaeche", "Fläche"),
+                                     #textInput("synoekobilanz", "Ökobilanz"),
                              ),
                              
                              column( width = 4,
@@ -628,12 +635,19 @@ ui <- fluidPage(
                                      strong("Zielkonflikte:"),
                                      br(),
                                      br(),
-                                     textInput("konfniederschlagswasser", "Niederschlagswasser"),
-                                     textInput("konfschmutzwasser", "Schmutzwasser"),
-                                     textInput("konfbaustoffe", "Baustoffe"),
-                                     textInput("konfenergie", "Energie"),
-                                     textInput("konfflaeche", "Fläche"),
-                                     textInput("konfoekobilanz", "Ökobilanz"),
+                                     textAreaInput("konfniederschlagswasser", "Niederschlagswasser", width = "100%", height = "70%" ),
+                                     textAreaInput("konfschmutzwasser", "Schmutzwasser", width = "100%", height = "70%" ),
+                                     textAreaInput("konfbaustoffe", "Baustoffe", width = "100%", height = "70%" ),
+                                     textAreaInput("konfenergie", "Energie", width = "100%", height = "70%" ),
+                                     textAreaInput("konfflaeche", "Fläche", width = "100%", height = "70%" ),
+                                     textAreaInput("konfoekobilanz", "Ökobilanz", width = "100%", height = "70%" ),
+                                     
+                                     #textInput("konfniederschlagswasser", "Niederschlagswasser"),
+                                     #textInput("konfschmutzwasser", "Schmutzwasser"),
+                                     #textInput("konfbaustoffe", "Baustoffe"),
+                                     #textInput("konfenergie", "Energie"),
+                                     #textInput("konfflaeche", "Fläche"),
+                                     #textInput("konfoekobilanz", "Ökobilanz"),
                              )
                              
                          ),
@@ -1194,7 +1208,7 @@ server <- function(input, output, session) {
         #Ressourcenübergreifende Aspekte
         
         synergien <- function(e3, ti){
-            wertInTextInput(werte3("Ressourcenübergreifende Aspekte", "Synergien", e3), ti)
+            wertInTextArea(werte3("Ressourcenübergreifende Aspekte", "Synergien", e3), ti)
         }
         
         synergien("Niederschlagswasser", "synniederschlagswasser")
@@ -1205,7 +1219,7 @@ server <- function(input, output, session) {
         synergien("Ökobilanz", "synoekobilanz")
         
         zielkonflikte <- function(e3, ti){
-            wertInTextInput(werte3("Ressourcenübergreifende Aspekte", "Zielkonflikte", e3), ti)
+            wertInTextArea(werte3("Ressourcenübergreifende Aspekte", "Zielkonflikte", e3), ti)
         }
         
         zielkonflikte("Niederschlagswasser", "konfniederschlagswasser")
