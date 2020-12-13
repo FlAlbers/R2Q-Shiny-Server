@@ -111,7 +111,8 @@ ui <- fluidPage(
                          br(),
                          br(),
                          br(),
-                         
+                         textInput("titel","Titelname"),
+                         br(),
                          HTML("_____________________________________________________________________________________________"),
                          br(),
                          #Kurzbeschreibung
@@ -951,7 +952,7 @@ server <- function(input, output, session) {
         datamassnahme <- save1
         
         
-        #Kurzbeschreibung
+        
         
         wertInTextArea <- function(wert, box){
             if(is.na(wert)||wert=="NA"){
@@ -1002,11 +1003,11 @@ server <- function(input, output, session) {
         
         
         
-       
+        #Titel
         
+        wertInTextInput(werte1("Titel"), "titel")
         
-        
-        
+        #Kurzbeschreibung
         
         wertInTextArea(werte1("Kurzbeschreibung"), "kurzb")
         
@@ -1431,7 +1432,7 @@ server <- function(input, output, session) {
             
             
             
-            #Kurzbeschreibung
+            
             
             
             
@@ -1489,10 +1490,13 @@ server <- function(input, output, session) {
                 
             }
             
+            #Titel
             
+            input$titel %>% 
+                TextInputToWert("Titel")
             
-#            df$y %>%
-#            TextInputToWert("Aufwand und Kosten","Fließtext")
+            #Kurzbeschreibung
+            
             
             input$kurzb %>% 
                 TextInputToWert("Kurzbeschreibung")
