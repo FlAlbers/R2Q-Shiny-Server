@@ -31,6 +31,8 @@ library(tidyverse)
 
 umsetzungbspBild = NA
 systemskizzeBild = NA
+umsetzungbspUptime = NA
+systemskizzeUptime = NA
 
 ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
 
@@ -1011,6 +1013,7 @@ server <- function(input, output, session) {
         #Umsetzungsbeispiel
         
         umsetzungbspBild <<- werte2("Umsetzungsbeispiel", "Bild")
+        umsetzungbspUptime <<- werte2("Umsetzungsbeispiel", "uptime")
         
         wertInTextInput(werte2("Umsetzungsbeispiel","Beschriftung"), "beschrbsp")
         
@@ -1135,6 +1138,7 @@ server <- function(input, output, session) {
         #Systemskizze
         
         systemskizzeBild <<- werte2("Systemskizze", "Bild")
+        systemskizzeUptime <<- werte2("Systemskizze", "uptime")
         
         wertInTextInput(werte2("Systemskizze", "Beschriftung"), "beschrsys")
         
@@ -1525,7 +1529,7 @@ server <- function(input, output, session) {
             input$beschrbsp %>% 
                 TextInputToWert("Umsetzungsbeispiel","Beschriftung")
             
-            if (is.null(param)) {} else {
+            if (is.null(param)) {TextInputToWert(umsetzungbspUptime, "Umsetzungsbeispiel", "uptime")} else {
                 as.character(Sys.time()) %>% 
                     TextInputToWert("Umsetzungsbeispiel","uptime")
                 
@@ -1655,7 +1659,7 @@ server <- function(input, output, session) {
                 TextInputToWert("Systemskizze","Beschriftung")
             
             
-            if (is.null(param)) {} else {
+            if (is.null(param)) {TextInputToWert(systemskizzeUptime, "Systemskizze", "uptime")} else {
                 as.character(Sys.time()) %>% 
                     TextInputToWert("Systemskizze","uptime")
                 
