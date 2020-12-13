@@ -1010,7 +1010,7 @@ server <- function(input, output, session) {
         
         #Umsetzungsbeispiel
         
-        umsetzungbspBild = werte2("Umsetzungsbeispiel", "Bild")
+        umsetzungbspBild <<- werte2("Umsetzungsbeispiel", "Bild")
         
         wertInTextInput(werte2("Umsetzungsbeispiel","Beschriftung"), "beschrbsp")
         
@@ -1134,7 +1134,7 @@ server <- function(input, output, session) {
         
         #Systemskizze
         
-        systemskizzeBild = werte2("Systemskizze", "Bild")
+        systemskizzeBild <<- werte2("Systemskizze", "Bild")
         
         wertInTextInput(werte2("Systemskizze", "Beschriftung"), "beschrsys")
         
