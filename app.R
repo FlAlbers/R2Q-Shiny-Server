@@ -29,6 +29,9 @@ library(tidyverse)
 
 #options(shiny.maxRequestSize = 30*1024^2)
 
+umsetzungbspBild = NA
+systemskizzeBild = NA
+
 ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
 
 wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
@@ -1007,6 +1010,8 @@ server <- function(input, output, session) {
         
         #Umsetzungsbeispiel
         
+        umsetzungbspBild = werte2("Umsetzungsbeispiel", "Bild")
+        
         wertInTextInput(werte2("Umsetzungsbeispiel","Beschriftung"), "beschrbsp")
         
         namePNG <- stringi::stri_replace_all_fixed(
@@ -1128,6 +1133,8 @@ server <- function(input, output, session) {
         wertInTextArea(werte1("Funktionsbeschreibung und Aufbau"), "funktiontxt")
         
         #Systemskizze
+        
+        systemskizzeBild = werte2("Systemskizze", "Bild")
         
         wertInTextInput(werte2("Systemskizze", "Beschriftung"), "beschrsys")
         
@@ -1499,7 +1506,7 @@ server <- function(input, output, session) {
             
             param <- input$bspfoto
             
-            if (is.null(param)) {} else {
+            if (is.null(param)) {TextInputToWert(umsetzungbspBild, "Umsetzungsbeispiel","Bild")} else {
             if (gsub("^.*\\.","",as.character(param$datapath))=="jpg") {
                 imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
                 if (file.exists(imagepath)){file.remove(imagepath)}
@@ -1628,7 +1635,7 @@ server <- function(input, output, session) {
             
             param <- input$sysskizze
             
-            if (is.null(param)) {} else {
+            if (is.null(param)) {TextInputToWert(systemskizzeBild, "Systemskizze","Bild")} else {
             if (gsub("^.*\\.","",param$datapath)=="jpg") {
                 imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.jpg")
                 if (file.exists(imagepath)){file.remove(imagepath)}
