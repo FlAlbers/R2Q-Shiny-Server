@@ -13,7 +13,6 @@ library(shinyMatrix)
 library(rhandsontable)
 library(readxl)
 library(dplyr)
-library(rmarkdown)
 library(shinycssloaders)
 library(shinybusy) 
 library(writexl)
@@ -34,6 +33,8 @@ systemskizzeBild = NA
 umsetzungbspUptime = NA
 systemskizzeUptime = NA
 
+
+#the following vectors are the choice lists for the checkboxes
 ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
 
 wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
@@ -71,13 +72,13 @@ massnahmen_dropdown <-append(list_Massnahmen$Massnahmen,NA)
 
 
 
-# Define UI for application that draws a histogram
+# Start of the userinterface
 ui <- fluidPage(
     
     # Application title
     titlePanel("R2Q Maßnahmenkatalog"),
     
-    # Sidebar with a slider input for number of bins 
+    # Sidebar with dropdown list 
     sidebarLayout(
         sidebarPanel(
             selectInput(inputId = "Massnahme",
@@ -96,7 +97,7 @@ ui <- fluidPage(
             textOutput("message1")
         ),
         
-        # Show a plot of the generated distribution
+        # main Panel
         mainPanel(
             tabsetPanel(
                 id = "Eingabe",
@@ -338,8 +339,6 @@ ui <- fluidPage(
                          br(),
                          
                          #Systemskizze
-                         #textInput("sysskizze", "10. Systemskizze Dateipfad"),
-                         #HTML("Bitte <strong>Dateiname</strong> angeben mit der Endung <strong>...</strong>, ebenfalls stellen Sie bitte sicher, dass das Bild das entsprechende <strong>Format</strong> hat"),
                          
                          strong("10. Systemskizze"),
                          
@@ -881,14 +880,14 @@ ui <- fluidPage(
     )
 )
 
-
+#End of Userinterface
 ########################################################################################################################################################
 
 
 
 
 
-# Define server logic required to draw a histogram
+
 
 
 server <- function(input, output, session) {
@@ -910,7 +909,7 @@ server <- function(input, output, session) {
             vectorize_all = FALSE
         )
         #system("whoami >> /tmp/daschreibtderdashin.txt")
-        pdfOutPath <- "/home/shiny/r2q_app/Katalog"
+        pdfOutPath <- "/home/shiny/r2q_app/Katalog/"
         #damit PDF-Ausgabe mit Iframe funktioniert müssen Dateien in den www-Ordner vom Workingdirectory                
         syscommand <- paste0("java -jar /home/shiny/R2QPdfGen/target/r2q-pdf-gen-0.3.0-jar-with-dependencies.jar ",pdfOutPath,namePDF,".pdf ", as.character(subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]))
         
@@ -928,6 +927,7 @@ server <- function(input, output, session) {
     
     
     #Daten laden
+    #The following observeEvent loads all data that is saved in the database for the seleceted technology to the UI
     
     observeEvent(input$loaddata, {
         
@@ -952,7 +952,7 @@ server <- function(input, output, session) {
         datamassnahme <- save1
         
         
-        
+        #Function for filling a TextArea  with a Value 
         
         wertInTextArea <- function(wert, box){
             if(is.na(wert)||wert=="NA"){
@@ -962,6 +962,7 @@ server <- function(input, output, session) {
             }
         }
         
+        #Function for filling a TextInput  with a Value 
         wertInTextInput <- function(wert, box){
             if(is.na(wert)||wert=="NA"){
                 updateTextInput(session, box, value = "")
@@ -970,6 +971,7 @@ server <- function(input, output, session) {
             }
         }
         
+        #Function for replacing "NA" string with empty string
         clean <- function(s) {
             if(is.na(s)){
                 ""
@@ -979,6 +981,12 @@ server <- function(input, output, session) {
             s
         }
         
+        #Function for filtering the Database. Overall the Database is structured in 3 layers to describe a position of a Value.
+        # (Ebene = layer)
+        # If just 1 layer is needed then the function "werte1" need to be used
+        # If 2 layers are needed then the function "werte2" needs to be used
+        # If 3 layers are needed then the function "werte3" needs to be used
+        # The input for e1, e2, e3 is String
         werte1 <- function(e1){
             clean(subset(datamassnahme, ebene1 == e1)[1,7])
         }
@@ -991,6 +999,7 @@ server <- function(input, output, session) {
             clean(subset(datamassnahme, ebene1 == e1 & ebene2 == e2 & ebene3 == e3)[1,7])
         }
 
+        #helping function that expands the werte1 2 and 3 function. It can be used universal for filtering the values without needing to change the function based on the amount of used layers.
         wertEn <- function(ebenen) {
             if(length(ebenen) == 1){
                 werte1(ebenen[1])
@@ -1025,19 +1034,23 @@ server <- function(input, output, session) {
             vectorize_all = FALSE
         )
         
+        # Function for giving information on when or if the last Image was updated
         if (is.na(werte2("Umsetzungsbeispiel","uptime"))||werte2("Umsetzungsbeispiel","uptime")=="NA") {
             output$messageUploadtimebsp <- renderText("keine Information")
         } else {output$messageUploadtimebsp <- renderText(werte2("Umsetzungsbeispiel","uptime"))}
         
-        
+        # Query if Input for checkboxes is 0 , NA or empty -> then checkbox unckecked
         strIsFalse <- function(w){
             w != "0" && !is.na(w) && w != "NA" && w != ""
         }
         
+        
+        #function for setting the selected checkboxes on ckecked
         cbGroup = function(ebenen, choices, cbg){
-            sel <- c() # Puffer für Wahrheitswerte der Ressourcen Checkboxen (cb)
+            sel <- c() # Puffer für Wahrheitswerte der Ressourcen Checkboxen (cb) / buffer for truth value
             
-            istCbAn <- function(cb){ # Wenn in der DB der wert der CB "An" ist, dann wird der Name der CB dem sel vector hinzugefügt
+            istCbAn <- function(cb){ # if the value for the checkbox is 1 then the name of the checkbox is appended to the list. 
+                                    #If a name of a ckeckbox is appended, then this specific checkbox gets checked.
                 w <- wertEn(append(ebenen, cb))
                 if(strIsFalse(w)){
                     sel <<- append(sel, cb)
