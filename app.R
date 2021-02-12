@@ -896,7 +896,7 @@ server <- function(input, output, session) {
     
     
     
-    #Vorschau
+    #Vorschau / preview for the pdfs
     
     observeEvent(input$viewpdf, {
         
@@ -926,8 +926,8 @@ server <- function(input, output, session) {
     
     
     
-    #Daten laden
-    #The following observeEvent loads all data that is saved in the database for the seleceted technology to the UI
+    #load data process
+    #The following observeEvent loads all data that is saved in the database for the selected technology to the UI
     
     observeEvent(input$loaddata, {
         
@@ -1010,7 +1010,7 @@ server <- function(input, output, session) {
             }
         }
         
-        
+        #here starts the actual loading of the values into the textareas, textinputs, dropdown lists ...
         
         #Titel
         
@@ -1039,7 +1039,7 @@ server <- function(input, output, session) {
             output$messageUploadtimebsp <- renderText("keine Information")
         } else {output$messageUploadtimebsp <- renderText(werte2("Umsetzungsbeispiel","uptime"))}
         
-        # Query if Input for checkboxes is 0 , NA or empty -> then checkbox unckecked
+        # Query if input for checkboxes is 0 , NA or empty -> then checkbox unckecked
         strIsFalse <- function(w){
             w != "0" && !is.na(w) && w != "NA" && w != ""
         }
@@ -1095,12 +1095,6 @@ server <- function(input, output, session) {
         
         cbGroup(c("Anwendungsebene"), anwendungsebenen, "cbgAnwendungsebene")
         
-#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Anwendungsebene" & ebene2 == "Hinweis" )[1,1])
-#        if(datamassnahme[nr,7] == "NA"){
-#            updateTextInput(session, "hinw1", value = "")
-#        } else {
-#            updateTextInput(session, "hinw1", value = as.character(datamassnahme[nr,7]))}
-        
         
         #Flächenbedarf
         
@@ -1109,37 +1103,17 @@ server <- function(input, output, session) {
         wertInTextInput(werte2("Flächenbedarf", "m²/XX"), "flaechenbedXX")
         
         
-#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Flächenbedarf" & ebene2 == "Hinweis" )[1,1])
-#        if(datamassnahme[nr,7] == "NA"){
-#            updateTextInput(session, "hinw2", value = "")
-#        } else {
-#            updateTextInput(session, "hinw2", value = as.character(datamassnahme[nr,7]))}
-        
-        
         #Nutzungsdauer
         
         wertInTextInput(werte2("Nutzungsdauer", "min"), "nutzdmin")
         wertInTextInput(werte2("Nutzungsdauer", "max"), "nutzdmax")
         wertInTextInput(werte2("Nutzungsdauer", "üblich"), "nutzdueblich")
         
-#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Nutzungsdauer" & ebene2 == "Hinweis" )[1,1])
-#        if(datamassnahme[nr,7] == "NA"){
-#            updateTextInput(session, "hinw3", value = "")
-#        } else {
-#            updateTextInput(session, "hinw3", value = as.character(datamassnahme[nr,7]))}
-        
         
         #Entwicklungsstand
         
         cbGroup(c("Entwicklungsstand"), entwicklungsstaende, "cbgentwicklungsstand")
         
-#        nr <- as.numeric(subset(datamassnahme, ebene1 == "Entwicklungsstand" & ebene2 == "Hinweis" )[1,1])
-#        if(datamassnahme[nr,7] == "NA"){
-#            updateTextInput(session, "hinw4", value = "")
-#        } else {
-#            updateTextInput(session, "hinw4", value = as.character(datamassnahme[nr,7]))}
-        
-
         
         #Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand
         
@@ -1167,7 +1141,6 @@ server <- function(input, output, session) {
         if (is.na(werte2("Systemskizze","uptime"))||werte2("Systemskizze","uptime")=="NA") {
             output$messageUploadtimesys <- renderText("keine Information")
         } else {output$messageUploadtimesys <- renderText(werte2("Systemskizze","uptime"))}
-        
         
         
         #Planung, Bemessung und rechtliche Aspekte
@@ -1301,10 +1274,10 @@ server <- function(input, output, session) {
     
     
     
-    #Tabellen
+    #Tabellen /tables
     
     #Tabelle für Planung, Bemessung und rechtliche Aspekte
-    
+    #the following code is for implementing the tables in the ui
     
     DF4 <- tibble(Norm_Regelwerk_Gesetz = c("","","","",""), Titel = c("","","","",""))
     
@@ -1419,8 +1392,8 @@ server <- function(input, output, session) {
     
     
     #############################################################################################################
-    #Saving Process
-    
+    #saving process
+    #the following observeEvent is for saving the input of a technology
     observeEvent(input$SaveMassnahme, {
         
         ##Maßnahme auslesen
@@ -1432,21 +1405,7 @@ server <- function(input, output, session) {
         
         if(nrow(isolate(values[["DF1"]])) > nrow(subset(datamassnahme, ebene1 == "Weitergehende Hinweise" & ebene2 == "Parameter"))) {output$message1 <- renderText({"Es konnte nicht gespeichert werden, da für Weitergehende Hinweise mehr als 10 Zeilen vorhanden sind!"})} else {
             
-            
-            read_excel_allsheets <- function(filename, tibble = TRUE) {
-                sheets <- readxl::excel_sheets(filename)
-                x <- lapply(sheets, function(X) readxl::read_excel(filename, sheet = X))
-                if(tibble) x <- lapply(x, as_tibble)
-                names(x) <- sheets
-                x
-            }
-            
-            #############################################################################
-            
-            
-            
-            
-            
+        
             
             
             TextInputToWert <- function(Box,e1,e2="NA",e3="NA") {
@@ -1927,10 +1886,12 @@ server <- function(input, output, session) {
             }
             
             
-            ############
+            ###################################################
             
+            #getting the primary key of the selected technology
             mid <- subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]
             
+            #filling the primary key into each column of the data frame
             for (i in 1:nrow(datamassnahme)) {
                 datamassnahme[i,2] <- as.character(mid) 
             }
@@ -1938,7 +1899,7 @@ server <- function(input, output, session) {
             save1 <- datamassnahme
             
             
-            
+            #connecting to MySQL
             con = getcon()
             dbExecute(con, "SET CHARACTER SET utf8mb4;")
             
@@ -1952,55 +1913,18 @@ server <- function(input, output, session) {
                     ret
                 }
             }
-            
+            #transferring the data frame to the database
             for(i in 1:nrow(save1)){
                 query <- paste0("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(save1[i,2]), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
-                # Encoding(query) <- "UTF-8"
                 print(query)
                 dbExecute(con, query);
             }
+            #disconnecting from MySQL
             dbDisconnect(con)
-                
-            #write_xlsx(save1[[massnahme]], str_c("./Massnahmen/",input$Massnahme,".xlsx"))
+            #Status message for saving
             output$message1 <- renderText({"Maßnahme wurde gespeichert."})
             
-            
         }})
-    
-    #####################################
-    
-    #observeEvent(input$SaveMassnahme, {
-    # massnahme <- input$Massnahme
-    # finalDF1 <- isolate(values[["DF1"]])
-    # write.csv(finalDF1, file="TabelleHinweise.CSV")
-    #}
-    #)
-    
-    
-    #  DF_NA <- data.frame(Parameter = c("NA", "NA", "NA", "NA", "NA"),
-    #                    Wert = c("NA", "NA", "NA", "NA", "NA"),
-    #                    stringsAsFactors = FALSE)
-    #
-    #DF = data.frame(val = 1:10, bool = TRUE, big = LETTERS[1:10],
-    #                small = letters[1:10],
-    #                dt = seq(from = Sys.Date(), by = "days", length.out = 10),
-    #                stringsAsFactors = FALSE)
-    #
-    #observeEvent(input$SaveMassnahme, {
-    #output$test <- renderPrint({ input$Massnahme })
-    #})
-    #  
-    #  
-    #  
-    #  
-    # output$distPlot <- renderPlot({
-    #     # generate bins based on input$bins from ui.R
-    #     x    <- faithful[, 2]
-    #     bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    # 
-    #     # draw the histogram with the specified number of bins
-    #     hist(x, breaks = bins, col = 'darkgray', border = 'white')
-    # })
 }
 
 # Run the application 
