@@ -581,6 +581,10 @@ ui <- fluidPage(
                              )
                          ),
                          
+                         br(),
+                         br(),
+                         textAreaInput("kosten_hinweis", label="Hinweis", width = "200%"),
+                         
                          
                          
                          HTML("_____________________________________________________________________________________________"),
@@ -1187,6 +1191,8 @@ server <- function(input, output, session) {
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "üblich"), paste0("bet", as.character(i) ,"ueblich"))
         }
         
+        wertInTextInput(werte2("Aufwand und Kosten", "Hinweis"), "kosten_hinweis")
+        
         #Weitergehende Hinweise
         
         wertInTextInput(werte2("Weitergehende Hinweise", "Fließtext"), "whinwtxt")
@@ -1766,6 +1772,9 @@ server <- function(input, output, session) {
                 TextInputToWert("Aufwand und Kosten","Betriebskosten5","max")
             input$bet5ueblich %>% 
                 TextInputToWert("Aufwand und Kosten","Betriebskosten5","üblich")
+            
+            input$kosten_hinweis %>%
+                TextInputToWert("Aufwand und Kosten", "Hinweis")
             
             
             #Weitergehende Hinweise
