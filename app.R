@@ -1191,9 +1191,9 @@ server <- function(input, output, session) {
         
         wertInTextInput(werte2("Weitergehende Hinweise", "Fließtext"), "whinwtxt")
         
-        DF1 <- tibble(Parameter = c("","","","","","","","","",""), Wert = c("","","","","","","","","",""))
+        DF1 <- tibble(Parameter = c("","","","","","","","","","","","","","","","","","","",""), Wert = c("","","","","","","","","","","","","","","","","","","",""))
         
-        for(i in 1:10){
+        for(i in 1:20){
             DF1[i,1] = werte3("Weitergehende Hinweise", "Parameter", as.character(i))
             DF1[i,2] = werte3("Weitergehende Hinweise", "Wert", as.character(i))
         }
@@ -1306,7 +1306,7 @@ server <- function(input, output, session) {
     
     values <- reactiveValues()
     
-    DF1 <- tibble(Parameter = c("","","","",""), Wert = c("","","","",""))
+    DF1 <- tibble(Parameter = c("","","","","","","","","","","","","","","","","","","",""), Wert = c("","","","","","","","","","","","","","","","","","","",""))
     
     
     observe({
@@ -1776,7 +1776,7 @@ server <- function(input, output, session) {
             
             param <- isolate(values[["DF1"]])
             
-            for (i in 1:10) {
+            for (i in 1:20) {
                 TextInputToWert("NA","Weitergehende Hinweise","Parameter",as.character(i))
                 TextInputToWert("NA","Weitergehende Hinweise","Wert",as.character(i))
             }
