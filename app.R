@@ -674,135 +674,143 @@ ui <- fluidPage(
                          
                          strong("15. Kombinationsmöglichkeiten"),
                          
+                         fluidRow(
+                             column(width = 4,
+                                 br(),
                          
-                         selectInput(inputId = "selkombi1",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
+                                 selectInput(inputId = "selkombi1",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi2",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi3",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi4",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi5",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi6",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi7",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi8",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi9",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi10",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                             ),
+                            column(width = 4,
+                                br(),
                          
-                         
-                         selectInput(inputId = "selkombi2",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi3",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi4",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi5",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi6",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi7",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi8",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi9",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi10",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi11",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi12",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi13",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi14",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi15",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi16",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi17",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi18",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi19",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         selectInput(inputId = "selkombi20",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
+                                 selectInput(inputId = "selkombi11",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi12",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi13",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi14",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi15",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi16",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi17",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi18",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi19",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi20",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                            ),
+                         ),
                          
                          
                          #textAreaInput("kombis", label = "13. Kombinationsmöglichkeiten",value = selected_row$kombis ,width = "200%"),
