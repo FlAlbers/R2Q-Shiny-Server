@@ -744,9 +744,65 @@ ui <- fluidPage(
                                      choices = massnahmen_dropdown,
                                      selected = NA),
                          
+                         selectInput(inputId = "selkombi11",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
                          
+                         selectInput(inputId = "selkombi12",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
                          
+                         selectInput(inputId = "selkombi13",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
                          
+                         selectInput(inputId = "selkombi14",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         selectInput(inputId = "selkombi15",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         selectInput(inputId = "selkombi16",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         selectInput(inputId = "selkombi17",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         selectInput(inputId = "selkombi18",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         selectInput(inputId = "selkombi19",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
+                         
+                         selectInput(inputId = "selkombi20",
+                                     label = "",
+                                     multiple = FALSE, 
+                                     choices = massnahmen_dropdown,
+                                     selected = NA),
                          
                          
                          #textAreaInput("kombis", label = "13. Kombinationsmöglichkeiten",value = selected_row$kombis ,width = "200%"),
@@ -1243,7 +1299,7 @@ server <- function(input, output, session) {
             }
         }
         
-        for(i in 1:10){
+        for(i in 1:20){
             wertInSelectInput(werte2("Kombinationsmöglichkeiten", as.character(i)), paste0("selkombi", as.character(i)))
         }
         
@@ -1853,6 +1909,26 @@ server <- function(input, output, session) {
                 TextInputToWert("Kombinationsmöglichkeiten","9")
             input$selkombi10 %>% 
                 TextInputToWert("Kombinationsmöglichkeiten","10")
+            input$selkombi11 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","11")
+            input$selkombi12 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","12")
+            input$selkombi13 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","13")
+            input$selkombi14 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","14")
+            input$selkombi15 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","15")
+            input$selkombi16 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","16")
+            input$selkombi17 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","17")
+            input$selkombi18 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","18")
+            input$selkombi19 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","19")
+            input$selkombi20 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","20")
             
             
             #Vor- und Nachteile
