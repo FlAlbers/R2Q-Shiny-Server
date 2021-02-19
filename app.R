@@ -581,6 +581,10 @@ ui <- fluidPage(
                              )
                          ),
                          
+                         br(),
+                         br(),
+                         textAreaInput("kosten_hinweis", label="Hinweis", width = "200%"),
+                         
                          
                          
                          HTML("_____________________________________________________________________________________________"),
@@ -670,79 +674,143 @@ ui <- fluidPage(
                          
                          strong("15. Kombinationsmöglichkeiten"),
                          
+                         fluidRow(
+                             column(width = 4,
+                                 br(),
                          
-                         selectInput(inputId = "selkombi1",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
+                                 selectInput(inputId = "selkombi1",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi2",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi3",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi4",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi5",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi6",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi7",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi8",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi9",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 
+                                 selectInput(inputId = "selkombi10",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                             ),
+                            column(width = 4,
+                                br(),
                          
-                         
-                         selectInput(inputId = "selkombi2",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi3",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi4",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi5",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi6",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi7",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi8",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi9",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         selectInput(inputId = "selkombi10",
-                                     label = "",
-                                     multiple = FALSE, 
-                                     choices = massnahmen_dropdown,
-                                     selected = NA),
-                         
-                         
-                         
-                         
+                                 selectInput(inputId = "selkombi11",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi12",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi13",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi14",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi15",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi16",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi17",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi18",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi19",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                                 
+                                 selectInput(inputId = "selkombi20",
+                                             label = "",
+                                             multiple = FALSE, 
+                                             choices = massnahmen_dropdown,
+                                             selected = NA),
+                            ),
+                         ),
                          
                          
                          #textAreaInput("kombis", label = "13. Kombinationsmöglichkeiten",value = selected_row$kombis ,width = "200%"),
@@ -1187,13 +1255,15 @@ server <- function(input, output, session) {
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "üblich"), paste0("bet", as.character(i) ,"ueblich"))
         }
         
+        wertInTextInput(werte2("Aufwand und Kosten", "Hinweis"), "kosten_hinweis")
+        
         #Weitergehende Hinweise
         
         wertInTextInput(werte2("Weitergehende Hinweise", "Fließtext"), "whinwtxt")
         
-        DF1 <- tibble(Parameter = c("","","","","","","","","",""), Wert = c("","","","","","","","","",""))
+        DF1 <- tibble(Parameter = c("","","","","","","","","","","","","","","","","","","",""), Wert = c("","","","","","","","","","","","","","","","","","","",""))
         
-        for(i in 1:10){
+        for(i in 1:20){
             DF1[i,1] = werte3("Weitergehende Hinweise", "Parameter", as.character(i))
             DF1[i,2] = werte3("Weitergehende Hinweise", "Wert", as.character(i))
         }
@@ -1237,7 +1307,7 @@ server <- function(input, output, session) {
             }
         }
         
-        for(i in 1:10){
+        for(i in 1:20){
             wertInSelectInput(werte2("Kombinationsmöglichkeiten", as.character(i)), paste0("selkombi", as.character(i)))
         }
         
@@ -1306,7 +1376,7 @@ server <- function(input, output, session) {
     
     values <- reactiveValues()
     
-    DF1 <- tibble(Parameter = c("","","","",""), Wert = c("","","","",""))
+    DF1 <- tibble(Parameter = c("","","","","","","","","","","","","","","","","","","",""), Wert = c("","","","","","","","","","","","","","","","","","","",""))
     
     
     observe({
@@ -1767,6 +1837,9 @@ server <- function(input, output, session) {
             input$bet5ueblich %>% 
                 TextInputToWert("Aufwand und Kosten","Betriebskosten5","üblich")
             
+            input$kosten_hinweis %>%
+                TextInputToWert("Aufwand und Kosten", "Hinweis")
+            
             
             #Weitergehende Hinweise
             
@@ -1776,7 +1849,7 @@ server <- function(input, output, session) {
             
             param <- isolate(values[["DF1"]])
             
-            for (i in 1:10) {
+            for (i in 1:20) {
                 TextInputToWert("NA","Weitergehende Hinweise","Parameter",as.character(i))
                 TextInputToWert("NA","Weitergehende Hinweise","Wert",as.character(i))
             }
@@ -1844,6 +1917,26 @@ server <- function(input, output, session) {
                 TextInputToWert("Kombinationsmöglichkeiten","9")
             input$selkombi10 %>% 
                 TextInputToWert("Kombinationsmöglichkeiten","10")
+            input$selkombi11 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","11")
+            input$selkombi12 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","12")
+            input$selkombi13 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","13")
+            input$selkombi14 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","14")
+            input$selkombi15 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","15")
+            input$selkombi16 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","16")
+            input$selkombi17 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","17")
+            input$selkombi18 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","18")
+            input$selkombi19 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","19")
+            input$selkombi20 %>% 
+                TextInputToWert("Kombinationsmöglichkeiten","20")
             
             
             #Vor- und Nachteile
