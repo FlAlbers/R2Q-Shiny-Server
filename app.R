@@ -61,7 +61,7 @@ getcon <- function(){
 }
 
 con <- getcon()
-list_Massnahmen <- dbGetQuery(con, "SELECT ressource, kategorieIndex, name, id FROM massnahmen");
+list_Massnahmen <- dbGetQuery(con, "SELECT ressource, kategorieIndex, name, id FROM massnahmen ORDER BY ressource, kategorieIndex");
 dbDisconnect(con)
 
 # list_Massnahmen <- read_excel("Massnahmenliste.xlsx")
