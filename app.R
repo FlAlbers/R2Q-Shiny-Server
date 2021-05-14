@@ -111,9 +111,6 @@ ui <- fluidPage(
                          HTML("<strong>Achtung: Am besten funktioniert die Anwendung maximiert, um überlappende Wörter vorzubeugen!</strong>"),
                          br(),
                          br(),
-                         
-                         br(),
-                         
                          HTML("<h4><strong>Folgende Befehle sind in Textfeldern möglich:</strong></h4>"),
                          HTML("<table><colgroup>
 								<col style='width:380px'>
