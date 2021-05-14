@@ -61,10 +61,10 @@ getcon <- function(){
 }
 
 con <- getcon()
-list_Massnahmen <- dbGetQuery(con, "SELECT ressource, kategorieIndex, name, id FROM massnahmen ORDER BY ressource, kategorieIndex");
+# list_Massnahmen <- dbGetQuery(con, "SELECT ressource, kategorieIndex, name, id FROM massnahmen ORDER BY ressource, kategorieIndex");
 dbDisconnect(con)
 
-# list_Massnahmen <- read_excel("Massnahmenliste.xlsx")
+list_Massnahmen <- read_excel("Massnahmenliste.xlsx")
 list_Massnahmen[["kategorieIndex"]] <- str_pad(list_Massnahmen[["kategorieIndex"]], 3, pad = "0")
 list_Massnahmen <- unite(list_Massnahmen, Massnahmen, ressource:name)
 
@@ -175,7 +175,7 @@ ui <- fluidPage(
                          HTML("_____________________________________________________________________________________________"),
                          br(),
                          #Wirkung und Funktion
-                         strong("4. Wirkung und Funktion"),
+                         strong("4. Funktion"),
                          fluidRow(
                              column( width = 3,
                                      br(),
