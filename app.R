@@ -35,13 +35,19 @@ systemskizzeUptime = NA
 
 
 #the following vectors are the choice lists for the checkboxes
-ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
+ ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
+# ressourcen = c("Wasser", "Fläche", "Baustoffe", "Energie")
 
-wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
-wifuBaustoffe = c("BOM Bill of Material", "Monomaterial", "Einsparung von Primärmaterialien", "Nachwachsender Rohstoff", "Rohstofferhalt", "Rohstoffverfügbarkeit", "Rohstoffaufwand (gesamt)")
-wifuFlaeche = c("Infrastrukturversorgung", "Nutzungsvielfalt", "Einsparung natürlicher Ressourcen", "Luftreinhaltung", "Biodiversität", "Aufenthalts-/ Freiraumqualität")
-wifuSchmutzwasser = c("Gesundheitsvorsorge", "Gewässerschutz", "Trinwassereinsparung", "Nährstoffrückgewinnung")
-wifuEnergie = c("Elektrizität", "Wärme", "Brennstoffe", "Erzeugung", "Verteilung", "Verbrauch")
+# wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
+# wifuBaustoffe = c("BOM Bill of Material", "Monomaterial", "Einsparung von Primärmaterialien", "Nachwachsender Rohstoff", "Rohstofferhalt", "Rohstoffverfügbarkeit", "Rohstoffaufwand (gesamt)")
+# wifuFlaeche = c("Infrastrukturversorgung", "Nutzungsvielfalt", "Einsparung natürlicher Ressourcen", "Luftreinhaltung", "Biodiversität", "Aufenthalts-/ Freiraumqualität")
+# wifuSchmutzwasser = c("Gesundheitsvorsorge", "Gewässerschutz", "Trinwassereinsparung", "Nährstoffrückgewinnung")
+# wifuEnergie = c("Elektrizität", "Wärme", "Brennstoffe", "Erzeugung", "Verteilung", "Verbrauch")
+
+fuWasser = c("Förderung Verdunstung", "Förderung Grundwasserneubildung", "Minderung Abfluss", "Sammlung und Ableitung", "Behandlung", "Trinkwassereinsparung", "Nährstoffrückgewinnung", "Starkregen-, Überflutungsvorsorge")
+fuBaustoffe = c("Vermeidung", "Wiederverwendung", "Recycling", "Verwertung", "Beseitigung")
+fuEnergie = c("Energiebereitstellung", "Energieverteilung", "Energieverbrauch", "Energiespeicherung", "Elektrizität", "Wärme", "Brennstoffe")
+fuFlaeche = c("Klimaanpassung", "Gesundheitsschutz", "Erhalt d. Grunddaseinsfunktion", "Naturschutz", "Klimaschutz")
 
 anwendungsebenen = c("Gebäudeebene", "Grundstücksebene", "Quartiersebene")
 
@@ -64,7 +70,7 @@ con <- getcon()
 list_Massnahmen <- dbGetQuery(con, "SELECT ressource, kategorieIndex, name, id FROM massnahmen ORDER BY ressource, kategorieIndex");
 dbDisconnect(con)
 
-# list_Massnahmen <- read_excel("Massnahmenliste.xlsx")
+#list_Massnahmen <- read_excel("Massnahmenliste.xlsx")
 list_Massnahmen[["kategorieIndex"]] <- str_pad(list_Massnahmen[["kategorieIndex"]], 3, pad = "0")
 list_Massnahmen <- unite(list_Massnahmen, Massnahmen, ressource:name)
 
@@ -283,18 +289,26 @@ ui <- fluidPage(
                          HTML("_____________________________________________________________________________________________"),
                          br(),
                          #Wirkung und Funktion
-                         strong("4. Wirkung und Funktion"),
+                         strong("4. Funktion"),
                          fluidRow(
+                             
+                             # column( width = 3,
+                             #         br(),
+                             #         checkboxGroupInput("cbgniederschlagswasser", "Niederschlagswasser", 
+                             #                            choices = wifuNiederschlagswasser,
+                             #         )
+                             # ),
                              column( width = 3,
                                      br(),
-                                     checkboxGroupInput("cbgniederschlagswasser", "Niederschlagswasser", 
-                                                        choices = wifuNiederschlagswasser,
+                                     checkboxGroupInput("cbgwasser", "Wasser", 
+                                                        choices = fuWasser,
                                      )
                              ),
+                             
                              column( width = 3,
                                      br(),
                                      checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
-                                                        choices = wifuBaustoffe,
+                                                        choices = fuBaustoffe,
                                                         
                                                         
                                      )
@@ -304,7 +318,7 @@ ui <- fluidPage(
                              column( width = 3,
                                      br(),
                                      checkboxGroupInput("cbgflaeche", "Fläche", 
-                                                        choices = wifuFlaeche,
+                                                        choices = fuFlaeche,
                                                         )
                                      
                              ),
@@ -312,26 +326,26 @@ ui <- fluidPage(
                              
                              
                          ),
-                         fluidRow(
-                             column( width = 3,
-                                     br(),
-                                     checkboxGroupInput("cbgschmutzwasser", "Schmutzwasser", 
-                                                        choices = wifuSchmutzwasser,
-                                                        
-                                     )
-                             ),
+                         # fluidRow(
+                         #     column( width = 3,
+                         #             br(),
+                         #             checkboxGroupInput("cbgschmutzwasser", "Schmutzwasser", 
+                         #                                choices = wifuSchmutzwasser,
+                         #                                
+                         #             )
+                         #     ),
                              
                              column( width = 3,
                                      br(),
                                      checkboxGroupInput("cbgenergie", "Energie", 
-                                                        choices = wifuEnergie,
+                                                        choices = fuEnergie,
                                                         
                                                         
                                      )
-                                     
-                             ),
                              
                          ),
+                         
+                         br(),
                          
                          
                          
@@ -1113,7 +1127,7 @@ server <- function(input, output, session) {
         
         #dbSendQuery(con, "SET CHARACTER SET utf8mb4;")
         #dbExecute(con, "SET CHARACTER SET utf8mb4;")
-        loadedTable <- dbGetQuery(con, str_c("SELECT * FROM massnahmendaten WHERE massnahme_id = ", as.character(mid)))
+        loadedTable <- dbGetQuery(con, str_c("SELECT * FROM massnahmendaten2 WHERE massnahme_id = ", as.character(mid)))
         #Encoding(loadedTable) <- "UTF-8"
         dbDisconnect(con)
         
@@ -1249,23 +1263,24 @@ server <- function(input, output, session) {
         #Wirkung und Funkion
         #Niederschlagswasser
         
-        cbGroup(c("Wirkung/Funktion", "Niederschlagswasser"), wifuNiederschlagswasser, "cbgniederschlagswasser")
+        # cbGroup(c("Wirkung/Funktion", "Niederschlagswasser"), wifuNiederschlagswasser, "cbgniederschlagswasser")
+        cbGroup(c("Wirkung/Funktion", "Wasser"), fuWasser, "cbgwasser")
         
         #Baustoffe
         
-        cbGroup(c("Wirkung/Funktion", "Baustoffe"), wifuBaustoffe, "cbgbaustoffe")
+        cbGroup(c("Wirkung/Funktion", "Baustoffe"), fuBaustoffe, "cbgbaustoffe")
         
         #Fläche
         
-        cbGroup(c("Wirkung/Funktion", "Fläche"), wifuFlaeche, "cbgflaeche")
+        cbGroup(c("Wirkung/Funktion", "Fläche"), fuFlaeche, "cbgflaeche")
         
         #Schmutzwasser
         
-        cbGroup(c("Wirkung/Funktion", "Schmutzwasser"), wifuSchmutzwasser, "cbgschmutzwasser")
+        # cbGroup(c("Wirkung/Funktion", "Schmutzwasser"), wifuSchmutzwasser, "cbgschmutzwasser")
         
         #Energie
         
-        cbGroup(c("Wirkung/Funktion", "Energie"), wifuEnergie, "cbgenergie")
+        cbGroup(c("Wirkung/Funktion", "Energie"), fuEnergie, "cbgenergie")
 
         #Anwendungsebene
         
@@ -1707,8 +1722,10 @@ server <- function(input, output, session) {
             #Wirkung und Funktion
             
             ##Niederschlagswasser
-            input$cbgniederschlagswasser %>% 
-                CbgInputToWert("Wirkung/Funktion", "Niederschlagswasser")
+            # input$cbgniederschlagswasser %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Niederschlagswasser")
+            input$cbgwasser %>% 
+                CbgInputToWert("Wirkung/Funktion", "Wasser")
             ##Baustoffe
             input$cbgbaustoffe %>% 
                 CbgInputToWert("Wirkung/Funktion", "Baustoffe")
@@ -1716,8 +1733,8 @@ server <- function(input, output, session) {
             input$cbgflaeche %>% 
                 CbgInputToWert("Wirkung/Funktion", "Fläche")
             ##Schmutzwasser
-            input$cbgschmutzwasser %>% 
-                CbgInputToWert("Wirkung/Funktion", "Schmutzwasser")
+            # input$cbgschmutzwasser %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Schmutzwasser")
             ##Energie
             input$cbgenergie %>% 
                 CbgInputToWert("Wirkung/Funktion", "Energie")
@@ -2116,7 +2133,7 @@ server <- function(input, output, session) {
             }
             #transferring the data frame to the database
             for(i in 1:nrow(save1)){
-                query <- paste0("INSERT INTO massnahmendaten (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(save1[i,2]), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
+                query <- paste0("INSERT INTO massnahmendaten2 (massnahme_id, ebene1, ebene2, ebene3, wert, werttyp) VALUES (", s(save1[i,2]), ", '", s(save1[i,4]), "', '", s(save1[i,5]), "', '", s(save1[i,6]), "', '", s(save1[i,7]), "', '", s(save1[i,8]),"') ON DUPLICATE KEY UPDATE wert = '", s(save1[i,7]), "';")
                 print(query)
                 dbExecute(con, query);
             }
