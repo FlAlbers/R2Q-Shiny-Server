@@ -35,8 +35,8 @@ systemskizzeUptime = NA
 
 
 #the following vectors are the choice lists for the checkboxes
-# ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
-ressourcen = c("Wasser", "Fläche", "Baustoffe", "Energie")
+ ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
+# ressourcen = c("Wasser", "Fläche", "Baustoffe", "Energie")
 
 # wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
 # wifuBaustoffe = c("BOM Bill of Material", "Monomaterial", "Einsparung von Primärmaterialien", "Nachwachsender Rohstoff", "Rohstofferhalt", "Rohstoffverfügbarkeit", "Rohstoffaufwand (gesamt)")
@@ -236,6 +236,8 @@ ui <- fluidPage(
                                      )
                              
                          ),
+                         
+                         br(),
                          
                          
                          
