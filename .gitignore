@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+Systemskizzen/
+Umsetzungsbeispiele/
+*.jpg\n*.jpeg\n*.png\n*.gif\n

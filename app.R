@@ -117,6 +117,128 @@ ui <- fluidPage(
                          HTML("<strong>Achtung: Am besten funktioniert die Anwendung maximiert, um überlappende Wörter vorzubeugen!</strong>"),
                          br(),
                          br(),
+                         HTML("<h4><strong>Folgende Befehle sind in Textfeldern möglich:</strong></h4>"),
+                         HTML("<table><colgroup>
+								<col style='width:380px'>
+								<col style='width:200px'>
+							</colgroup>
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Kursiv:</strong></td><td><strong></strong></td></tr>
+                            <tr><td>Befehl: <code>*text* </code>oder <code> &lti&gttext&lt/i&gt</code></td><td>Ergebnis: <code><i>text</i></code></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Fett:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl: <code>**text** </code>oder <code>&ltstrong&gttext&lt/strong&gt</code></td><td>Ergebnis: <code><strong>text</strong></code></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Kursiv und Fett:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl: <code>***text*** </code>oder <code>&lti&gt&ltstrong&gttext&lt/strong&gt&lt/i&gt</code></td><td>Ergebnis: <code><i><strong>text</strong></i></code></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Horizontale Trennlinie:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl: <code>--- </code>oder <code> <br> &lthr&gt</code></td><td>Ergebnis:<hr></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Liste:</strong></td><td><strong></strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl:<br><code>- text<br>
+                            - text<br>
+                            - text<br></code>
+                            oder <br>
+                            <code>&ltul&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &lt/ul&gt<br>
+                            </code></td><td>Ergebnis:<ul>
+                            <li>text</li>
+                            <li>text</li>
+                            <li>text</li>
+                            </ul></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Liste nummeriert:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl:<br><code>1. text<br>
+                            2. text<br>
+                            3. text<br></code>
+                            oder <br>
+                            <code>&ltol&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &lt/ol&gt<br></code></td><td>Ergebnis:<ol>
+                            <li>text</li>
+                            <li>text</li>
+                            <li>text</li>
+                            </ol></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Liste verschachtelt:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl:<br><code>
+                            &ltul&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltul&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &lt/ul&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &lt/ul&gt<br></code></td><td>Ergebnis:<ul>
+                            <li>text</li>
+                            <ul>
+                            <li>text</li>
+                            <li>text</li>
+                            </ul>
+                            <li>text</li>
+                            </ul></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Liste verschachtelt nummeriert:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl:<br><code>
+                            &ltol&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltol&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &lt/ol&gt<br>
+                            &ltli&gttext&ltli&gt<br>
+                            &lt/ol&gt<br></code></td><td>Ergebnis:<ol>
+                            <li>text</li>
+                            <ol>
+                            <li>text</li>
+                            <li>text</li>
+                            </ol>
+                            <li>text</li>
+                            </ol></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Hochgestellt:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl: <code>x&ltsup&gty&lt/sup&gt </code></td><td>Ergebnis:<code>x<sup>y</sup></code></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Tiefgestellt:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl: <code>x&ltsub&gty&lt/sub&gt </code></td><td>Ergebnis:<code>x<sub>y</sub></code></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Bruch (eine Möglichkeit):</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl: <code>&ltsup&gtx&lt/sup&gt/&ltsub&gty&lt/sub&gt </code></td><td>Ergebnis:<code><sup>x</sup>/<sub>y</sub></code></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Sonderzeichen (Beispiele):</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl</td><td>Zeichen</td></tr> 
+                            <tr style='border-top:solid black 1px'><td><code>   &amp;times;     </code></td><td>     &times;     </td></tr>
+                            <tr style='border-top:solid lightgray 1px'><td><code>   &amp;divide;    </code></td><td>      &divide;     </td></tr>
+                            <tr style='border-top:solid lightgray 1px'><td><code>   &amp;Delta;    </code></td><td>      &Delta;     </td></tr>
+                            <tr style='border-top:solid lightgray 1px'><td><code>   &amp;permil;    </code></td><td>      &permil;     </td></tr>
+                            <tr height = 20px></tr>
+                            <tr><td>Weitere Zeichen gibt es <code><a href='https://www.google.com/search?q=html+link+einf%C3%BCgen&rlz=1C1AVFC_enDE881DE903&oq=html+link&aqs=chrome.1.69i57j0l9.2621j0j4&sourceid=chrome&ie=UTF-8'>>>>hier<<<</a></code>.</td></tr>
+                            
+                            <tr height = 20px></tr>
+                            <tr><td colspan='2'>Zusätzlich kann neben den oben genannten Möglichkeiten auch eigener HTML Text in den Textboxen verwendet werden.</td></tr>
+                            
+                            
+                            </table>"),
+                         br(),
+                         HTML("_____________________________________________________________________________________________"),
                          br(),
                          textInput("titel","Titelname"),
                          br(),
@@ -124,20 +246,6 @@ ui <- fluidPage(
                          br(),
                          #Kurzbeschreibung
                          HTML("<strong>1. Kurzbeschreibung</strong>"),
-                         br(),
-                         br(),
-                         
-                         HTML("Folgende Befehle sind im Text möglich:"),
-                         br(),
-                         HTML("<strong>Kursiv:</strong> *text*"),
-                         br(),
-                         HTML("<strong>Fettgedruckt:</strong> **text**"),
-                         br(),
-                         HTML("<strong>Kursiv und Fettgedruckt:</strong> ***text***"),
-                         br(),
-                         HTML("<strong>Zeilenumbruch:</strong> hierfür muss <strong>zwei mal Enter</strong>, bzw zwei Zeilenumbrüche getätigt werden."),
-                         br(),
-                         HTML("Ergänzend sind noch weitere Markdown befehle möglich."),
                          br(),
                          
                          textAreaInput("kurzb", label = "",width = "200%"),
