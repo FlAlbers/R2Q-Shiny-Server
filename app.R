@@ -37,11 +37,17 @@ systemskizzeUptime = NA
 #the following vectors are the choice lists for the checkboxes
 ressourcen = c("Niederschlagswasser", "Schmutzwasser", "Fläche", "Baustoffe", "Energie")
 
-wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
-wifuBaustoffe = c("BOM Bill of Material", "Monomaterial", "Einsparung von Primärmaterialien", "Nachwachsender Rohstoff", "Rohstofferhalt", "Rohstoffverfügbarkeit", "Rohstoffaufwand (gesamt)")
-wifuFlaeche = c("Infrastrukturversorgung", "Nutzungsvielfalt", "Einsparung natürlicher Ressourcen", "Luftreinhaltung", "Biodiversität", "Aufenthalts-/ Freiraumqualität")
-wifuSchmutzwasser = c("Gesundheitsvorsorge", "Gewässerschutz", "Trinwassereinsparung", "Nährstoffrückgewinnung")
-wifuEnergie = c("Elektrizität", "Wärme", "Brennstoffe", "Erzeugung", "Verteilung", "Verbrauch")
+# wifuNiederschlagswasser = c("Gewässerschutz", "Bodenschutz", "Überflutungsschutz", "Klimaanpassung")
+# wifuBaustoffe = c("BOM Bill of Material", "Monomaterial", "Einsparung von Primärmaterialien", "Nachwachsender Rohstoff", "Rohstofferhalt", "Rohstoffverfügbarkeit", "Rohstoffaufwand (gesamt)")
+# wifuFlaeche = c("Infrastrukturversorgung", "Nutzungsvielfalt", "Einsparung natürlicher Ressourcen", "Luftreinhaltung", "Biodiversität", "Aufenthalts-/ Freiraumqualität")
+# wifuSchmutzwasser = c("Gesundheitsvorsorge", "Gewässerschutz", "Trinwassereinsparung", "Nährstoffrückgewinnung")
+# wifuEnergie = c("Elektrizität", "Wärme", "Brennstoffe", "Erzeugung", "Verteilung", "Verbrauch")
+
+wifuWasser = c("Förderung Verdunstung", "Förderung Grundwasserneubildung", "Minderung Abfluss", "Sammlung und Ableitung", "Behandlung", "Trinkwassereinsparung", "Nährstoffrückgewinnung", "Starkregen-, Überflutungsvorsorge")
+wifuBaustoffe = c("Vermeidung", "Wiederverwendung", "Recycling", "Verwertung", "Beseitigung")
+wifuEnergie = c("Energiebereitstellung", "Energieverteilung", "Energieverbrauch", "Energiespeicherung", "Elektrizität", "Wärme", "Brennstoffe")
+wifuFlaeche = c("Klimaanpassung", "Gesundheitsschutz", "Erhalt d. Grunddaseinsfunktion", "Naturschutz", "Klimaschutz")
+
 
 anwendungsebenen = c("Gebäudeebene", "Grundstücksebene", "Quartiersebene")
 
@@ -283,12 +289,12 @@ ui <- fluidPage(
                          HTML("_____________________________________________________________________________________________"),
                          br(),
                          #Wirkung und Funktion
-                         strong("4. Wirkung und Funktion"),
+                         strong("4. Funktion"),
                          fluidRow(
                              column( width = 3,
                                      br(),
-                                     checkboxGroupInput("cbgniederschlagswasser", "Niederschlagswasser", 
-                                                        choices = wifuNiederschlagswasser,
+                                     checkboxGroupInput("cbgwasser", "Wasser",
+                                                        choices = wifuWasser,
                                      )
                              ),
                              column( width = 3,
@@ -313,13 +319,13 @@ ui <- fluidPage(
                              
                          ),
                          fluidRow(
-                             column( width = 3,
-                                     br(),
-                                     checkboxGroupInput("cbgschmutzwasser", "Schmutzwasser", 
-                                                        choices = wifuSchmutzwasser,
-                                                        
-                                     )
-                             ),
+                         #     column( width = 3,
+                         #             br(),
+                         #             checkboxGroupInput("cbgschmutzwasser", "Schmutzwasser", 
+                         #                                choices = wifuSchmutzwasser,
+                         #                                
+                         #             )
+                         #     ),
                              
                              column( width = 3,
                                      br(),
@@ -1249,7 +1255,7 @@ server <- function(input, output, session) {
         #Wirkung und Funkion
         #Niederschlagswasser
         
-        cbGroup(c("Wirkung/Funktion", "Niederschlagswasser"), wifuNiederschlagswasser, "cbgniederschlagswasser")
+        cbGroup(c("Wirkung/Funktion", "Wasser"), wifuWasser, "cbgwasser")
         
         #Baustoffe
         
@@ -1261,7 +1267,7 @@ server <- function(input, output, session) {
         
         #Schmutzwasser
         
-        cbGroup(c("Wirkung/Funktion", "Schmutzwasser"), wifuSchmutzwasser, "cbgschmutzwasser")
+        # cbGroup(c("Wirkung/Funktion", "Schmutzwasser"), wifuSchmutzwasser, "cbgschmutzwasser")
         
         #Energie
         
@@ -1707,17 +1713,17 @@ server <- function(input, output, session) {
             #Wirkung und Funktion
             
             ##Niederschlagswasser
-            input$cbgniederschlagswasser %>% 
-                CbgInputToWert("Wirkung/Funktion", "Niederschlagswasser")
+            input$cbgwasser %>% 
+                CbgInputToWert("Wirkung/Funktion", "Wasser")
             ##Baustoffe
             input$cbgbaustoffe %>% 
                 CbgInputToWert("Wirkung/Funktion", "Baustoffe")
             ##Fläche
             input$cbgflaeche %>% 
                 CbgInputToWert("Wirkung/Funktion", "Fläche")
-            ##Schmutzwasser
-            input$cbgschmutzwasser %>% 
-                CbgInputToWert("Wirkung/Funktion", "Schmutzwasser")
+            # ##Schmutzwasser
+            # input$cbgschmutzwasser %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Schmutzwasser")
             ##Energie
             input$cbgenergie %>% 
                 CbgInputToWert("Wirkung/Funktion", "Energie")
