@@ -100,7 +100,11 @@ ui <- fluidPage(
             br(),
             br(),
             
-            textOutput("message1")
+            textOutput("message1"),
+            br(),
+            br(),
+            
+            HTML("Klicken sie <code><a href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/index.php'>>>>hier<<<</a></code>, um zur Darstellung der Maßnahmen zu gelangen"),
         ),
         
         # main Panel
@@ -132,6 +136,10 @@ ui <- fluidPage(
                             
                             <tr style='border-top:solid lightgray 1px'><td><strong>Kursiv und Fett:</strong></td><td><strong></strong></td></tr> 
                             <tr><td>Befehl: <code>***text*** </code>oder <code>&lti&gt&ltstrong&gttext&lt/strong&gt&lt/i&gt</code></td><td>Ergebnis: <code><i><strong>text</strong></i></code></td></tr>
+                            <tr height = 20px></tr>
+                            
+                            <tr style='border-top:solid lightgray 1px'><td><strong>Unterstreichen:</strong></td><td><strong></strong></td></tr> 
+                            <tr><td>Befehl: <code>&ltu&gttext&lt/u&gt</code></td><td>Ergebnis: <code><u>text</u></code></td></tr>
                             <tr height = 20px></tr>
                             
                             <tr style='border-top:solid lightgray 1px'><td><strong>Horizontale Trennlinie:</strong></td><td><strong></strong></td></tr> 
@@ -1002,17 +1010,8 @@ ui <- fluidPage(
                          br(),
                          br(),
                          
-                ),
+                )#,
                 
-                
-                
-                #################                
-                
-                
-                #TAB Bewertung
-                tabPanel("Bewertung"
-                         
-                ),
                 
                 
                 #################                
@@ -1023,40 +1022,40 @@ ui <- fluidPage(
                 
                 
                 #TAB Vorschau
-                tabPanel("Vorschau",
-                         
-                         br(),
-                         br(),
-                         #strong("Noch in Arbeit"),
-                         htmlOutput("loading"),
-                         br(),
-                         actionButton(inputId = "viewpdf",label = "Vorschau anzeigen"),
-                         br(),
-                         br(),
-                         add_busy_bar(color = "#52f32b"), #Hex Color Corde
-                         br(),
-                         br(),
-                         
-                         
-                         htmlOutput("vorschaupdf"),
-                         
-                         
-                         
-                         
-                         
-                         #renderDataTable(expr = as.data.frame(Daten)),
-                         
-                         br(),
-                         br(),
-                         br(),
-                         br(),
-                         br(),
-                         br(),
-                         
-                         
-                         #################
-                         
-                )
+                # tabPanel("Vorschau",
+                # 
+                #          br(),
+                #          br(),
+                #          #strong("Noch in Arbeit"),
+                #          htmlOutput("loading"),
+                #          br(),
+                #          actionButton(inputId = "viewpdf",label = "Vorschau anzeigen"),
+                #          br(),
+                #          br(),
+                #          add_busy_bar(color = "#52f32b"), #Hex Color Corde
+                #          br(),
+                #          br(),
+                # 
+                # 
+                #          htmlOutput("vorschaupdf"),
+                # 
+                # 
+                # 
+                # 
+                # 
+                #          #renderDataTable(expr = as.data.frame(Daten)),
+                # 
+                #          br(),
+                #          br(),
+                #          br(),
+                #          br(),
+                #          br(),
+                #          br(),
+                # 
+                # 
+                #          #################
+                # 
+                # )
             )
         )
     )
