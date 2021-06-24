@@ -19,7 +19,6 @@ library(writexl)
 library(RMySQL)
 library(DBI)
 library(tidyverse)
-library(png)
 #data structure
 #conn <- dbConnect(RSQLite::SQLite(), "my-db.sqlite")
 #Daten <- dbReadTable(conn, "Daten")
