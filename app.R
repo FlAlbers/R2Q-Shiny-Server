@@ -19,6 +19,7 @@ library(writexl)
 library(RMySQL)
 library(DBI)
 library(tidyverse)
+library(png)
 #data structure
 #conn <- dbConnect(RSQLite::SQLite(), "my-db.sqlite")
 #Daten <- dbReadTable(conn, "Daten")
@@ -81,12 +82,16 @@ massnahmen_dropdown <-append(list_Massnahmen$Massnahmen,NA)
 # Start of the userinterface
 ui <- fluidPage(
     
-    # Application title
-    titlePanel("R2Q Maßnahmenkatalog"),
+    
+    # div(
     
     # Sidebar with dropdown list 
     sidebarLayout(
         sidebarPanel(
+            # Application title
+            titlePanel(HTML('<img style="width:100%;" src="../R2Q_Logo.png">'),),
+            br(),
+            style = "position:fixed;width:30%;",
             selectInput(inputId = "Massnahme",
                         label = "Maßnahme",
                         multiple = FALSE, 
@@ -104,9 +109,9 @@ ui <- fluidPage(
             br(),
             br(),
             
-            HTML("Klicken sie <code><a href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/index.php'>>>>hier<<<</a></code>, um zur Darstellung der Maßnahmen zu gelangen"),
+            HTML("Klicken sie <strong><code><a href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/index.php'>>>>hier<<<</a></code></strong>, um zur Darstellung der Maßnahmen zu gelangen"),
         ),
-        
+    
         # main Panel
         mainPanel(
             tabsetPanel(
@@ -122,6 +127,8 @@ ui <- fluidPage(
                          br(),
                          br(),
                          HTML("<h4><strong>Folgende Befehle sind in Textfeldern möglich:</strong></h4>"),
+                         HTML("Grundsätzlich ist es möglich <strong>Markdown</strong> und <strong>HTML</strong> zu verwenden. Im folgenden sind einige der wichtigen Befehle dargestellt. 
+                            <br>Falls sie noch mehr über die Möglichkeiten von Markdown und HTML erfahren möchten, klicken sie <strong><code><a href='https://www.markdownguide.org/basic-syntax/'>>>>hier<<<</a></code></strong>.<br><br>"),
                          HTML("<table><colgroup>
 								<col style='width:380px'>
 								<col style='width:200px'>
@@ -238,14 +245,13 @@ ui <- fluidPage(
                             <tr style='border-top:solid lightgray 1px'><td><code>   &amp;Delta;    </code></td><td>      &Delta;     </td></tr>
                             <tr style='border-top:solid lightgray 1px'><td><code>   &amp;permil;    </code></td><td>      &permil;     </td></tr>
                             <tr height = 20px></tr>
-                            <tr><td>Weitere Zeichen gibt es <code><a href='https://www.google.com/search?q=html+link+einf%C3%BCgen&rlz=1C1AVFC_enDE881DE903&oq=html+link&aqs=chrome.1.69i57j0l9.2621j0j4&sourceid=chrome&ie=UTF-8'>>>>hier<<<</a></code>.</td></tr>
+                            <tr><td>Weitere Zeichen gibt es <code><a href='https://dev.w3.org/html5/html-author/charref'>>>>hier<<<</a></code>.</td></tr>
                             
                             <tr height = 20px></tr>
-                            <tr><td colspan='2'>Zusätzlich kann neben den oben genannten Möglichkeiten auch eigener HTML Text in den Textboxen verwendet werden.</td></tr>
-                            
                             
                             </table>"),
                          br(),
+                         HTML("<h3 style='font-weight: bold;'>Eingabe</h3>"),
                          HTML("_____________________________________________________________________________________________"),
                          br(),
                          textInput("titel","Titelname"),
