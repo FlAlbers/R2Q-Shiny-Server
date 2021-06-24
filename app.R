@@ -19,7 +19,6 @@ library(writexl)
 library(RMySQL)
 library(DBI)
 library(tidyverse)
-library(png)
 #data structure
 #conn <- dbConnect(RSQLite::SQLite(), "my-db.sqlite")
 #Daten <- dbReadTable(conn, "Daten")
@@ -89,7 +88,7 @@ ui <- fluidPage(
     sidebarLayout(
         sidebarPanel(
             # Application title
-            titlePanel(HTML('<img style="width:100%;" src="../R2Q_Logo.png">'),),
+            titlePanel(HTML('<img style="width:100%;" src="R2Q_Logo.png">'),),
             br(),
             style = "position:fixed;width:30%;",
             selectInput(inputId = "Massnahme",
