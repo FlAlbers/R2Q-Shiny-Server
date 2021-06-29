@@ -297,14 +297,14 @@ ui <- fluidPage(
                                      # checkboxGroupInput("cbgwasser", "Wasser",
                                      #                    choices = wifuWasser,
                                      #  )
-                                     textInput("wasser_1", "Förderung Verdunstung", value = 1),
-                                     textInput("wasser_2", "Förderung Grundwasserneubildung", value = 1),
-                                     textInput("wasser_3", "Minderung Abfluss", value = 1),
-                                     textInput("wasser_4", "Sammlung und Ableitung", value = 1),
-                                     textInput("wasser_5", "Behandlung", value = 1),
-                                     textInput("wasser_6", "Trinkwassereinsparung", value = 1),
-                                     textInput("wasser_7", "Nährstoffrückgewinnung", value = 1),
-                                     textInput("wasser_8", "Starkregen-, Überflutungsvorsorge", value = 1)
+                                     textInput("wasser_1", "Förderung Verdunstung", value = 1, width = "30%"),
+                                     textInput("wasser_2", "Förderung Grundwasserneubildung", value = 1, width = "30%"),
+                                     textInput("wasser_3", "Minderung Abfluss", value = 1, width = "30%"),
+                                     textInput("wasser_4", "Sammlung und Ableitung", value = 1, width = "30%"),
+                                     textInput("wasser_5", "Behandlung", value = 1, width = "30%"),
+                                     textInput("wasser_6", "Trinkwassereinsparung", value = 1, width = "30%"),
+                                     textInput("wasser_7", "Nährstoffrückgewinnung", value = 1, width = "30%"),
+                                     textInput("wasser_8", "Starkregen-, Überflutungsvorsorge", value = 1, width = "30%")
                                      
                                      
                              ),
@@ -313,11 +313,11 @@ ui <- fluidPage(
                                      # checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
                                      #                    choices = wifuBaustoffe,
                                      # )
-                                     textInput("baustoffe_1", "Vermeidung", value = 1),
-                                     textInput("baustoffe_2", "Wiederverwendung", value = 1),
-                                     textInput("baustoffe_3", "Recycling", value = 1),
-                                     textInput("baustoffe_4", "Verwertung", value = 1),
-                                     textInput("baustoffe_5", "Beseitigung", value = 1)
+                                     textInput("baustoffe_1", "Vermeidung", value = 1, width = "30%"),
+                                     textInput("baustoffe_2", "Wiederverwendung", value = 1, width = "30%"),
+                                     textInput("baustoffe_3", "Recycling", value = 1, width = "30%"),
+                                     textInput("baustoffe_4", "Verwertung", value = 1, width = "30%"),
+                                     textInput("baustoffe_5", "Beseitigung", value = 1, width = "30%")
                              ),
                              
                              column( width = 3,
@@ -325,11 +325,11 @@ ui <- fluidPage(
                                      # checkboxGroupInput("cbgflaeche", "Fläche", 
                                      #                    choices = wifuFlaeche,
                                      #                    )
-                                     textInput("flaeche_1", "Klimaanpassung", value = 1),
-                                     textInput("flaeche_2", "Gesundheitsschutz", value = 1),
-                                     textInput("flaeche_3", "Erhalt d. Grunddaseinsfunktion", value = 1),
-                                     textInput("flaeche_4", "Naturschutz", value = 1),
-                                     textInput("flaeche_5", "Klimaschutz", value = 1)
+                                     textInput("flaeche_1", "Klimaanpassung", value = 1, width = "30%"),
+                                     textInput("flaeche_2", "Gesundheitsschutz", value = 1, width = "30%"),
+                                     textInput("flaeche_3", "Erhalt d. Grunddaseinsfunktion", value = 1, width = "30%"),
+                                     textInput("flaeche_4", "Naturschutz", value = 1, width = "30%"),
+                                     textInput("flaeche_5", "Klimaschutz", value = 1, width = "30%")
                                      
                              ),
                              
@@ -352,13 +352,13 @@ ui <- fluidPage(
                                      #                    
                                      #                    
                                      # )
-                                     textInput("energie_1", "Energiebereitstellung", value = 1),
-                                     textInput("energie_2", "Energieverteilung", value = 1),
-                                     textInput("energie_3", "Energieverbrauch", value = 1),
-                                     textInput("energie_4", "Energiespeicherung", value = 1),
-                                     textInput("energie_5", "Elektrizität", value = 1),
-                                     textInput("energie_6", "Wärme", value = 1),
-                                     textInput("energie_7", "Brennstoffe", value = 1)
+                                     textInput("energie_1", "Energiebereitstellung", value = 1, width = "30%"),
+                                     textInput("energie_2", "Energieverteilung", value = 1, width = "30%"),
+                                     textInput("energie_3", "Energieverbrauch", value = 1, width = "30%"),
+                                     textInput("energie_4", "Energiespeicherung", value = 1, width = "30%"),
+                                     textInput("energie_5", "Elektrizität", value = 1, width = "30%"),
+                                     textInput("energie_6", "Wärme", value = 1, width = "30%"),
+                                     textInput("energie_7", "Brennstoffe", value = 1, width = "30%")
                                      
                              ),
                              
