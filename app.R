@@ -322,9 +322,14 @@ ui <- fluidPage(
                              
                              column( width = 3,
                                      br(),
-                                     checkboxGroupInput("cbgflaeche", "Fläche", 
-                                                        choices = wifuFlaeche,
-                                                        )
+                                     # checkboxGroupInput("cbgflaeche", "Fläche", 
+                                     #                    choices = wifuFlaeche,
+                                     #                    )
+                                     textInput("flaeche_1", "Klimaanpassung", value = 1),
+                                     textInput("flaeche_2", "Gesundheitsschutz", value = 1),
+                                     textInput("flaeche_3", "Erhalt d. Grunddaseinsfunktion", value = 1),
+                                     textInput("flaeche_4", "Naturschutz", value = 1),
+                                     textInput("flaeche_5", "Klimaschutz", value = 1)
                                      
                              ),
                              
@@ -342,11 +347,18 @@ ui <- fluidPage(
                              
                              column( width = 3,
                                      br(),
-                                     checkboxGroupInput("cbgenergie", "Energie", 
-                                                        choices = wifuEnergie,
-                                                        
-                                                        
-                                     )
+                                     # checkboxGroupInput("cbgenergie", "Energie", 
+                                     #                    choices = wifuEnergie,
+                                     #                    
+                                     #                    
+                                     # )
+                                     textInput("energie_1", "Energiebereitstellung", value = 1),
+                                     textInput("energie_2", "Energieverteilung", value = 1),
+                                     textInput("energie_3", "Energieverbrauch", value = 1),
+                                     textInput("energie_4", "Energiespeicherung", value = 1),
+                                     textInput("energie_5", "Elektrizität", value = 1),
+                                     textInput("energie_6", "Wärme", value = 1),
+                                     textInput("energie_7", "Brennstoffe", value = 1)
                                      
                              ),
                              
@@ -1293,7 +1305,15 @@ server <- function(input, output, session) {
         
         #Fläche
         
-        cbGroup(c("Wirkung/Funktion", "Fläche"), wifuFlaeche, "cbgflaeche")
+        # cbGroup(c("Wirkung/Funktion", "Fläche"), wifuFlaeche, "cbgflaeche")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Klimaanpassung"), "flaeche_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Gesundheitsschutz"), "flaeche_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Erhalt d. Grunddaseinsfunktion"), "flaeche_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Naturschutz"), "flaeche_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Klimaschutz"), "flaeche_5")
+        
+        
+        
         
         #Schmutzwasser
         
@@ -1301,7 +1321,19 @@ server <- function(input, output, session) {
         
         #Energie
         
-        cbGroup(c("Wirkung/Funktion", "Energie"), wifuEnergie, "cbgenergie")
+        # cbGroup(c("Wirkung/Funktion", "Energie"), wifuEnergie, "cbgenergie")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energiebereitstellung"), "energie_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energieverteilung"), "energie_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energieverbrauch"), "energie_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energiespeicherung"), "energie_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Elektrizität"), "energie_5")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Wärme"), "energie_6")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Brennstoffe"), "energie_7")
+        
+        
+        
+        
+        
 
         #Anwendungsebene
         
@@ -1779,14 +1811,41 @@ server <- function(input, output, session) {
             
             
             ##Fläche
-            input$cbgflaeche %>% 
-                CbgInputToWert("Wirkung/Funktion", "Fläche")
+            # input$cbgflaeche %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Fläche")
+            input$flaeche_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Klimaanpassung")
+            input$flaeche_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Gesundheitsschutz")
+            input$flaeche_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Erhalt d. Grunddaseinsfunktion")
+            input$flaeche_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Naturschutz")
+            input$flaeche_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Klimaschutz")
+            
+            
             # ##Schmutzwasser
             # input$cbgschmutzwasser %>% 
             #     CbgInputToWert("Wirkung/Funktion", "Schmutzwasser")
+            
             ##Energie
-            input$cbgenergie %>% 
-                CbgInputToWert("Wirkung/Funktion", "Energie")
+            # input$cbgenergie %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Energie")
+            input$energie_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energiebereitstellung")
+            input$energie_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energieverteilung")
+            input$energie_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energieverbrauch")
+            input$energie_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energiespeicherung")
+            input$energie_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Elektrizität")
+            input$energie_6 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Wärme")
+            input$energie_7 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Brennstoffe")
            
             
             
