@@ -290,9 +290,11 @@ ui <- fluidPage(
                          br(),
                          #Wirkung und Funktion
                          strong("4. Funktion"),
-                         
+                         br(), br(),
                          fluidRow(
                              column( width = 3,
+                                     strong("Wasser"),
+                                     br(),
                                      br(),
                                      # checkboxGroupInput("cbgwasser", "Wasser",
                                      #                    choices = wifuWasser,
@@ -309,6 +311,8 @@ ui <- fluidPage(
                                      
                              ),
                              column( width = 3,
+                                     strong("Baustoffe"),
+                                     br(),
                                      br(),
                                      # checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
                                      #                    choices = wifuBaustoffe,
@@ -321,6 +325,8 @@ ui <- fluidPage(
                              ),
                              
                              column( width = 3,
+                                     strong("Fläche"),
+                                     br(),
                                      br(),
                                      # checkboxGroupInput("cbgflaeche", "Fläche", 
                                      #                    choices = wifuFlaeche,
@@ -346,6 +352,8 @@ ui <- fluidPage(
                          #     ),
                              
                              column( width = 3,
+                                     strong("Energie"),
+                                     br(),
                                      br(),
                                      # checkboxGroupInput("cbgenergie", "Energie", 
                                      #                    choices = wifuEnergie,
