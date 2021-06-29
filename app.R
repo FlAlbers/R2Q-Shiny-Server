@@ -1281,8 +1281,15 @@ server <- function(input, output, session) {
         
         #Baustoffe
         
-        cbGroup(c("Wirkung/Funktion", "Baustoffe"), wifuBaustoffe, "cbgbaustoffe")
-        # wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Vermeidung"), "baustoffe_1")
+        # cbGroup(c("Wirkung/Funktion", "Baustoffe"), wifuBaustoffe, "cbgbaustoffe")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Vermeidung"), "baustoffe_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Wiederverwendung"), "baustoffe_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Recycling"), "baustoffe_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Verwertung"), "baustoffe_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Beseitigung"), "baustoffe_5")
+        
+        
+        
         
         #Fläche
         
@@ -1757,8 +1764,20 @@ server <- function(input, output, session) {
             
             
             ##Baustoffe
-            input$cbgbaustoffe %>% 
-                CbgInputToWert("Wirkung/Funktion", "Baustoffe")
+            # input$cbgbaustoffe %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Baustoffe")
+            input$baustoffe_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Vermeidung")
+            input$baustoffe_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Wiederverwendung")
+            input$baustoffe_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Recycling")
+            input$baustoffe_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Verwertung")
+            input$baustoffe_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Beseitigung")
+            
+            
             ##Fläche
             input$cbgflaeche %>% 
                 CbgInputToWert("Wirkung/Funktion", "Fläche")
