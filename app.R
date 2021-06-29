@@ -290,21 +290,34 @@ ui <- fluidPage(
                          br(),
                          #Wirkung und Funktion
                          strong("4. Funktion"),
+                         
                          fluidRow(
                              column( width = 3,
                                      br(),
-                                     checkboxGroupInput("cbgwasser", "Wasser",
-                                                        choices = wifuWasser,
-                                     )
+                                     # checkboxGroupInput("cbgwasser", "Wasser",
+                                     #                    choices = wifuWasser,
+                                     #  )
+                                     textInput("wasser_1", "Förderung Verdunstung", value = 1),
+                                     textInput("wasser_2", "Förderung Grundwasserneubildung", value = 1),
+                                     textInput("wasser_3", "Minderung Abfluss", value = 1),
+                                     textInput("wasser_4", "Sammlung und Ableitung", value = 1),
+                                     textInput("wasser_5", "Behandlung", value = 1),
+                                     textInput("wasser_6", "Trinkwassereinsparung", value = 1),
+                                     textInput("wasser_7", "Nährstoffrückgewinnung", value = 1),
+                                     textInput("wasser_8", "Starkregen-, Überflutungsvorsorge", value = 1)
+                                     
+                                     
                              ),
                              column( width = 3,
                                      br(),
-                                     checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
-                                                        choices = wifuBaustoffe,
-                                                        
-                                                        
-                                     )
-                                     
+                                     # checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
+                                     #                    choices = wifuBaustoffe,
+                                     # )
+                                     textInput("baustoffe_1", "Vermeidung", value = 1),
+                                     textInput("baustoffe_2", "Wiederverwendung", value = 1),
+                                     textInput("baustoffe_3", "Recycling", value = 1),
+                                     textInput("baustoffe_4", "Verwertung", value = 1),
+                                     textInput("baustoffe_5", "Beseitigung", value = 1)
                              ),
                              
                              column( width = 3,
@@ -1255,11 +1268,21 @@ server <- function(input, output, session) {
         #Wirkung und Funkion
         #Niederschlagswasser
         
-        cbGroup(c("Wirkung/Funktion", "Wasser"), wifuWasser, "cbgwasser")
+        # cbGroup(c("Wirkung/Funktion", "Wasser"), wifuWasser, "cbgwasser")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Förderung Verdunstung"), "wasser_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Förderung Grundwasserneubildung"), "wasser_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Minderung Abfluss"), "wasser_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Sammlung und Ableitung"), "wasser_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Behandlung"), "wasser_5")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Trinkwassereinsparung"), "wasser_6")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Nährstoffrückgewinnung"), "wasser_7")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Starkregen-, Überflutungsvorsorge"), "wasser_8")
+        
         
         #Baustoffe
         
         cbGroup(c("Wirkung/Funktion", "Baustoffe"), wifuBaustoffe, "cbgbaustoffe")
+        # wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Vermeidung"), "baustoffe_1")
         
         #Fläche
         
@@ -1511,8 +1534,7 @@ server <- function(input, output, session) {
         DF1 <- values[["DF1"]]
         if (!is.null(DF1))
             rhandsontable(DF1, useTypes = TRUE, stretchH = "all")
-        
-        
+ 
     })
     
     #Tabelle Vor- und Nachteile
@@ -1713,8 +1735,27 @@ server <- function(input, output, session) {
             #Wirkung und Funktion
             
             ##Niederschlagswasser
-            input$cbgwasser %>% 
-                CbgInputToWert("Wirkung/Funktion", "Wasser")
+            # input$cbgwasser %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Wasser")
+            
+            input$wasser_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Förderung Verdunstung")
+            input$wasser_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Förderung Grundwasserneubildung")
+            input$wasser_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Minderung Abfluss")
+            input$wasser_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Sammlung und Ableitung")
+            input$wasser_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Behandlung")
+            input$wasser_6 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Trinkwassereinsparung")
+            input$wasser_7 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Nährstoffrückgewinnung")
+            input$wasser_8 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Starkregen-, Überflutungsvorsorge")
+            
+            
             ##Baustoffe
             input$cbgbaustoffe %>% 
                 CbgInputToWert("Wirkung/Funktion", "Baustoffe")
