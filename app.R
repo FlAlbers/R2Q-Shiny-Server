@@ -303,28 +303,52 @@ ui <- fluidPage(
                          br(),
                          #Wirkung und Funktion
                          strong("4. Funktion"),
+                         br(), br(),
                          fluidRow(
                              column( width = 3,
+                                     strong("Wasser"),
                                      br(),
-                                     checkboxGroupInput("cbgwasser", "Wasser",
-                                                        choices = wifuWasser,
-                                     )
+                                     br(),
+                                     # checkboxGroupInput("cbgwasser", "Wasser",
+                                     #                    choices = wifuWasser,
+                                     #  )
+                                     textInput("wasser_1", "Förderung Verdunstung", value = 1, width = "30%"),
+                                     textInput("wasser_2", "Förderung Grundwasserneubildung", value = 1, width = "30%"),
+                                     textInput("wasser_3", "Minderung Abfluss", value = 1, width = "30%"),
+                                     textInput("wasser_4", "Sammlung und Ableitung", value = 1, width = "30%"),
+                                     textInput("wasser_5", "Behandlung", value = 1, width = "30%"),
+                                     textInput("wasser_6", "Trinkwassereinsparung", value = 1, width = "30%"),
+                                     textInput("wasser_7", "Nährstoffrückgewinnung", value = 1, width = "30%"),
+                                     textInput("wasser_8", "Starkregen-, Überflutungsvorsorge", value = 1, width = "30%")
+                                     
+                                     
                              ),
                              column( width = 3,
+                                     strong("Baustoffe"),
                                      br(),
-                                     checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
-                                                        choices = wifuBaustoffe,
-                                                        
-                                                        
-                                     )
-                                     
+                                     br(),
+                                     # checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
+                                     #                    choices = wifuBaustoffe,
+                                     # )
+                                     textInput("baustoffe_1", "Vermeidung", value = 1, width = "30%"),
+                                     textInput("baustoffe_2", "Wiederverwendung", value = 1, width = "30%"),
+                                     textInput("baustoffe_3", "Recycling", value = 1, width = "30%"),
+                                     textInput("baustoffe_4", "Verwertung", value = 1, width = "30%"),
+                                     textInput("baustoffe_5", "Beseitigung", value = 1, width = "30%")
                              ),
                              
                              column( width = 3,
+                                     strong("Fläche"),
                                      br(),
-                                     checkboxGroupInput("cbgflaeche", "Fläche", 
-                                                        choices = wifuFlaeche,
-                                                        )
+                                     br(),
+                                     # checkboxGroupInput("cbgflaeche", "Fläche", 
+                                     #                    choices = wifuFlaeche,
+                                     #                    )
+                                     textInput("flaeche_1", "Klimaanpassung", value = 1, width = "30%"),
+                                     textInput("flaeche_2", "Gesundheitsschutz", value = 1, width = "30%"),
+                                     textInput("flaeche_3", "Erhalt d. Grunddaseinsfunktion", value = 1, width = "30%"),
+                                     textInput("flaeche_4", "Naturschutz", value = 1, width = "30%"),
+                                     textInput("flaeche_5", "Klimaschutz", value = 1, width = "30%")
                                      
                              ),
                              
@@ -341,12 +365,21 @@ ui <- fluidPage(
                          #     ),
                              
                              column( width = 3,
+                                     strong("Energie"),
                                      br(),
-                                     checkboxGroupInput("cbgenergie", "Energie", 
-                                                        choices = wifuEnergie,
-                                                        
-                                                        
-                                     )
+                                     br(),
+                                     # checkboxGroupInput("cbgenergie", "Energie", 
+                                     #                    choices = wifuEnergie,
+                                     #                    
+                                     #                    
+                                     # )
+                                     textInput("energie_1", "Energiebereitstellung", value = 1, width = "30%"),
+                                     textInput("energie_2", "Energieverteilung", value = 1, width = "30%"),
+                                     textInput("energie_3", "Energieverbrauch", value = 1, width = "30%"),
+                                     textInput("energie_4", "Energiespeicherung", value = 1, width = "30%"),
+                                     textInput("energie_5", "Elektrizität", value = 1, width = "30%"),
+                                     textInput("energie_6", "Wärme", value = 1, width = "30%"),
+                                     textInput("energie_7", "Brennstoffe", value = 1, width = "30%")
                                      
                              ),
                              
@@ -1259,15 +1292,40 @@ server <- function(input, output, session) {
         #Wirkung und Funkion
         #Niederschlagswasser
         
-        cbGroup(c("Wirkung/Funktion", "Wasser"), wifuWasser, "cbgwasser")
+        # cbGroup(c("Wirkung/Funktion", "Wasser"), wifuWasser, "cbgwasser")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Förderung Verdunstung"), "wasser_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Förderung Grundwasserneubildung"), "wasser_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Minderung Abfluss"), "wasser_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Sammlung und Ableitung"), "wasser_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Behandlung"), "wasser_5")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Trinkwassereinsparung"), "wasser_6")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Nährstoffrückgewinnung"), "wasser_7")
+        wertInTextInput(werte3("Wirkung/Funktion", "Wasser", "Starkregen-, Überflutungsvorsorge"), "wasser_8")
+        
         
         #Baustoffe
         
-        cbGroup(c("Wirkung/Funktion", "Baustoffe"), wifuBaustoffe, "cbgbaustoffe")
+        # cbGroup(c("Wirkung/Funktion", "Baustoffe"), wifuBaustoffe, "cbgbaustoffe")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Vermeidung"), "baustoffe_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Wiederverwendung"), "baustoffe_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Recycling"), "baustoffe_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Verwertung"), "baustoffe_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Baustoffe", "Beseitigung"), "baustoffe_5")
+        
+        
+        
         
         #Fläche
         
-        cbGroup(c("Wirkung/Funktion", "Fläche"), wifuFlaeche, "cbgflaeche")
+        # cbGroup(c("Wirkung/Funktion", "Fläche"), wifuFlaeche, "cbgflaeche")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Klimaanpassung"), "flaeche_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Gesundheitsschutz"), "flaeche_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Erhalt d. Grunddaseinsfunktion"), "flaeche_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Naturschutz"), "flaeche_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Fläche", "Klimaschutz"), "flaeche_5")
+        
+        
+        
         
         #Schmutzwasser
         
@@ -1275,7 +1333,19 @@ server <- function(input, output, session) {
         
         #Energie
         
-        cbGroup(c("Wirkung/Funktion", "Energie"), wifuEnergie, "cbgenergie")
+        # cbGroup(c("Wirkung/Funktion", "Energie"), wifuEnergie, "cbgenergie")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energiebereitstellung"), "energie_1")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energieverteilung"), "energie_2")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energieverbrauch"), "energie_3")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Energiespeicherung"), "energie_4")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Elektrizität"), "energie_5")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Wärme"), "energie_6")
+        wertInTextInput(werte3("Wirkung/Funktion", "Energie", "Brennstoffe"), "energie_7")
+        
+        
+        
+        
+        
 
         #Anwendungsebene
         
@@ -1515,8 +1585,7 @@ server <- function(input, output, session) {
         DF1 <- values[["DF1"]]
         if (!is.null(DF1))
             rhandsontable(DF1, useTypes = TRUE, stretchH = "all")
-        
-        
+ 
     })
     
     #Tabelle Vor- und Nachteile
@@ -1717,20 +1786,78 @@ server <- function(input, output, session) {
             #Wirkung und Funktion
             
             ##Niederschlagswasser
-            input$cbgwasser %>% 
-                CbgInputToWert("Wirkung/Funktion", "Wasser")
+            # input$cbgwasser %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Wasser")
+            
+            input$wasser_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Förderung Verdunstung")
+            input$wasser_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Förderung Grundwasserneubildung")
+            input$wasser_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Minderung Abfluss")
+            input$wasser_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Sammlung und Ableitung")
+            input$wasser_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Behandlung")
+            input$wasser_6 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Trinkwassereinsparung")
+            input$wasser_7 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Nährstoffrückgewinnung")
+            input$wasser_8 %>%
+                TextInputToWert("Wirkung/Funktion", "Wasser", "Starkregen-, Überflutungsvorsorge")
+            
+            
             ##Baustoffe
-            input$cbgbaustoffe %>% 
-                CbgInputToWert("Wirkung/Funktion", "Baustoffe")
+            # input$cbgbaustoffe %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Baustoffe")
+            input$baustoffe_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Vermeidung")
+            input$baustoffe_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Wiederverwendung")
+            input$baustoffe_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Recycling")
+            input$baustoffe_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Verwertung")
+            input$baustoffe_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Baustoffe", "Beseitigung")
+            
+            
             ##Fläche
-            input$cbgflaeche %>% 
-                CbgInputToWert("Wirkung/Funktion", "Fläche")
+            # input$cbgflaeche %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Fläche")
+            input$flaeche_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Klimaanpassung")
+            input$flaeche_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Gesundheitsschutz")
+            input$flaeche_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Erhalt d. Grunddaseinsfunktion")
+            input$flaeche_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Naturschutz")
+            input$flaeche_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Fläche", "Klimaschutz")
+            
+            
             # ##Schmutzwasser
             # input$cbgschmutzwasser %>% 
             #     CbgInputToWert("Wirkung/Funktion", "Schmutzwasser")
+            
             ##Energie
-            input$cbgenergie %>% 
-                CbgInputToWert("Wirkung/Funktion", "Energie")
+            # input$cbgenergie %>% 
+            #     CbgInputToWert("Wirkung/Funktion", "Energie")
+            input$energie_1 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energiebereitstellung")
+            input$energie_2 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energieverteilung")
+            input$energie_3 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energieverbrauch")
+            input$energie_4 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Energiespeicherung")
+            input$energie_5 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Elektrizität")
+            input$energie_6 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Wärme")
+            input$energie_7 %>%
+                TextInputToWert("Wirkung/Funktion", "Energie", "Brennstoffe")
            
             
             
