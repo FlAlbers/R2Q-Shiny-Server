@@ -251,27 +251,25 @@ ui <- fluidPage(
                             </table>"),
                          br(),
                          HTML("<h3 style='font-weight: bold;'>Eingabe</h3>"),
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
-                         textInput("titel","Titelname"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>Titelname</div>"),
+                         textInput("titel",""),
                          br(),
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          #Kurzbeschreibung
-                         HTML("<strong>1. Kurzbeschreibung</strong>"),
-                         br(),
-                         
+                         HTML("<div style='font-weight: bold; font-size: 18px '>1. Kurzbeschreibung</div>"),
                          textAreaInput("kurzb", label = "",width = "200%"),
                          
                          
                          br(),
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          #Umsetzungsbeispiel (Foto)
-                         
-                         strong("2. Umsetzungsbeispiel"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>2. Umsetzungsbeispiel</div>"),
                          
                          textInput("beschrbsp","Beschriftung"),
                          
@@ -286,10 +284,11 @@ ui <- fluidPage(
                          br(),
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          #Ressource
-                         checkboxGroupInput("cbgRessource", "3. Ressource", FALSE,
+                         HTML("<div style='font-weight: bold; font-size: 18px '>3. Ressource</div>"),
+                         checkboxGroupInput("cbgRessource", "", FALSE,
                                             choices = ressourcen,
                          ),
                          
@@ -299,63 +298,69 @@ ui <- fluidPage(
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          #Wirkung und Funktion
-                         strong("4. Funktion"),
-                         br(), br(),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>4. Funktion</div>"),
+                         HTML("<div style='border: solid lightgray 1px;
+                              border-radius: 5px;
+                              padding: 5px;
+                              background-color: lightgray;
+                              color: blue'>
+                              <strong>Folgende Eingaben sind im Abschnitt 4. Funktion möglich:</strong><br>
+                              <code>0</code> = kein Effekt<br>
+                              <code>1</code> = Effekt (Neutral, ohne angabe der Effektstärke)<br>
+                              <code>2</code> = leichter Effekt<br>
+                              <code>3</code> = mittlerer Effekt<br>
+                              <code>4</code> = starker Effekt<br>
+                              </div>"),
+                         br(),
                          fluidRow(
                              column( width = 3,
-                                     strong("Wasser"),
-                                     br(),
-                                     br(),
+                                     HTML("<div style='border-bottom: solid black 1px; font-weight: bold; font-size: 16px '>Wasser</div>"),
                                      # checkboxGroupInput("cbgwasser", "Wasser",
                                      #                    choices = wifuWasser,
                                      #  )
-                                     textInput("wasser_1", "Förderung Verdunstung", value = 1, width = "30%"),
-                                     textInput("wasser_2", "Förderung Grundwasserneubildung", value = 1, width = "30%"),
-                                     textInput("wasser_3", "Minderung Abfluss", value = 1, width = "30%"),
-                                     textInput("wasser_4", "Sammlung und Ableitung", value = 1, width = "30%"),
-                                     textInput("wasser_5", "Behandlung", value = 1, width = "30%"),
-                                     textInput("wasser_6", "Trinkwassereinsparung", value = 1, width = "30%"),
-                                     textInput("wasser_7", "Nährstoffrückgewinnung", value = 1, width = "30%"),
-                                     textInput("wasser_8", "Starkregen-, Überflutungsvorsorge", value = 1, width = "30%")
+                                     textInput("wasser_1", "Förderung Verdunstung", value = 0, width = "30%"),
+                                     textInput("wasser_2", "Förderung Grundwasserneubildung", value = 0, width = "30%"),
+                                     textInput("wasser_3", "Minderung Abfluss", value = 0, width = "30%"),
+                                     textInput("wasser_4", "Sammlung und Ableitung", value = 0, width = "30%"),
+                                     textInput("wasser_5", "Behandlung", value = 0, width = "30%"),
+                                     textInput("wasser_6", "Trinkwassereinsparung", value = 0, width = "30%"),
+                                     textInput("wasser_7", "Nährstoffrückgewinnung", value = 0, width = "30%"),
+                                     textInput("wasser_8", "Starkregen-, Überflutungsvorsorge", value = 0, width = "30%")
                                      
                                      
                              ),
                              column( width = 3,
-                                     strong("Baustoffe"),
-                                     br(),
-                                     br(),
+                                     HTML("<div style='border-bottom: solid black 1px; font-weight: bold; font-size: 16px '>Baustoffe</div>"),
                                      # checkboxGroupInput("cbgbaustoffe", "Baustoffe", 
                                      #                    choices = wifuBaustoffe,
                                      # )
-                                     textInput("baustoffe_1", "Vermeidung", value = 1, width = "30%"),
-                                     textInput("baustoffe_2", "Wiederverwendung", value = 1, width = "30%"),
-                                     textInput("baustoffe_3", "Recycling", value = 1, width = "30%"),
-                                     textInput("baustoffe_4", "Verwertung", value = 1, width = "30%"),
-                                     textInput("baustoffe_5", "Beseitigung", value = 1, width = "30%")
+                                     textInput("baustoffe_1", "Vermeidung", value = 0, width = "30%"),
+                                     textInput("baustoffe_2", "Wiederverwendung", value = 0, width = "30%"),
+                                     textInput("baustoffe_3", "Recycling", value = 0, width = "30%"),
+                                     textInput("baustoffe_4", "Verwertung", value = 0, width = "30%"),
+                                     textInput("baustoffe_5", "Beseitigung", value = 0, width = "30%")
                              ),
                              
                              column( width = 3,
-                                     strong("Fläche"),
-                                     br(),
-                                     br(),
+                                     HTML("<div style='border-bottom: solid black 1px; font-weight: bold; font-size: 16px '>Fläche</div>"),
                                      # checkboxGroupInput("cbgflaeche", "Fläche", 
                                      #                    choices = wifuFlaeche,
                                      #                    )
-                                     textInput("flaeche_1", "Klimaanpassung", value = 1, width = "30%"),
-                                     textInput("flaeche_2", "Gesundheitsschutz", value = 1, width = "30%"),
-                                     textInput("flaeche_3", "Erhalt d. Grunddaseinsfunktion", value = 1, width = "30%"),
-                                     textInput("flaeche_4", "Naturschutz", value = 1, width = "30%"),
-                                     textInput("flaeche_5", "Klimaschutz", value = 1, width = "30%")
+                                     textInput("flaeche_1", "Klimaanpassung", value = 0, width = "30%"),
+                                     textInput("flaeche_2", "Gesundheitsschutz", value = 0, width = "30%"),
+                                     textInput("flaeche_3", "Erhalt d. Grunddaseinsfunktion", value = 0, width = "30%"),
+                                     textInput("flaeche_4", "Naturschutz", value = 0, width = "30%"),
+                                     textInput("flaeche_5", "Klimaschutz", value = 0, width = "30%")
                                      
                              ),
                              
                              
                              
-                         ),
-                         fluidRow(
+                         #),
+                         #fluidRow(
                          #     column( width = 3,
                          #             br(),
                          #             checkboxGroupInput("cbgschmutzwasser", "Schmutzwasser", 
@@ -365,22 +370,19 @@ ui <- fluidPage(
                          #     ),
                              
                              column( width = 3,
-                                     strong("Energie"),
-                                     br(),
-                                     br(),
+                                     HTML("<div style='border-bottom: solid black 1px; font-weight: bold; font-size: 16px '>Energie</div>"),
                                      # checkboxGroupInput("cbgenergie", "Energie", 
                                      #                    choices = wifuEnergie,
                                      #                    
                                      #                    
                                      # )
-                                     textInput("energie_1", "Energiebereitstellung", value = 1, width = "30%"),
-                                     textInput("energie_2", "Energieverteilung", value = 1, width = "30%"),
-                                     textInput("energie_3", "Energieverbrauch", value = 1, width = "30%"),
-                                     textInput("energie_4", "Energiespeicherung", value = 1, width = "30%"),
-                                     textInput("energie_5", "Elektrizität", value = 1, width = "30%"),
-                                     textInput("energie_6", "Wärme", value = 1, width = "30%"),
-                                     textInput("energie_7", "Brennstoffe", value = 1, width = "30%")
-                                     
+                                     textInput("energie_1", "Energiebereitstellung", value = 0, width = "30%"),
+                                     textInput("energie_2", "Energieverteilung", value = 0, width = "30%"),
+                                     textInput("energie_3", "Energieverbrauch", value = 0, width = "30%"),
+                                     textInput("energie_4", "Energiespeicherung", value = 0, width = "30%"),
+                                     textInput("energie_5", "Elektrizität", value = 0, width = "30%"),
+                                     textInput("energie_6", "Wärme", value = 0, width = "30%"),
+                                     textInput("energie_7", "Brennstoffe", value = 0, width = "30%")
                              ),
                              
                          ),
@@ -390,18 +392,19 @@ ui <- fluidPage(
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          #Anwendungsebene
-                         checkboxGroupInput("cbgAnwendungsebene", "5. Anwendungsebene", choices = anwendungsebenen),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>5. Anwendungsebene</div>"),
+                         checkboxGroupInput("cbgAnwendungsebene", "", choices = anwendungsebenen),
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          #Flächenbedarf
-                         strong("6. Flächenbedarf"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>6. Flächenbedarf</div>"),
                          textInput("flaechenbedEW", "spezifische Fläche (m²/EW)"),
                          textInput("flaechenbedEinheit", "Einheit für den spezifischen Flächenbedarf (m²/XX)"),
                          as.character("Bitte nur eine Einheit für XX eingeben!"),
@@ -411,14 +414,14 @@ ui <- fluidPage(
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          
                          #Nutzungsdauer
                          fluidRow(
                              column(width = 4,
-                                    strong("7. Nutzungsdauer (Jahre)"),
+                                    HTML("<div style='font-weight: bold; font-size: 18px '>7. Nutzungsdauer (Jahre)</div>"),
                                     textInput("nutzdmin", "min")
                              ),
                              
@@ -439,14 +442,15 @@ ui <- fluidPage(
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          #Entwicklungsstand
-                         checkboxGroupInput("cbgentwicklungsstand", "8. Entwicklungsstand", choices = entwicklungsstaende),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>8. Entwicklungsstand</div>"),
+                         checkboxGroupInput("cbgentwicklungsstand", "", choices = entwicklungsstaende),
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          
                          textInput("hinw1", "Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand"),
                          
@@ -471,36 +475,34 @@ ui <- fluidPage(
                 
                 tabPanel("Detailinformation",
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),# br for Horizontal Space (empty line)
                          
                          #Funktionsbeschreibung und Aufbau
-                         HTML("<strong>9. Funktionsbeschreibung und Aufbau</strong>"),
-                         br(),
-                         br(),
-                         HTML("Folgende Befehle sind im Text möglich:"),
-                         br(),
-                         HTML("<strong>Kursiv:</strong> *text*"),
-                         br(),
-                         HTML("<strong>Fettgedruckt:</strong> **text**"),
-                         br(),
-                         HTML("<strong>Kursiv und Fettgedruckt:</strong> ***text***"),
-                         br(),
-                         HTML("<strong>Zeilenumbruch:</strong> hierfür muss <strong>zwei mal Enter</strong>, bzw zwei Zeilenumbrüche getätigt werden."),
-                         br(),
-                         HTML("Ergänzend sind noch weitere Markdown befehle möglich."),
-                         br(),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>9. Funktionsbeschreibung und Aufbau</div>"),
+                         # br(),
+                         # HTML("Folgende Befehle sind im Text möglich:"),
+                         # br(),
+                         # HTML("<strong>Kursiv:</strong> *text*"),
+                         # br(),
+                         # HTML("<strong>Fettgedruckt:</strong> **text**"),
+                         # br(),
+                         # HTML("<strong>Kursiv und Fettgedruckt:</strong> ***text***"),
+                         # br(),
+                         # HTML("<strong>Zeilenumbruch:</strong> hierfür muss <strong>zwei mal Enter</strong>, bzw zwei Zeilenumbrüche getätigt werden."),
+                         # br(),
+                         # HTML("Ergänzend sind noch weitere Markdown befehle möglich."),
+                         # br(),
                          
                          textAreaInput("funktiontxt", label = "", width = "200%"),
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          #Systemskizze
-                         
-                         strong("10. Systemskizze"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>10. Systemskizze</div>"),
                          
                          textInput("beschrsys","Beschriftung"),
                          
@@ -512,11 +514,12 @@ ui <- fluidPage(
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          #Planung, Bemessung und rechtliche Aspekte
-                         textAreaInput("planbemtxt", label = "11. Planung, Bemessung und rechtliche Aspekte", width = "200%"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>11. Planung, Bemessung und rechtliche Aspekte</div>"),
+                         textAreaInput("planbemtxt", label = "", width = "200%"),
                          
                          br(),
                          
@@ -524,11 +527,11 @@ ui <- fluidPage(
                              rHandsontableOutput("planbemtab"),
                          ),
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          #Aufwand und Kosten
-                         strong("12. Aufwand und Kosten"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>12. Aufwand und Kosten</div>"),
                          br(),
                          br(),
                          textAreaInput("aufwandtxt", label = "Fließtext", width = "200%"),
@@ -747,7 +750,7 @@ ui <- fluidPage(
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          
@@ -755,11 +758,7 @@ ui <- fluidPage(
                          
                          
                          #Fließtext + freie anzahl von Tabellen Zeilen  mit Parameter Spalte und Werte Spalte
-                         
-                         strong("13. Weitergehende Hinweise"),
-                         
-                         
-                         br(),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>13. Weitergehende Hinweise</div>"),
                          br(),
                          textAreaInput("whinwtxt", label="Fließtext", width = "200%"),
                          
@@ -768,7 +767,7 @@ ui <- fluidPage(
                          ),
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          
@@ -777,7 +776,7 @@ ui <- fluidPage(
                          
                          
                          #Ressourcenübergreifende Aspekte
-                         strong("14. Ressourcenübergreifende Aspekte"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>14. Ressourcenübergreifende Aspekte</div>"),
                          fluidRow(
                              column( width = 4,
                                      br(),
@@ -789,7 +788,7 @@ ui <- fluidPage(
                                      textAreaInput("synbaustoffe", "Baustoffe", width = "100%", height = "70%" ),
                                      textAreaInput("synenergie", "Energie", width = "100%", height = "70%" ),
                                      textAreaInput("synflaeche", "Fläche", width = "100%", height = "70%" ),
-                                     textAreaInput("synoekobilanz", "Ökobilanz", width = "100%", height = "70%" ),
+                                     # textAreaInput("synoekobilanz", "Ökobilanz", width = "100%", height = "70%" ),
                                      
                                      #textInput("synniederschlagswasser", "Niederschlagswasser"),
                                      #textInput("synschmutzwasser", "Schmutzwasser"),
@@ -809,7 +808,7 @@ ui <- fluidPage(
                                      textAreaInput("konfbaustoffe", "Baustoffe", width = "100%", height = "70%" ),
                                      textAreaInput("konfenergie", "Energie", width = "100%", height = "70%" ),
                                      textAreaInput("konfflaeche", "Fläche", width = "100%", height = "70%" ),
-                                     textAreaInput("konfoekobilanz", "Ökobilanz", width = "100%", height = "70%" ),
+                                     # textAreaInput("konfoekobilanz", "Ökobilanz", width = "100%", height = "70%" ),
                                      
                                      #textInput("konfniederschlagswasser", "Niederschlagswasser"),
                                      #textInput("konfschmutzwasser", "Schmutzwasser"),
@@ -821,7 +820,23 @@ ui <- fluidPage(
                              
                          ),
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
+                         br(),
+                         
+                         
+                         
+                         #Ökobilanzielle Bewertung
+                         
+                         HTML("<div style='font-weight: bold; font-size: 18px '>15. Ökobilanzielle Bewertung</div>"),
+                         br(),
+                         
+                         
+                         wellPanel(
+                             rHandsontableOutput("bewertung"),
+                         ),
+                         
+                         
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          
@@ -831,8 +846,7 @@ ui <- fluidPage(
                          #mit Dropdownmenü auf andere Maßnahmen verweisen
                          br(),
                          
-                         
-                         strong("15. Kombinationsmöglichkeiten"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>16. Kombinationsmöglichkeiten</div>"),
                          
                          fluidRow(
                              column(width = 4,
@@ -975,7 +989,7 @@ ui <- fluidPage(
                          
                          #textAreaInput("kombis", label = "13. Kombinationsmöglichkeiten",value = selected_row$kombis ,width = "200%"),
                          #as.character("Aufzählung sinnvoller/möglicher Maßnahmenkombinationen"),
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          
@@ -984,8 +998,7 @@ ui <- fluidPage(
                          
                          #Vor- und Nachteile
                          
-                         
-                         strong("16. Vor- und Nachteile"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>17. Vor- und Nachteile</div>"),
                          br(),
                          
                          
@@ -1026,13 +1039,12 @@ ui <- fluidPage(
                          
                          
                          
-                         HTML("_____________________________________________________________________________________________"),
+                         HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
                          
                          
                          #Fallbeispiele
-                         
-                         strong("17. Fallbeispiele"),
+                         HTML("<div style='font-weight: bold; font-size: 18px '>18. Fallbeispiele</div>"),
                          br(),
                          
                          
@@ -1472,7 +1484,7 @@ server <- function(input, output, session) {
         synergien("Baustoffe", "synbaustoffe")
         synergien("Energie", "synenergie")
         synergien("Fläche", "synflaeche")
-        synergien("Ökobilanz", "synoekobilanz")
+        # synergien("Ökobilanz", "synoekobilanz")
         
         zielkonflikte <- function(e3, ti){
             wertInTextArea(werte3("Ressourcenübergreifende Aspekte", "Zielkonflikte", e3), ti)
@@ -1483,10 +1495,22 @@ server <- function(input, output, session) {
         zielkonflikte("Baustoffe", "konfbaustoffe")
         zielkonflikte("Energie", "konfenergie")
         zielkonflikte("Fläche", "konfflaeche")
-        zielkonflikte("Ökobilanz", "konfoekobilanz")
+        # zielkonflikte("Ökobilanz", "konfoekobilanz")
+        
+        #Ökobilanzielle Bewertung
+        
+        DFbew <- tibble(Literaturstelle = c("","","","","","","","","",""), Bewertung = c("","","","","","","","","",""))
+        
+        for(i in 1:10){
+            DFbew[i,1] = werte3("Ökobilanzielle Bewertung", "Literaturstelle", as.character(i))
+            DFbew[i,2] = werte3("Ökobilanzielle Bewertung", "Bewertung", as.character(i))
+        }
+        
+        output$bewertung <- renderRHandsontable({rhandsontable(DFbew, useTypes = TRUE, stretchH = "all")
+        })
+        
         
         #Kombinationsmöglichkeiten
-
         wertInSelectInput <- function(wert, box){
             if(is.na(wert)||wert=="NA"){
                 updateSelectInput(session, box, selected = "NA")
@@ -1512,7 +1536,6 @@ server <- function(input, output, session) {
         })
         
         #Fallbeispiele
-        
         
         DF3 <- tibble(Projektname = c("","",""), Stadt = c("","",""), Land = c("","",""), Erläuterung = c("","",""))
         
@@ -1587,6 +1610,31 @@ server <- function(input, output, session) {
             rhandsontable(DF1, useTypes = TRUE, stretchH = "all")
  
     })
+    
+    #Tabelle für Ökobilanzielle Bewertung
+    
+    DFbew <- tibble(Literaturstelle = c("","","","",""), Bewertung = c("","","","",""))
+    
+    observe({
+        if (!is.null(input$bewertung)) {  #wenn schon Daten in der Tabelle sind werden diese unter values[["previous]] abgespeichert
+            values[["previous"]] <- isolate(values[["DFbew"]])
+            DFbew = hot_to_r(input$bewertung)
+        } else {
+            if (is.null(values[["DFbew"]]))  #wenn keine Daten unter values DF vorhanden sind, dann bleibt DF gleich
+                DFbew <- DFbew
+            else
+                DFbew <- values[["DFbew"]]  #wenn Daten unter values DF vorhanden sind, dann werden diese für DF genutzt
+        }
+        values[["DFbew"]] <- DFbew
+    })
+    
+    output$bewertung <- renderRHandsontable({
+        DFbew <- values[["DFbew"]]
+        if (!is.null(DFbew))
+            rhandsontable(DFbew, useTypes = TRUE, stretchH = "all")
+        
+    })
+    
     
     #Tabelle Vor- und Nachteile
     
@@ -2120,8 +2168,8 @@ server <- function(input, output, session) {
                 TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Energie")
             input$synflaeche %>% 
                 TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Fläche")
-            input$synoekobilanz %>% 
-                TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Ökobilanz")
+            # input$synoekobilanz %>% 
+            #     TextInputToWert("Ressourcenübergreifende Aspekte","Synergien","Ökobilanz")
             
             ##Zielkonflikte
             input$konfniederschlagswasser %>% 
@@ -2134,10 +2182,24 @@ server <- function(input, output, session) {
                 TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Energie")
             input$konfflaeche %>% 
                 TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Fläche")
-            input$konfoekobilanz %>% 
-                TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Ökobilanz")
+            # input$konfoekobilanz %>% 
+            #     TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Ökobilanz")
             
+            #Ökobilanzielle Bewertung
             
+            param <- isolate(values[["DFbew"]])
+            
+            for (i in 1:10) {
+                TextInputToWert("NA","Ökobilanzielle Bewertung","Literaturstelle",as.character(i))
+                TextInputToWert("NA","Ökobilanzielle Bewertung","Bewertung",as.character(i))
+            }
+            
+            for (i in 1:nrow(param)) {
+                as.character(param[i,1]) %>% 
+                    TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle",as.character(i))
+                as.character(param[i,2]) %>% 
+                    TextInputToWert("Ökobilanzielle Bewertung","Bewertung",as.character(i))
+            }
             
             
             #Kombinationsmöglichkeiten
