@@ -830,6 +830,7 @@ ui <- fluidPage(
                          HTML("<div style='font-weight: bold; font-size: 18px '>15. Ökobilanzielle Bewertung</div>"),
                          br(),
                          
+                         textAreaInput("bewertungText", label="Fließtext", width = "200%"),
                          
                          wellPanel(
                              rHandsontableOutput("bewertung"),
@@ -1498,6 +1499,8 @@ server <- function(input, output, session) {
         # zielkonflikte("Ökobilanz", "konfoekobilanz")
         
         #Ökobilanzielle Bewertung
+        
+        wertInTextInput(werte2("Ökobilanzielle Bewertung", "Fließtext"), "bewertungText")
         
         DFbew <- tibble(Literaturstelle = c("","","","","","","","","",""), Bewertung = c("","","","","","","","","",""))
         
@@ -2186,6 +2189,9 @@ server <- function(input, output, session) {
             #     TextInputToWert("Ressourcenübergreifende Aspekte","Zielkonflikte","Ökobilanz")
             
             #Ökobilanzielle Bewertung
+            
+            input$bewertungText %>% 
+                TextInputToWert("Ökobilanzielle Bewertung","Fließtext")
             
             param <- isolate(values[["DFbew"]])
             
