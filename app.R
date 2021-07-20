@@ -271,7 +271,8 @@ ui <- fluidPage(
                          #Umsetzungsbeispiel (Foto)
                          HTML("<div style='font-weight: bold; font-size: 18px '>2. Umsetzungsbeispiel</div>"),
                          
-                         textInput("beschrbsp","Beschriftung"),
+                         # textInput("beschrbsp","Beschriftung"),
+                         textAreaInput("beschrbsp", label = "Beschriftung",width = "200%"),
                          
                          fileInput("bspfoto", "Upload Bild", accept = c('image/png','image/jpg')),
                          "Entsprechendes Bild im .png oder .jpg Format auswählen",
@@ -308,11 +309,11 @@ ui <- fluidPage(
                               background-color: lightgray;
                               color: blue'>
                               <strong>Folgende Eingaben sind im Abschnitt 4. Funktion möglich:</strong><br>
-                              <code>0</code> = kein Effekt<br>
-                              <code>1</code> = Effekt (Neutral, ohne angabe der Effektstärke)<br>
-                              <code>2</code> = leichter Effekt<br>
-                              <code>3</code> = mittlerer Effekt<br>
-                              <code>4</code> = starker Effekt<br>
+                              <code>0</code> = kein Wirkpotential <br>
+                              <code>1</code> = Wirkpotential vorhanden<br>
+                              <code>2</code> = geringes Wirkpotential <br>
+                              <code>3</code> = mittlerer Wirkpotential <br>
+                              <code>4</code> = hohes Wirkpotential <br>
                               </div>"),
                          br(),
                          fluidRow(
@@ -452,7 +453,8 @@ ui <- fluidPage(
                          
                          HTML("________________________________________________________________________________________________________________________________________________________________"),
                          
-                         textInput("hinw1", "Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand"),
+                         # textInput("hinw1", "Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand"),
+                         textAreaInput("hinw1", label = "Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand", width = "200%"),
                          
                          br(),
                          br(),
@@ -504,7 +506,8 @@ ui <- fluidPage(
                          #Systemskizze
                          HTML("<div style='font-weight: bold; font-size: 18px '>10. Systemskizze</div>"),
                          
-                         textInput("beschrsys","Beschriftung"),
+                         # textInput("beschrsys","Beschriftung"),
+                         textAreaInput("beschrsys", label = "Beschriftung", width = "200%"),
                          
                          fileInput("sysskizze", "Upload Bild", accept = c('image/png','image/jpg')),
                          "Entsprechendes Bild im .png oder .jpg Format auswählen",
@@ -1257,7 +1260,8 @@ server <- function(input, output, session) {
         umsetzungbspBild <<- werte2("Umsetzungsbeispiel", "Bild")
         umsetzungbspUptime <<- werte2("Umsetzungsbeispiel", "uptime")
         
-        wertInTextInput(werte2("Umsetzungsbeispiel","Beschriftung"), "beschrbsp")
+        # wertInTextInput(werte2("Umsetzungsbeispiel","Beschriftung"), "beschrbsp")
+        wertInTextArea(werte2("Umsetzungsbeispiel","Beschriftung"), "beschrbsp")
         
         namePNG <- stringi::stri_replace_all_fixed(
             input$Massnahme, 
@@ -1386,7 +1390,8 @@ server <- function(input, output, session) {
         
         #Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand
         
-        wertInTextInput(werte2("Sammelhinweis", "Hinweis"), "hinw1")
+        # wertInTextInput(werte2("Sammelhinweis", "Hinweis"), "hinw1")
+        wertInTextArea(werte2("Sammelhinweis", "Hinweis"), "hinw1")
         
         #Funktionsbeschreibung  
         
@@ -1397,7 +1402,8 @@ server <- function(input, output, session) {
         systemskizzeBild <<- werte2("Systemskizze", "Bild")
         systemskizzeUptime <<- werte2("Systemskizze", "uptime")
         
-        wertInTextInput(werte2("Systemskizze", "Beschriftung"), "beschrsys")
+        # wertInTextInput(werte2("Systemskizze", "Beschriftung"), "beschrsys")
+        wertInTextArea(werte2("Systemskizze", "Beschriftung"), "beschrsys")
         
         namePNG <- stringi::stri_replace_all_fixed(
             input$Massnahme, 
