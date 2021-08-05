@@ -857,7 +857,7 @@ ui <- fluidPage(
                               padding: 5px;
                               background-color: lightgray;
                               color: blue'>
-                              <strong>Wenn eine Kombinationsmöglichkeit wieder entfert werden soll, wählen Sie für diese die Angabe <code>NA</code> im Dropdown-Menü aus (ganz unten).</strong>
+                              <strong>Wenn eine Kombinationsmöglichkeit wieder entfernt werden soll, wählen Sie für diese die Angabe <code>NA</code> im Dropdown-Menü aus (ganz unten)!</strong>
                               </div>"),
                          
                          fluidRow(
