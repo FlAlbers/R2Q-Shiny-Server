@@ -852,6 +852,14 @@ ui <- fluidPage(
                          
                          HTML("<div style='font-weight: bold; font-size: 18px '>16. Kombinationsmöglichkeiten</div>"),
                          
+                         HTML("<div style='border: solid lightgray 1px;
+                              border-radius: 5px;
+                              padding: 5px;
+                              background-color: lightgray;
+                              color: blue'>
+                              <strong>Wenn eine Kombinationsmöglichkeit wieder entfert werden soll, wählen Sie für diese die Angabe <code>NA</code> im Dropdown-Menü aus (ganz unten).</strong>
+                              </div>"),
+                         
                          fluidRow(
                              column(width = 4,
                                  br(),
