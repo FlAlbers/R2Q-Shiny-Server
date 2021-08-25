@@ -544,60 +544,48 @@ ui <- fluidPage(
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("inv1e", "Einheit für XX")
-                             ),
+                                    textInput("inv1e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("inv1min", "min")
-                             ),
+                                    textInput("inv1min", "min")),
                              
                              column(width = 3,
-                                    textInput("inv1max", "max")
-                             ),
+                                    textInput("inv1max", "max")),
                              
                              column(width = 3,
-                                    textInput("inv1ueblich", "Üblich")
-                             )
+                                    textInput("inv1ueblich", "Üblich"))
                          ),
                          
                          strong("Investitionskosten 2 in €/XX (optional!!!)"),
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("inv2e", "Einheit für XX")
-                             ),
+                                    textInput("inv2e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("inv2min", "min")
-                             ),
+                                    textInput("inv2min", "min")),
                              
                              column(width = 3,
-                                    textInput("inv2max", "max")
-                             ),
+                                    textInput("inv2max", "max")),
                              
                              column(width = 3,
-                                    textInput("inv2ueblich", "Üblich")
-                             )
+                                    textInput("inv2ueblich", "Üblich"))
                          ),
                          
                          strong("Investitionskosten 3 in €/XX (optional!!!)"),
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("inv3e", "Einheit für XX")
-                             ),
+                                    textInput("inv3e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("inv3min", "min")
-                             ),
+                                    textInput("inv3min", "min")),
                              
                              column(width = 3,
-                                    textInput("inv3max", "max")
-                             ),
+                                    textInput("inv3max", "max")),
                              
                              column(width = 3,
-                                    textInput("inv3ueblich", "Üblich")
-                             )
+                                    textInput("inv3ueblich", "Üblich"))
                          ),
                          
                          
@@ -605,41 +593,34 @@ ui <- fluidPage(
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("inv4e", "Einheit für XX")
-                             ),
+                                    textInput("inv4e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("inv4min", "min")
-                             ),
+                                    textInput("inv4min", "min")),
                              
                              column(width = 3,
-                                    textInput("inv4max", "max")
-                             ),
+                                    textInput("inv4max", "max")),
                              
                              column(width = 3,
-                                    textInput("inv4ueblich", "Üblich")
-                             )
+                                    textInput("inv4ueblich", "Üblich"))
                          ),
                          
                          strong("Investitionskosten 5 in €/XX (optional!!!)"),
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("inv5e", "Einheit für XX")
-                             ),
+                                    textInput("inv5e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("inv5min", "min")
-                             ),
+                                    textInput("inv5min", "min")),
                              
                              column(width = 3,
-                                    textInput("inv5max", "max")
-                             ),
+                                    textInput("inv5max", "max")),
                              
                              column(width = 3,
-                                    textInput("inv5ueblich", "Üblich")
-                             )
+                                    textInput("inv5ueblich", "Üblich"))
                          ),
+                         
                          
                          HTML("----------------------------------------------------------"),
                          br(),
@@ -648,20 +629,16 @@ ui <- fluidPage(
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("bet1e", "Einheit für XX")
-                             ),
+                                    textInput("bet1e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("bet1min", "min")
-                             ),
+                                    textInput("bet1min", "min")),
                              
                              column(width = 3,
-                                    textInput("bet1max", "max")
-                             ),
+                                    textInput("bet1max", "max")),
                              
                              column(width = 3,
-                                    textInput("bet1ueblich", "Üblich")
-                             )
+                                    textInput("bet1ueblich", "Üblich"))
                          ),
                          
                          
@@ -669,20 +646,16 @@ ui <- fluidPage(
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("bet2e", "Einheit für XX")
-                             ),
+                                    textInput("bet2e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("bet2min", "min")
-                             ),
+                                    textInput("bet2min", "min")),
                              
                              column(width = 3,
-                                    textInput("bet2max", "max")
-                             ),
+                                    textInput("bet2max", "max")),
                              
                              column(width = 3,
-                                    textInput("bet2ueblich", "Üblich")
-                             )
+                                    textInput("bet2ueblich", "Üblich"))
                          ),
                          
                          
@@ -690,20 +663,16 @@ ui <- fluidPage(
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("bet3e", "Einheit für XX")
-                             ),
+                                    textInput("bet3e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("bet3min", "min")
-                             ),
+                                    textInput("bet3min", "min")),
                              
                              column(width = 3,
-                                    textInput("bet3max", "max")
-                             ),
+                                    textInput("bet3max", "max")),
                              
                              column(width = 3,
-                                    textInput("bet3ueblich", "Üblich")
-                             )
+                                    textInput("bet3ueblich", "Üblich"))
                          ),
                          
                          
@@ -711,41 +680,34 @@ ui <- fluidPage(
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("bet4e", "Einheit für XX")
-                             ),
+                                    textInput("bet4e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("bet4min", "min")
-                             ),
+                                    textInput("bet4min", "min")),
                              
                              column(width = 3,
-                                    textInput("bet4max", "max")
-                             ),
+                                    textInput("bet4max", "max")),
                              
                              column(width = 3,
-                                    textInput("bet4ueblich", "Üblich")
-                             )
+                                    textInput("bet4ueblich", "Üblich"))
                          ),
                          
                          strong("Betriebskosten 5 in €/XX (optional!!!)"),
                          br(),
                          fluidRow(
                              column(width = 3,
-                                    textInput("bet5e", "Einheit für XX")
-                             ),
+                                    textInput("bet5e", "Einheit für XX")),
                              
                              column(width = 3,
-                                    textInput("bet5min", "min")
-                             ),
+                                    textInput("bet5min", "min")),
                              
                              column(width = 3,
-                                    textInput("bet5max", "max")
-                             ),
+                                    textInput("bet5max", "max")),
                              
                              column(width = 3,
-                                    textInput("bet5ueblich", "Üblich")
-                             )
+                                    textInput("bet5ueblich", "Üblich"))
                          ),
+                         
                          
                          br(),
                          br(),
@@ -1433,19 +1395,29 @@ server <- function(input, output, session) {
         #Tabelle Planbem
         
         
-        DF4 <- tibble(Norm = c("","","","",""), Titel = c("","","","",""))
+        DF4 <- tibble(Norm = c("","","","","","","","","",""), Titel = c("","","","","","","","","",""))
         
         DF4[1,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke1")
         DF4[2,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke2")
         DF4[3,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke3")
         DF4[4,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke4")
         DF4[5,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke5")
+        DF4[6,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke6")
+        DF4[7,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke7")
+        DF4[8,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke8")
+        DF4[9,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke9")
+        DF4[10,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke10")
         
         DF4[1,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt1")
         DF4[2,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt2")
         DF4[3,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt3")
         DF4[4,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt4")
         DF4[5,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt5")
+        DF4[6,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt6")
+        DF4[7,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt7")
+        DF4[8,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt8")
+        DF4[9,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt9")
+        DF4[10,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt10")
         
         output$planbemtab <- renderRHandsontable({rhandsontable(DF4, useTypes = TRUE, stretchH = "all")
         })
@@ -1464,7 +1436,8 @@ server <- function(input, output, session) {
         }
         
         for(i in 1:5){
-            wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "Einheit"), paste0("bet", as.character(i) ,"e"))
+            wertInTextInput(werte3("
+                                   ", paste0("Betriebskosten", as.character(i)), "Einheit"), paste0("bet", as.character(i) ,"e"))
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "min"), paste0("bet", as.character(i) ,"min"))
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "max"), paste0("bet", as.character(i) ,"max"))
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "üblich"), paste0("bet", as.character(i) ,"ueblich"))
@@ -1577,7 +1550,7 @@ server <- function(input, output, session) {
     #Tabelle für Planung, Bemessung und rechtliche Aspekte
     #the following code is for implementing the tables in the ui
     
-    DF4 <- tibble(Norm_Regelwerk_Gesetz = c("","","","",""), Titel = c("","","","",""))
+    DF4 <- tibble(Norm_Regelwerk_Gesetz = c("","","","","","","","","",""), Titel = c("","","","","","","","","",""))
     
     observe({
         if (!is.null(input$planbemtab)) {  
@@ -2038,7 +2011,7 @@ server <- function(input, output, session) {
             
             param <- isolate(values[["DF4"]])
             
-            for (i in 1:5) {
+            for (i in 1:10) {
                 TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
                 TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
             }
@@ -2102,6 +2075,7 @@ server <- function(input, output, session) {
                 TextInputToWert("Aufwand und Kosten","Investitionskosten5","üblich")
             
             
+            
             input$bet1e %>% 
                 TextInputToWert("Aufwand und Kosten","Betriebskosten1","Einheit")
             input$bet1min %>% 
@@ -2146,6 +2120,7 @@ server <- function(input, output, session) {
                 TextInputToWert("Aufwand und Kosten","Betriebskosten5","max")
             input$bet5ueblich %>% 
                 TextInputToWert("Aufwand und Kosten","Betriebskosten5","üblich")
+            
             
             input$kosten_hinweis %>%
                 TextInputToWert("Aufwand und Kosten", "Hinweis")
