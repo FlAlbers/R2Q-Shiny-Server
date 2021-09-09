@@ -108,7 +108,11 @@ ui <- fluidPage(
             br(),
             br(),
             
-            HTML("Klicken sie <strong><code><a href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/index.php'>>>>hier<<<</a></code></strong>, um zur Darstellung der Maßnahmen zu gelangen"),
+            HTML("<div style='text-align: center'>
+                 <button style='background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;'
+                 onclick=window.location.href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/index.php'>
+        Zum Maßnahmenkatalog
+    </button></div>"),
         ),
     
         # main Panel
@@ -122,8 +126,9 @@ ui <- fluidPage(
                 tabPanel("Kurzinformation",
                          
                          br(),
-                         HTML("<strong>Achtung: Am besten funktioniert die Anwendung maximiert, um überlappende Wörter vorzubeugen!</strong>"),
+                         HTML("<h4><strong>!Am besten funktioniert die Anwendung maximiert, um überlappende Wörter vorzubeugen!</strong></h4>"),
                          br(),
+                         HTML("<h4><strong>!Wenn eine Angabe nicht vorhanden ist, bitte das entsprechende Feld frei lassen!</strong></h4>"),
                          br(),
                          HTML("<h4><strong>Folgende Befehle sind in Textfeldern möglich:</strong></h4>"),
                          HTML("Grundsätzlich ist es möglich <strong>Markdown</strong> und <strong>HTML</strong> zu verwenden. Im folgenden sind einige der wichtigen Befehle dargestellt. 
