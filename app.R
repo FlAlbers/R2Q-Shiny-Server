@@ -19,6 +19,7 @@ library(writexl)
 library(RMySQL)
 library(DBI)
 library(tidyverse)
+#library(shinyalert)
 #data structure
 #conn <- dbConnect(RSQLite::SQLite(), "my-db.sqlite")
 #Daten <- dbReadTable(conn, "Daten")
@@ -80,7 +81,7 @@ massnahmen_dropdown <-append(NA,list_Massnahmen$Massnahmen)
 
 # Start of the userinterface
 ui <- fluidPage(
-    
+    #useShinyalert(),
     
     # div(
     
@@ -1786,7 +1787,7 @@ server <- function(input, output, session) {
             
             param <- input$bspfoto
             
-            if (is.null(param)) {TextInputToWert(umsetzungbspBild, "Umsetzungsbeispiel","Bild")} else {
+            if (is.null(param) | !file.exists(param$datapath)) {TextInputToWert(umsetzungbspBild, "Umsetzungsbeispiel","Bild")} else {
             if (gsub("^.*\\.","",as.character(param$datapath))=="jpg") {
                 imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
                 if (file.exists(imagepath)){file.remove(imagepath)}
@@ -1799,7 +1800,8 @@ server <- function(input, output, session) {
                 file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
                 imagepath %>% 
                     TextInputToWert("Umsetzungsbeispiel","Bild")
-                }
+            }
+                file.remove(param$datapath)
             }
             
             input$beschrbsp %>% 
