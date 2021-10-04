@@ -1975,7 +1975,7 @@ server <- function(input, output, session) {
             
             param <- input$sysskizze
             
-            if (is.null(param)) {TextInputToWert(systemskizzeBild, "Systemskizze","Bild")} else {
+            if (is.null(param) | !file.exists(param$datapath)) {TextInputToWert(systemskizzeBild, "Systemskizze","Bild")} else {
             if (gsub("^.*\\.","",param$datapath)=="jpg") {
                 imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.jpg")
                 if (file.exists(imagepath)){file.remove(imagepath)}
@@ -1989,6 +1989,7 @@ server <- function(input, output, session) {
                 imagepath %>% 
                     TextInputToWert("Systemskizze","Bild")
             }
+                file.remove(param$datapath)
             }
                 
             input$beschrsys %>% 
