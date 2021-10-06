@@ -1104,7 +1104,26 @@ ui <- fluidPage(
 server <- function(input, output, session) {
     
     
+    observeEvent(input$loaddata, {
+        showModal(modalDialog(
+            "Bitte stellen Sie sicher, dass sie ihre Eingaben speichern. Nicht gespeicherte Daten gehen verloren.",
+            title="Achtung!",
+            footer = tagList(actionButton("confirmLoadData", "Daten Laden"),
+                             modalButton("Abbrechen")
+            )
+        ))
+    })
     
+    
+    observeEvent(input$SaveMassnahme, {
+        showModal(modalDialog(
+            "Bitte stellen sie sicher, dass Sie vor dem Speichern ihre Eingaben geladne haben, da sonst leere Eingabefelder in die Datenbank übernommen werden.",
+            title="Achtung!",
+            footer = tagList(actionButton("confirmSaveData", "Speichern"),
+                             modalButton("Abbrechen")
+            )
+        ))
+    })
     
     
     #Vorschau / preview for the pdfs
@@ -1140,8 +1159,9 @@ server <- function(input, output, session) {
     #load data process
     #The following observeEvent loads all data that is saved in the database for the selected technology to the UI
     
-    observeEvent(input$loaddata, {
+    observeEvent(input$confirmLoadData, {
         
+        removeModal()
         mid <- subset(list_Massnahmen, Massnahmen == input$Massnahme)[1,2]
         
         con = getcon()
@@ -1695,7 +1715,9 @@ server <- function(input, output, session) {
     #############################################################################################################
     #saving process
     #the following observeEvent is for saving the input of a technology
-    observeEvent(input$SaveMassnahme, {
+    observeEvent(input$confirmSaveData, {
+        
+        removeModal()
         
         ##Maßnahme auslesen
         massnahme <- as.character(input$Massnahme) 
@@ -1787,37 +1809,34 @@ server <- function(input, output, session) {
             
             param <- input$bspfoto
             
-            if (is.null(param) | !file.exists(param$datapath)) {TextInputToWert(umsetzungbspBild, "Umsetzungsbeispiel","Bild")} else {
-            if (gsub("^.*\\.","",as.character(param$datapath))=="jpg") {
-                imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
-                if (file.exists(imagepath)){file.remove(imagepath)}
-            file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.jpg"), overwrite = TRUE )
-             imagepath %>% 
-                TextInputToWert("Umsetzungsbeispiel","Bild")
+            
+            if (is.null(param)) {
+                TextInputToWert(umsetzungbspBild, "Umsetzungsbeispiel","Bild")
+                TextInputToWert(umsetzungbspUptime, "Umsetzungsbeispiel", "uptime")
             } else {
-                imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG")
-                if (file.exists(imagepath)){file.remove(imagepath)}
-                file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
-                imagepath %>% 
-                    TextInputToWert("Umsetzungsbeispiel","Bild")
-            }
-                file.remove(param$datapath)
+                if (file.exists(param$datapath)) {
+                    if (gsub("^.*\\.","",as.character(param$datapath))=="jpg") {
+                        imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
+                        if (file.exists(imagepath)){file.remove(imagepath)}
+                    file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.jpg"), overwrite = TRUE )
+                     imagepath %>% 
+                        TextInputToWert("Umsetzungsbeispiel","Bild")
+                    } else {
+                        imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG")
+                        if (file.exists(imagepath)){file.remove(imagepath)}
+                        file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
+                        imagepath %>% 
+                            TextInputToWert("Umsetzungsbeispiel","Bild")
+                    }
+                    as.character(Sys.time()) %>% 
+                        TextInputToWert("Umsetzungsbeispiel","uptime")
+                    output$messageUploadtimebsp <- renderText(as.character(Sys.time()))
+                    file.remove(param$datapath)
+                }
             }
             
             input$beschrbsp %>% 
                 TextInputToWert("Umsetzungsbeispiel","Beschriftung")
-            
-            if (is.null(param)) {TextInputToWert(umsetzungbspUptime, "Umsetzungsbeispiel", "uptime")} else {
-                as.character(Sys.time()) %>% 
-                    TextInputToWert("Umsetzungsbeispiel","uptime")
-                
-                output$messageUploadtimebsp <- renderText(as.character(Sys.time()))
-            }
-            
-            
-            
-            
-            
             
             
             
@@ -1975,33 +1994,35 @@ server <- function(input, output, session) {
             
             param <- input$sysskizze
             
-            if (is.null(param) | !file.exists(param$datapath)) {TextInputToWert(systemskizzeBild, "Systemskizze","Bild")} else {
-            if (gsub("^.*\\.","",param$datapath)=="jpg") {
-                imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.jpg")
-                if (file.exists(imagepath)){file.remove(imagepath)}
-                file.copy(param$datapath, imagepath, overwrite = TRUE )
-                imagepath %>% 
-                    TextInputToWert("Systemskizze","Bild")
-            } else {
-                imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.PNG")
-                if (file.exists(imagepath)){file.remove(imagepath)}
-                file.copy(param$datapath, imagepath, overwrite = TRUE )
-                imagepath %>% 
-                    TextInputToWert("Systemskizze","Bild")
-            }
-                file.remove(param$datapath)
+            if (is.null(param)) {
+                TextInputToWert(systemskizzeBild, "Systemskizze","Bild")
+                TextInputToWert(systemskizzeUptime, "Systemskizze", "uptime")
+                } else {
+                if (file.exists(param$datapath)) {
+                    if (gsub("^.*\\.","",param$datapath)=="jpg") {
+                        imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.jpg")
+                        if (file.exists(imagepath)){file.remove(imagepath)}
+                        file.copy(param$datapath, imagepath, overwrite = TRUE )
+                        imagepath %>% 
+                            TextInputToWert("Systemskizze","Bild")
+                    } else {
+                        imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.PNG")
+                        if (file.exists(imagepath)){file.remove(imagepath)}
+                        file.copy(param$datapath, imagepath, overwrite = TRUE )
+                        imagepath %>% 
+                            TextInputToWert("Systemskizze","Bild")
+                    }
+                    
+                    as.character(Sys.time()) %>% 
+                        TextInputToWert("Systemskizze","uptime")
+                    output$messageUploadtimesys <- renderText(as.character(Sys.time()))
+                    file.remove(param$datapath)
+                }
             }
                 
             input$beschrsys %>% 
                 TextInputToWert("Systemskizze","Beschriftung")
             
-            
-            if (is.null(param)) {TextInputToWert(systemskizzeUptime, "Systemskizze", "uptime")} else {
-                as.character(Sys.time()) %>% 
-                    TextInputToWert("Systemskizze","uptime")
-                
-                output$messageUploadtimesys <- renderText(as.character(Sys.time()))
-            }
             
             #param <- as.character(input$sysskizze)
             #nr <- as.numeric(subset(datamassnahme, ebene1 == "Systemskizze")[1,1])
