@@ -108,12 +108,19 @@ ui <- fluidPage(
             textOutput("message1"),
             br(),
             br(),
+            shiny::actionButton(inputId='ab1', label="Zum Maßnahmenkatalog", 
+                                icon = icon("th"), 
+                                onclick ="window.open('http://r2q.fh-muenster.de/R2Q_Frontend/index.php', '_blank')",
+                                style="background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;"),
+            #HTML("<div style='text-align: center'>
             
-            HTML("<div style='text-align: center'>
-                 <button style='background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;'
-                 onclick=window.location.href='http://r2q.fh-muenster.de:8081/R2Q_Frontend/index.php'>
-        Zum Maßnahmenkatalog
-    </button></div>"),
+            #     <form action='https://www.google.com' target='_blank'>
+            #     <input type='button' value='Submit'/></form>
+            #     <button style='background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;'
+            #     onclick=window.location.href='' target='_blank'>
+                 
+        
+    #</button></div>"),
         ),
     
         # main Panel
@@ -1103,10 +1110,20 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
     
+    observeEvent(input$Massnahme, {
+        showModal(modalDialog(
+            "Neue Maßnahme wurde ausgewählt. Laden und Speichern der Maßnahme bezieht sich nun auf die neu ausgewählte Maßnahme!",
+            title="Achtung!",
+            footer = tagList(modalButton("Ok")
+            )
+        ))
+    },ignoreInit = TRUE
+    )
+    
     
     observeEvent(input$loaddata, {
         showModal(modalDialog(
-            "Bitte stellen Sie sicher, dass sie ihre Eingaben speichern. Nicht gespeicherte Daten gehen verloren.",
+            "Bitte stellen Sie sicher, dass sie Ihre Eingaben speichern. Nicht gespeicherte Daten gehen verloren.",
             title="Achtung!",
             footer = tagList(actionButton("confirmLoadData", "Daten Laden"),
                              modalButton("Abbrechen")
@@ -1117,7 +1134,7 @@ server <- function(input, output, session) {
     
     observeEvent(input$SaveMassnahme, {
         showModal(modalDialog(
-            "Bitte stellen sie sicher, dass Sie vor dem Speichern ihre Eingaben geladne haben, da sonst leere Eingabefelder in die Datenbank übernommen werden.",
+            "Bitte stellen sie sicher, dass Sie vor dem Speichern Ihre Eingaben geladen haben, da sonst leere Eingabefelder in die Datenbank übernommen werden.",
             title="Achtung!",
             footer = tagList(actionButton("confirmSaveData", "Speichern"),
                              modalButton("Abbrechen")
