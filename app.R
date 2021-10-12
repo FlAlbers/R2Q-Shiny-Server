@@ -1834,13 +1834,17 @@ server <- function(input, output, session) {
                 if (file.exists(param$datapath)) {
                     if (gsub("^.*\\.","",as.character(param$datapath))=="jpg") {
                         imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
+                        imagepathPNG <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG")
                         if (file.exists(imagepath)){file.remove(imagepath)}
+                        if (file.exists(imagepathPNG)){file.remove(imagepathPNG)}
                     file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.jpg"), overwrite = TRUE )
                      imagepath %>% 
                         TextInputToWert("Umsetzungsbeispiel","Bild")
                     } else {
                         imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG")
+                        imagepathJPG <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
                         if (file.exists(imagepath)){file.remove(imagepath)}
+                        if (file.exists(imagepathJPG)){file.remove(imagepathJPG)}
                         file.copy(param$datapath, str_c(file.path("./Umsetzungsbeispiele", namePNG),"bsp.PNG"), overwrite = TRUE )
                         imagepath %>% 
                             TextInputToWert("Umsetzungsbeispiel","Bild")
@@ -1849,6 +1853,9 @@ server <- function(input, output, session) {
                         TextInputToWert("Umsetzungsbeispiel","uptime")
                     output$messageUploadtimebsp <- renderText(as.character(Sys.time()))
                     file.remove(param$datapath)
+                } else {
+                    umsetzungbspBild %>% 
+                        TextInputToWert("Umsetzungsbeispiel","Bild")
                 }
             }
             
@@ -2018,13 +2025,17 @@ server <- function(input, output, session) {
                 if (file.exists(param$datapath)) {
                     if (gsub("^.*\\.","",param$datapath)=="jpg") {
                         imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.jpg")
+                        imagepathPNG <- str_c(file.path("./Systemskizzen", namePNG),"sys.PNG")
                         if (file.exists(imagepath)){file.remove(imagepath)}
+                        if (file.exists(imagepathPNG)){file.remove(imagepathPNG)}       #remove image with other format
                         file.copy(param$datapath, imagepath, overwrite = TRUE )
                         imagepath %>% 
                             TextInputToWert("Systemskizze","Bild")
                     } else {
                         imagepath <- str_c(file.path("./Systemskizzen", namePNG),"sys.PNG")
+                        imagepathJPG <- str_c(file.path("./Systemskizzen", namePNG),"sys.jpg")
                         if (file.exists(imagepath)){file.remove(imagepath)}
+                        if (file.exists(imagepathJPG)){file.remove(imagepathJPG)}       #remove image with other format
                         file.copy(param$datapath, imagepath, overwrite = TRUE )
                         imagepath %>% 
                             TextInputToWert("Systemskizze","Bild")
@@ -2034,6 +2045,8 @@ server <- function(input, output, session) {
                         TextInputToWert("Systemskizze","uptime")
                     output$messageUploadtimesys <- renderText(as.character(Sys.time()))
                     file.remove(param$datapath)
+                } else {systemskizzeBild %>% 
+                        TextInputToWert("Systemskizze","Bild")
                 }
             }
                 
