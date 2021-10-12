@@ -1854,8 +1854,17 @@ server <- function(input, output, session) {
                     output$messageUploadtimebsp <- renderText(as.character(Sys.time()))
                     file.remove(param$datapath)
                 } else {
-                    umsetzungbspBild %>% 
-                        TextInputToWert("Umsetzungsbeispiel","Bild")
+                    imagepath <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.jpg")
+                    imagepathPNG <- str_c(file.path("Umsetzungsbeispiele", namePNG),"bsp.PNG")
+                    if (file.exists(imagepath)){
+                        imagepath %>% 
+                            TextInputToWert("Umsetzungsbeispiel","Bild")
+                        }
+                    if (file.exists(imagepathPNG)){
+                        imagepathPNG %>% 
+                            TextInputToWert("Umsetzungsbeispiel","Bild")
+                        }
+                    
                 }
             }
             
