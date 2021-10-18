@@ -143,7 +143,7 @@ ui <- fluidPage(
                          HTML("<h4><strong>!Wenn eine Angabe nicht vorhanden ist, bitte das entsprechende Feld frei lassen!</strong></h4>"),
                          br(),
                          shiny::actionButton(inputId='switchKurzinfo', label="Weiter zur Eingabe", 
-                                             icon = icon("th"),
+                                             icon = icon("fas fa-arrow-circle-right"),
                                              onclick ="location.href='#top';",
                                              style="background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;"),
                          br(),
@@ -155,16 +155,16 @@ ui <- fluidPage(
                               border: 2px solid gray;
                               box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
                               padding: 10px;
-                              font-size: 16px;
-                              font-weight: bold;
+                              font-size: 14px;
                             }
                             "
                          ),
                          
                          tags$div(class="Contact", checked=NA,
-                                  HTML("Haben Sie noch Fragen oder ist ein Fehler aufgefallen?<br>
+                                  HTML("<h4><strong>Noch Fragen ?</strong></h4>
+                                  Haben Sie noch Fragen oder ist ein Fehler aufgefallen?<br>
                                          Geben Sie mir gerne Bescheid.<br><br>
-                                       Kontakt:<br>
+                                       <strong>Kontakt:</strong><br>
                                        <code>Flemming Albers<br>
                                        Corrensstraße 25, 48149 Münster, Raum: A 115<br>
                                        flemming.albers@fh-muenster.de</code>"),
@@ -512,7 +512,7 @@ ui <- fluidPage(
                          
                          br(),
                          shiny::actionButton(inputId='switchDetailinfo', label="Weiter zu Detailinformationen", 
-                                             icon = icon("th"),
+                                             icon = icon("fas fa-arrow-circle-right"),
                                              onclick ="location.href='#top';",
                                              style="background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;"),
                          
@@ -1089,7 +1089,7 @@ ui <- fluidPage(
                          br(),
                          br(),
                          shiny::actionButton(inputId='backKurzinfo', label="Zurück zu Kurzinformation", 
-                                             icon = icon("th"),
+                                             icon = icon("fas fa-arrow-circle-left"),
                                              onclick ="location.href='#top';", 
                                              style="background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;"),
                          br(),
