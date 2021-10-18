@@ -130,17 +130,51 @@ ui <- fluidPage(
                 
                 
                 #################
+                
+                
+                
+                
                 #TAB Kurzinformation
-                tabPanel("Kurzinformation",
+                tabPanel("Start",
                          
                          br(),
                          HTML("<h4><strong>!Am besten funktioniert die Anwendung maximiert, um überlappende Wörter vorzubeugen!</strong></h4>"),
                          br(),
                          HTML("<h4><strong>!Wenn eine Angabe nicht vorhanden ist, bitte das entsprechende Feld frei lassen!</strong></h4>"),
                          br(),
+                         shiny::actionButton(inputId='switchKurzinfo', label="Weiter zur Eingabe", 
+                                             icon = icon("th"),
+                                             onclick ="location.href='#top';",
+                                             style="background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;"),
+                         br(),
+                         br(),
+                         
+                         tags$style(
+                             ".Contact {
+                              border-radius: 5px;
+                              border: 2px solid gray;
+                              box-shadow: 0 1px 1px rgb(0 0 0 / 10%);
+                              padding: 10px;
+                              font-size: 16px;
+                              font-weight: bold;
+                            }
+                            "
+                         ),
+                         
+                         tags$div(class="Contact", checked=NA,
+                                  HTML("Haben Sie noch Fragen oder ist ein Fehler aufgefallen?<br>
+                                         Geben Sie mir gerne Bescheid.<br><br>
+                                       Kontakt:<br>
+                                       <code>Flemming Albers<br>
+                                       Corrensstraße 25, 48149 Münster, Raum: A 115<br>
+                                       flemming.albers@fh-muenster.de</code>"),
+                         ),
+                         
+                         br(),
+                         br(),
                          HTML("<h4><strong>Folgende Befehle sind in Textfeldern möglich:</strong></h4>"),
                          HTML("Grundsätzlich ist es möglich <strong>Markdown</strong> und <strong>HTML</strong> zu verwenden. Im folgenden sind einige der wichtigen Befehle dargestellt. 
-                            <br>Falls sie noch mehr über die Möglichkeiten von Markdown und HTML erfahren möchten, klicken sie <strong><code><a href='https://www.markdownguide.org/basic-syntax/'>>>>hier<<<</a></code></strong>.<br><br>"),
+                            <br>Falls Sie noch mehr über die Möglichkeiten von Markdown und HTML erfahren möchten, klicken Sie <strong><code><a href='https://www.markdownguide.org/basic-syntax/'>>>>hier<<<</a></code></strong>.<br><br>"),
                          HTML("<table><colgroup>
 								<col style='width:380px'>
 								<col style='width:200px'>
@@ -262,6 +296,13 @@ ui <- fluidPage(
                             <tr height = 20px></tr>
                             
                             </table>"),
+                         br(),
+                         br(),
+                ),
+                
+                #TAB Kurzinformation
+                tabPanel("Kurzinformation",
+                         
                          br(),
                          HTML("<h3 style='font-weight: bold;'>Eingabe</h3>"),
                          HTML("________________________________________________________________________________________________________________________________________________________________"),
@@ -470,6 +511,11 @@ ui <- fluidPage(
                          textAreaInput("hinw1", label = "Hinweis für Anwendungsebene, Flächenbedarf, Nutzungsdauer und Entwicklungsstand", width = "200%"),
                          
                          br(),
+                         shiny::actionButton(inputId='switchDetailinfo', label="Weiter zu Detailinformationen", 
+                                             icon = icon("th"),
+                                             onclick ="location.href='#top';",
+                                             style="background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;"),
+                         
                          br(),
                          br(),
                          br(),
@@ -1042,6 +1088,10 @@ ui <- fluidPage(
                          
                          br(),
                          br(),
+                         shiny::actionButton(inputId='backKurzinfo', label="Zurück zu Kurzinformation", 
+                                             icon = icon("th"),
+                                             onclick ="location.href='#top';", 
+                                             style="background-color: rgb(4,180,219); font-size: 20px; font-weight: bold; padding 5px; text-align: center; border: 1px solid #d6d6d6; border-radius: 5px; color: white;"),
                          br(),
                          br(),
                          br(),
@@ -1123,7 +1173,7 @@ server <- function(input, output, session) {
     
     observeEvent(input$loaddata, {
         showModal(modalDialog(
-            "Bitte stellen Sie sicher, dass sie Ihre Eingaben speichern. Nicht gespeicherte Daten gehen verloren.",
+            "Bitte stellen Sie sicher, dass Sie Ihre Eingaben speichern. Nicht gespeicherte Daten gehen verloren.",
             title="Achtung!",
             footer = tagList(actionButton("confirmLoadData", "Daten Laden"),
                              modalButton("Abbrechen")
@@ -1134,7 +1184,7 @@ server <- function(input, output, session) {
     
     observeEvent(input$SaveMassnahme, {
         showModal(modalDialog(
-            "Bitte stellen sie sicher, dass Sie vor dem Speichern Ihre Eingaben geladen haben, da sonst leere Eingabefelder in die Datenbank übernommen werden.",
+            "Bitte stellen Sie sicher, dass Sie vor dem Speichern Ihre Eingaben geladen haben, da sonst leere Eingabefelder in die Datenbank übernommen werden.",
             title="Achtung!",
             footer = tagList(actionButton("confirmSaveData", "Speichern"),
                              modalButton("Abbrechen")
@@ -1142,6 +1192,17 @@ server <- function(input, output, session) {
         ))
     })
     
+    observeEvent(input$switchKurzinfo, {
+        updateTabsetPanel(session, "Eingabe",selected = "Kurzinformation")
+    })
+    
+    observeEvent(input$backKurzinfo, {
+        updateTabsetPanel(session, "Eingabe",selected = "Kurzinformation")
+    })
+    
+    observeEvent(input$switchDetailinfo, {
+        updateTabsetPanel(session, "Eingabe",selected = "Detailinformation")
+    })
     
     #Vorschau / preview for the pdfs
     
