@@ -1233,7 +1233,7 @@ server <- function(input, output, session) {
     
     
     
-    
+    #--------------------------------------------------------------------------------------------------------------------------------------------------------------
     #load data process
     #The following observeEvent loads all data that is saved in the database for the selected technology to the UI
     
@@ -1540,8 +1540,7 @@ server <- function(input, output, session) {
         }
         
         for(i in 1:5){
-            wertInTextInput(werte3("
-                                   ", paste0("Betriebskosten", as.character(i)), "Einheit"), paste0("bet", as.character(i) ,"e"))
+            wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "Einheit"), paste0("bet", as.character(i) ,"e"))
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "min"), paste0("bet", as.character(i) ,"min"))
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "max"), paste0("bet", as.character(i) ,"max"))
             wertInTextInput(werte3("Aufwand und Kosten", paste0("Betriebskosten", as.character(i)), "üblich"), paste0("bet", as.character(i) ,"ueblich"))
