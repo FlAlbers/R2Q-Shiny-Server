@@ -584,10 +584,40 @@ ui <- fluidPage(
                          textAreaInput("planbemtxt", label = "", width = "200%"),
                          
                          br(),
+                         fluidRow(column(width = 3, textAreaInput("norm1", label = "Norm", height = "30px")),
+                                  column(width = 8, textAreaInput("titel1", label = "Titel", width = "200%",height = "30px"),style='padding-left:0px'),),
                          
-                         wellPanel(
-                             rHandsontableOutput("planbemtab"),
-                         ),
+                         fluidRow(column(width = 3, textAreaInput("norm2", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel2", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm3", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel3", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm4", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel4", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm5", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel5", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm6", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel6", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm7", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel7", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm8", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel8", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm9", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel9", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("norm10", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("titel10", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         
+                         # wellPanel(
+                         #     rHandsontableOutput("planbemtab"),
+                         # ),
                          
                          HTML("________________________________________________________________________________________________________________________________________________________________"),
                          br(),
@@ -786,9 +816,200 @@ ui <- fluidPage(
                          br(),
                          textAreaInput("whinwtxt", label="Fließtext", width = "200%"),
                          
-                         wellPanel(
-                             rHandsontableOutput("whinw"),
+                         
+                         
+                         # br(),
+                         # fluidRow(
+                         #   column(width = 3,
+                         #          textInput("whinwP1", "Parameter")),
+                         #   
+                         #   column(width = 8,
+                         #          textAreaInput("whinwW1", label = "Wert", width = "200%"),),
+                         # ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP1", label = "Parameter", height = "30px")),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW1", label = "Wert", width = "200%",height = "30px"),style='padding-left:0px'),
                          ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP2", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW2", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP3", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW3", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP4", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW4", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP5", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW5", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP6", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW6", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP7", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW7", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP8", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW8", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP9", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW9", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP10", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW10", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP11", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW11", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP12", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW12", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP13", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW13", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP14", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW14", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP15", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW15", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP16", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW16", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP17", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW17", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP18", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW18", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP19", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW19", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         br(),
+                         fluidRow(
+                           column(width = 3,
+                                  textAreaInput("whinwP20", label = NULL, height = "30px"),style='margin-top:-30px;'),
+                           
+                           column(width = 8,
+                                  textAreaInput("whinwW20", label = NULL, width = "200%",height = "30px"),style='margin-top:-30px; padding-left:0px'),
+                         ),
+                         
+                         # wellPanel(
+                         #     rHandsontableOutput("whinw"),
+                         # ),
+                         
                          
                          
                          HTML("________________________________________________________________________________________________________________________________________________________________"),
@@ -856,9 +1077,41 @@ ui <- fluidPage(
                          
                          textAreaInput("bewertungText", label="Fließtext", width = "200%"),
                          
-                         wellPanel(
-                             rHandsontableOutput("bewertung"),
-                         ),
+                         
+                         br(),
+                         fluidRow(column(width = 3, textAreaInput("lit1", label = "Literaturstelle", height = "30px")),
+                                  column(width = 8, textAreaInput("bew1", label = "Bewertung", width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit2", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew2", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit3", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew3", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit4", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew4", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit5", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew5", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit6", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew6", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit7", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew7", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit8", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew8", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit9", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew9", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("lit10", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("bew10", label = NULL, width = "200%",height = "30px"),style=' padding-left:0px'),),
+                         
+                         # wellPanel(
+                         #     rHandsontableOutput("bewertung"),
+                         # ),
                          
                          
                          HTML("________________________________________________________________________________________________________________________________________________________________"),
@@ -886,70 +1139,70 @@ ui <- fluidPage(
                                  br(),
                          
                                  selectInput(inputId = "selkombi1",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi2",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi3",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi4",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi5",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi6",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi7",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi8",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi9",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  
                                  selectInput(inputId = "selkombi10",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
@@ -958,61 +1211,61 @@ ui <- fluidPage(
                                 br(),
                          
                                  selectInput(inputId = "selkombi11",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi12",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi13",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi14",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi15",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi16",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi17",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi18",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi19",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
                                  
                                  selectInput(inputId = "selkombi20",
-                                             label = "",
+                                             label = NULL,
                                              multiple = FALSE, 
                                              choices = massnahmen_dropdown,
                                              selected = "NA"),
@@ -1034,11 +1287,43 @@ ui <- fluidPage(
                          HTML("<div style='font-weight: bold; font-size: 18px '>17. Vor- und Nachteile</div>"),
                          br(),
                          
+                         br(),
+                         fluidRow(column(width = 3, textAreaInput("vor1", label = "Vorteile", height = "30px")),
+                                  column(width = 8, textAreaInput("nach1", label = "Nachteile", width = "200%",height = "30px"),style='padding-left:0px'),),
                          
-                         wellPanel(
-                             rHandsontableOutput("vornach"),
-                         ),
+                         fluidRow(column(width = 3, textAreaInput("vor2", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach2", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
                          
+                         fluidRow(column(width = 3, textAreaInput("vor3", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach3", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("vor4", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach4", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("vor5", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach5", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         
+                         fluidRow(column(width = 3, textAreaInput("vor6", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach6", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("vor7", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach7", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("vor8", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach8", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("vor9", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach9", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 3, textAreaInput("vor10", label = NULL, height = "30px")),
+                                  column(width = 8, textAreaInput("nach10", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         
+                         # wellPanel(
+                         #     rHandsontableOutput("vornach"),
+                         # ),
+                         # 
                          
                          
                          #fluidRow(
@@ -1081,9 +1366,24 @@ ui <- fluidPage(
                          br(),
                          
                          
-                         wellPanel(
-                             rHandsontableOutput("fallbsp"),
-                         ),
+                         fluidRow(column(width = 2, textAreaInput("Proj1", label = "Projektname", height = "30px")),
+                                  column(width = 2, textAreaInput("Stadt1", label = "Stadt", height = "30px"),style='padding-left:0px'),
+                                  column(width = 2, textAreaInput("Land1", label = "Land", height = "30px"),style='padding-left:0px'),
+                                  column(width = 5, textAreaInput("Erl1", label = "Erläuterung", width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 2, textAreaInput("Proj2", label = NULL, height = "30px")),
+                                  column(width = 2, textAreaInput("Stadt2", label = NULL, height = "30px"),style='padding-left:0px'),
+                                  column(width = 2, textAreaInput("Land2", label = NULL, height = "30px"),style='padding-left:0px'),
+                                  column(width = 5, textAreaInput("Erl2", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         fluidRow(column(width = 2, textAreaInput("Proj3", label = NULL, height = "30px")),
+                                  column(width = 2, textAreaInput("Stadt3", label = NULL, height = "30px"),style='padding-left:0px'),
+                                  column(width = 2, textAreaInput("Land3", label = NULL, height = "30px"),style='padding-left:0px'),
+                                  column(width = 5, textAreaInput("Erl3", label = NULL, width = "200%",height = "30px"),style='padding-left:0px'),),
+                         
+                         # wellPanel(
+                         #     rHandsontableOutput("fallbsp"),
+                         # ),
                          
                          
                          br(),
@@ -1496,35 +1796,39 @@ server <- function(input, output, session) {
         
         wertInTextInput(werte2("Planung, Bemessung und rechtliche Aspekte", "Fließtext"), "planbemtxt")
         
+        for(i in 1:10){
+          wertInTextInput(werte2("Planung, Bemessung und rechtliche Aspekte", paste0("Normen/Regelwerke", as.character(i))), paste0("norm", as.character(i)))
+          wertInTextInput(werte2("Planung, Bemessung und rechtliche Aspekte", paste0("Titel/Inhalt", as.character(i))), paste0("titel", as.character(i)))
+        }
+        
         #Tabelle Planbem
         
-        
-        DF4 <- tibble(Norm = c("","","","","","","","","",""), Titel = c("","","","","","","","","",""))
-        
-        DF4[1,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke1")
-        DF4[2,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke2")
-        DF4[3,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke3")
-        DF4[4,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke4")
-        DF4[5,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke5")
-        DF4[6,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke6")
-        DF4[7,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke7")
-        DF4[8,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke8")
-        DF4[9,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke9")
-        DF4[10,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke10")
-        
-        DF4[1,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt1")
-        DF4[2,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt2")
-        DF4[3,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt3")
-        DF4[4,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt4")
-        DF4[5,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt5")
-        DF4[6,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt6")
-        DF4[7,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt7")
-        DF4[8,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt8")
-        DF4[9,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt9")
-        DF4[10,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt10")
-        
-        output$planbemtab <- renderRHandsontable({rhandsontable(DF4, useTypes = TRUE, stretchH = "all")
-        })
+        # DF4 <- tibble(Norm = c("","","","","","","","","",""), Titel = c("","","","","","","","","",""))
+        # 
+        # DF4[1,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke1")
+        # DF4[2,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke2")
+        # DF4[3,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke3")
+        # DF4[4,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke4")
+        # DF4[5,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke5")
+        # DF4[6,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke6")
+        # DF4[7,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke7")
+        # DF4[8,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke8")
+        # DF4[9,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke9")
+        # DF4[10,1] = werte2("Planung, Bemessung und rechtliche Aspekte", "Normen/Regelwerke10")
+        # 
+        # DF4[1,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt1")
+        # DF4[2,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt2")
+        # DF4[3,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt3")
+        # DF4[4,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt4")
+        # DF4[5,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt5")
+        # DF4[6,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt6")
+        # DF4[7,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt7")
+        # DF4[8,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt8")
+        # DF4[9,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt9")
+        # DF4[10,2] = werte2("Planung, Bemessung und rechtliche Aspekte", "Titel/Inhalt10")
+        # 
+        # output$planbemtab <- renderRHandsontable({rhandsontable(DF4, useTypes = TRUE, stretchH = "all")
+        # })
         
         
         
@@ -1552,15 +1856,20 @@ server <- function(input, output, session) {
         
         wertInTextInput(werte2("Weitergehende Hinweise", "Fließtext"), "whinwtxt")
         
-        DF1 <- tibble(Parameter = c("","","","","","","","","","","","","","","","","","","",""), Wert = c("","","","","","","","","","","","","","","","","","","",""))
-        
         for(i in 1:20){
-            DF1[i,1] = werte3("Weitergehende Hinweise", "Parameter", as.character(i))
-            DF1[i,2] = werte3("Weitergehende Hinweise", "Wert", as.character(i))
+          wertInTextInput(werte3("Weitergehende Hinweise", "Parameter", as.character(i)), paste0("whinwP", as.character(i)))
+          wertInTextInput(werte3("Weitergehende Hinweise", "Wert", as.character(i)), paste0("whinwW", as.character(i)))
         }
         
-        output$whinw <- renderRHandsontable({rhandsontable(DF1, useTypes = TRUE, stretchH = "all")
-        })
+        # DF1 <- tibble(Parameter = c("","","","","","","","","","","","","","","","","","","",""), Wert = c("","","","","","","","","","","","","","","","","","","",""))
+        # 
+        # for(i in 1:20){
+        #     DF1[i,1] = werte3("Weitergehende Hinweise", "Parameter", as.character(i))
+        #     DF1[i,2] = werte3("Weitergehende Hinweise", "Wert", as.character(i))
+        # }
+        # 
+        # output$whinw <- renderRHandsontable({rhandsontable(DF1, useTypes = TRUE, stretchH = "all")
+        # })
         
         
         
@@ -1592,15 +1901,22 @@ server <- function(input, output, session) {
         
         wertInTextInput(werte2("Ökobilanzielle Bewertung", "Fließtext"), "bewertungText")
         
-        DFbew <- tibble(Literaturstelle = c("","","","","","","","","",""), Bewertung = c("","","","","","","","","",""))
         
         for(i in 1:10){
-            DFbew[i,1] = werte3("Ökobilanzielle Bewertung", "Literaturstelle", as.character(i))
-            DFbew[i,2] = werte3("Ökobilanzielle Bewertung", "Bewertung", as.character(i))
+          wertInTextInput(werte3("Ökobilanzielle Bewertung", "Literaturstelle", as.character(i)), paste0("lit", as.character(i)))
+          wertInTextInput(werte3("Ökobilanzielle Bewertung", "Bewertung", as.character(i)), paste0("bew", as.character(i)))
         }
         
-        output$bewertung <- renderRHandsontable({rhandsontable(DFbew, useTypes = TRUE, stretchH = "all")
-        })
+        
+        # DFbew <- tibble(Literaturstelle = c("","","","","","","","","",""), Bewertung = c("","","","","","","","","",""))
+        # 
+        # for(i in 1:10){
+        #     DFbew[i,1] = werte3("Ökobilanzielle Bewertung", "Literaturstelle", as.character(i))
+        #     DFbew[i,2] = werte3("Ökobilanzielle Bewertung", "Bewertung", as.character(i))
+        # }
+        # 
+        # output$bewertung <- renderRHandsontable({rhandsontable(DFbew, useTypes = TRUE, stretchH = "all")
+        # })
         
         
         #Kombinationsmöglichkeiten
@@ -1618,29 +1934,44 @@ server <- function(input, output, session) {
         
         #Vor- und Nachteile
         
-        DF2 <- tibble(Vorteile = c("","","","","","","","","",""), Nachteile = c("","","","","","","","","",""))
-        
         for(i in 1:10){
-            DF2[i,1] = werte3("Vor- und Nachteile", "Vorteile", as.character(i))
-            DF2[i,2] = werte3("Vor- und Nachteile", "Nachteile", as.character(i))
+          wertInTextInput(werte3("Vor- und Nachteile", "Vorteile", as.character(i)), paste0("vor", as.character(i)))
+          wertInTextInput(werte3("Vor- und Nachteile", "Nachteile", as.character(i)), paste0("nach", as.character(i)))
         }
-        
-        output$vornach <- renderRHandsontable({rhandsontable(DF2, useTypes = TRUE, stretchH = "all")
-        })
+        # 
+        # DF2 <- tibble(Vorteile = c("","","","","","","","","",""), Nachteile = c("","","","","","","","","",""))
+        # 
+        # for(i in 1:10){
+        #     DF2[i,1] = werte3("Vor- und Nachteile", "Vorteile", as.character(i))
+        #     DF2[i,2] = werte3("Vor- und Nachteile", "Nachteile", as.character(i))
+        # }
+        # 
+        # output$vornach <- renderRHandsontable({rhandsontable(DF2, useTypes = TRUE, stretchH = "all")
+        # })
         
         #Fallbeispiele
         
-        DF3 <- tibble(Projektname = c("","",""), Stadt = c("","",""), Land = c("","",""), Erläuterung = c("","",""))
-        
         for(i in 1:3){
-            DF3[i,1] = werte3("Fallbeispiele", as.character(i), "Projektname")
-            DF3[i,2] = werte3("Fallbeispiele", as.character(i), "Stadt")
-            DF3[i,3] = werte3("Fallbeispiele", as.character(i), "Land")
-            DF3[i,4] = werte3("Fallbeispiele", as.character(i), "Erläuterung")
+          wertInTextInput(werte3("Fallbeispiele", as.character(i), "Projektname"), paste0("Proj", as.character(i)))
+          wertInTextInput(werte3("Fallbeispiele", as.character(i), "Stadt"), paste0("Stadt", as.character(i)))
+          wertInTextInput(werte3("Fallbeispiele", as.character(i), "Land"), paste0("Land", as.character(i)))
+          wertInTextInput(werte3("Fallbeispiele", as.character(i), "Erläuterung"), paste0("Erl", as.character(i)))
         }
         
-        output$fallbsp <- renderRHandsontable({rhandsontable(DF3, useTypes = TRUE, stretchH = "all")
-        })
+        
+        # DF3 <- tibble(Projektname = c("","",""), Stadt = c("","",""), Land = c("","",""), Erläuterung = c("","",""))
+        # 
+        # for(i in 1:3){
+        #     DF3[i,1] = werte3("Fallbeispiele", as.character(i), "Projektname")
+        #     DF3[i,2] = werte3("Fallbeispiele", as.character(i), "Stadt")
+        #     DF3[i,3] = werte3("Fallbeispiele", as.character(i), "Land")
+        #     DF3[i,4] = werte3("Fallbeispiele", as.character(i), "Erläuterung")
+        # }
+        # 
+        # output$fallbsp <- renderRHandsontable({rhandsontable(DF3, useTypes = TRUE, stretchH = "all")
+        # })
+        
+        
         output$message1 <- renderText({"Maßnahme wurde geladen."})
     })
     
@@ -2137,19 +2468,61 @@ server <- function(input, output, session) {
                 TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Fließtext")
             
             
-            param <- isolate(values[["DF4"]])
+            input$norm1 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke1")
+            input$norm2 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke2")
+            input$norm3 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke3")
+            input$norm4 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke4")
+            input$norm5 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke5")
+            input$norm6 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke6")
+            input$norm7 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke7")
+            input$norm8 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke8")
+            input$norm9 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke9")
+            input$norm10 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Normen/Regelwerke10")
             
-            for (i in 1:10) {
-                TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
-                TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
-            }
+            input$titel1 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt1")
+            input$titel2 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt2")
+            input$titel3 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt3")
+            input$titel4 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt4")
+            input$titel5 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt5")
+            input$titel6 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt6")
+            input$titel7 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt7")
+            input$titel8 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt8")
+            input$titel9 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt9")
+            input$titel10 %>% 
+              TextInputToWert("Planung, Bemessung und rechtliche Aspekte","Titel/Inhalt10")
             
-            for (i in 1:nrow(param)) {
-                as.character(param[i,1]) %>%
-                    TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
-                as.character(param[i,2]) %>% 
-                    TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
-            }
+            # param <- isolate(values[["DF4"]])
+            # 
+            # for (i in 1:10) {
+            #     TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
+            #     TextInputToWert("NA","Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
+            # }
+            # 
+            # for (i in 1:nrow(param)) {
+            #     as.character(param[i,1]) %>%
+            #         TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Normen/Regelwerke",as.character(i)))
+            #     as.character(param[i,2]) %>% 
+            #         TextInputToWert("Planung, Bemessung und rechtliche Aspekte",str_c("Titel/Inhalt",as.character(i)))
+            # }
             
             
             #Aufwand und Kosten
@@ -2260,19 +2633,103 @@ server <- function(input, output, session) {
                 TextInputToWert("Weitergehende Hinweise","Fließtext")
             
             
-            param <- isolate(values[["DF1"]])
+            input$whinwP1 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","1")
+            input$whinwW1 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","1")
+            input$whinwP2 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","2")
+            input$whinwW2 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","2")
+            input$whinwP3 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","3")
+            input$whinwW3 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","3")
+            input$whinwP4 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","4")
+            input$whinwW4 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","4")
+            input$whinwP5 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","5")
+            input$whinwW5 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","5")
             
-            for (i in 1:20) {
-                TextInputToWert("NA","Weitergehende Hinweise","Parameter",as.character(i))
-                TextInputToWert("NA","Weitergehende Hinweise","Wert",as.character(i))
-            }
+            input$whinwP6 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","6")
+            input$whinwW6 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","6")
+            input$whinwP7 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","7")
+            input$whinwW7 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","7")
+            input$whinwP8 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","8")
+            input$whinwW8 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","8")
+            input$whinwP9 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","9")
+            input$whinwW9 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","9")
+            input$whinwP10 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","10")
+            input$whinwW10 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","10")
             
-            for (i in 1:nrow(param)) {
-                as.character(param[i,1]) %>% 
-                    TextInputToWert("Weitergehende Hinweise","Parameter",as.character(i))
-                as.character(param[i,2]) %>% 
-                    TextInputToWert("Weitergehende Hinweise","Wert",as.character(i))
-            }
+            input$whinwP11 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","11")
+            input$whinwW11 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","11")
+            input$whinwP12 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","12")
+            input$whinwW12 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","12")
+            input$whinwP13 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","13")
+            input$whinwW13 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","13")
+            input$whinwP14 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","14")
+            input$whinwW14 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","14")
+            input$whinwP15 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","15")
+            input$whinwW15 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","15")
+            
+            input$whinwP16 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","16")
+            input$whinwW16 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","16")
+            input$whinwP17 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","17")
+            input$whinwW17 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","17")
+            input$whinwP18 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","18")
+            input$whinwW18 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","18")
+            input$whinwP19 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","19")
+            input$whinwW19 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","19")
+            input$whinwP20 %>% 
+              TextInputToWert("Weitergehende Hinweise","Parameter","20")
+            input$whinwW20 %>% 
+              TextInputToWert("Weitergehende Hinweise","Wert","20")
+            
+            # param <- isolate(values[["DF1"]])
+            # 
+            # for (i in 1:20) {
+            #     TextInputToWert("NA","Weitergehende Hinweise","Parameter",as.character(i))
+            #     TextInputToWert("NA","Weitergehende Hinweise","Wert",as.character(i))
+            # }
+            # 
+            # for (i in 1:nrow(param)) {
+            #     as.character(param[i,1]) %>% 
+            #         TextInputToWert("Weitergehende Hinweise","Parameter",as.character(i))
+            #     as.character(param[i,2]) %>% 
+            #         TextInputToWert("Weitergehende Hinweise","Wert",as.character(i))
+            # }
             
             
             #Ressourcenübergreifende Aspekte
@@ -2310,19 +2767,63 @@ server <- function(input, output, session) {
             input$bewertungText %>% 
                 TextInputToWert("Ökobilanzielle Bewertung","Fließtext")
             
-            param <- isolate(values[["DFbew"]])
             
-            for (i in 1:10) {
-                TextInputToWert("NA","Ökobilanzielle Bewertung","Literaturstelle",as.character(i))
-                TextInputToWert("NA","Ökobilanzielle Bewertung","Bewertung",as.character(i))
-            }
+            input$lit1 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","1")
+            input$lit2 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","2")
+            input$lit3 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","3")
+            input$lit4 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","4")
+            input$lit5 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","5")
+            input$lit6 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","6")
+            input$lit7 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","7")
+            input$lit8 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","8")
+            input$lit9 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","9")
+            input$lit10 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle","10")
             
-            for (i in 1:nrow(param)) {
-                as.character(param[i,1]) %>% 
-                    TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle",as.character(i))
-                as.character(param[i,2]) %>% 
-                    TextInputToWert("Ökobilanzielle Bewertung","Bewertung",as.character(i))
-            }
+            input$bew1 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","1")
+            input$bew2 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","2")
+            input$bew3 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","3")
+            input$bew4 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","4")
+            input$bew5 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","5")
+            input$bew6 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","6")
+            input$bew7 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","7")
+            input$bew8 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","8")
+            input$bew9 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","9")
+            input$bew10 %>% 
+              TextInputToWert("Ökobilanzielle Bewertung","Bewertung","10")
+            
+            
+            # param <- isolate(values[["DFbew"]])
+            # 
+            # for (i in 1:10) {
+            #     TextInputToWert("NA","Ökobilanzielle Bewertung","Literaturstelle",as.character(i))
+            #     TextInputToWert("NA","Ökobilanzielle Bewertung","Bewertung",as.character(i))
+            # }
+            # 
+            # for (i in 1:nrow(param)) {
+            #     as.character(param[i,1]) %>% 
+            #         TextInputToWert("Ökobilanzielle Bewertung","Literaturstelle",as.character(i))
+            #     as.character(param[i,2]) %>% 
+            #         TextInputToWert("Ökobilanzielle Bewertung","Bewertung",as.character(i))
+            # }
             
             
             #Kombinationsmöglichkeiten
@@ -2371,42 +2872,112 @@ server <- function(input, output, session) {
             
             #Vor- und Nachteile
             
-            param <- isolate(values[["DF2"]])
+            input$vor1 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","1")
+            input$vor2 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","2")
+            input$vor3 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","3")
+            input$vor4 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","4")
+            input$vor5 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","5")
+            input$vor6 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","6")
+            input$vor7 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","7")
+            input$vor8 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","8")
+            input$vor9 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","9")
+            input$vor10 %>% 
+              TextInputToWert("Vor- und Nachteile","Vorteile","10")
             
-            for (i in 1:10) {
-                TextInputToWert("NA","Vor- und Nachteile","Vorteile",as.character(i))
-                TextInputToWert("NA","Vor- und Nachteile","Nachteile",as.character(i))
-            }
+            input$nach1 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","1")
+            input$nach2 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","2")
+            input$nach3 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","3")
+            input$nach4 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","4")
+            input$nach5 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","5")
+            input$nach6 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","6")
+            input$nach7 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","7")
+            input$nach8 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","8")
+            input$nach9 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","9")
+            input$nach10 %>% 
+              TextInputToWert("Vor- und Nachteile","Nachteile","10")
             
-            for (i in 1:nrow(param)) {
-                as.character(param[i,1]) %>% 
-                    TextInputToWert("Vor- und Nachteile","Vorteile",as.character(i))
-                as.character(param[i,2]) %>% 
-                    TextInputToWert("Vor- und Nachteile","Nachteile",as.character(i))
-            }
+            
+            # param <- isolate(values[["DF2"]])
+            # 
+            # for (i in 1:10) {
+            #     TextInputToWert("NA","Vor- und Nachteile","Vorteile",as.character(i))
+            #     TextInputToWert("NA","Vor- und Nachteile","Nachteile",as.character(i))
+            # }
+            # 
+            # for (i in 1:nrow(param)) {
+            #     as.character(param[i,1]) %>% 
+            #         TextInputToWert("Vor- und Nachteile","Vorteile",as.character(i))
+            #     as.character(param[i,2]) %>% 
+            #         TextInputToWert("Vor- und Nachteile","Nachteile",as.character(i))
+            # }
             
             #Fallbeispiele
             
+            input$Proj1 %>% 
+              TextInputToWert("Fallbeispiele","1","Projektname")
+            input$Proj2 %>% 
+              TextInputToWert("Fallbeispiele","2","Projektname")
+            input$Proj3 %>% 
+              TextInputToWert("Fallbeispiele","3","Projektname")
             
-            param <- isolate(values[["DF3"]])
+            input$Stadt1 %>% 
+              TextInputToWert("Fallbeispiele","1","Stadt")
+            input$Stadt2 %>% 
+              TextInputToWert("Fallbeispiele","2","Stadt")
+            input$Stadt3 %>% 
+              TextInputToWert("Fallbeispiele","3","Stadt")
             
-            for (i in 1:3) {
-                TextInputToWert("NA","Fallbeispiele",as.character(i),"Projektname")
-                TextInputToWert("NA","Fallbeispiele",as.character(i),"Stadt")
-                TextInputToWert("NA","Fallbeispiele",as.character(i),"Land")
-                TextInputToWert("NA","Fallbeispiele",as.character(i),"Erläuterung")
-            }
+            input$Land1 %>% 
+              TextInputToWert("Fallbeispiele","1","Land")
+            input$Land2 %>% 
+              TextInputToWert("Fallbeispiele","2","Land")
+            input$Land3 %>% 
+              TextInputToWert("Fallbeispiele","3","Land")
             
-            for (i in 1:nrow(param)) {
-                as.character(param[i,1]) %>% 
-                    TextInputToWert("Fallbeispiele",as.character(i),"Projektname")
-                as.character(param[i,2]) %>% 
-                    TextInputToWert("Fallbeispiele",as.character(i),"Stadt")
-                as.character(param[i,3]) %>% 
-                    TextInputToWert("Fallbeispiele",as.character(i),"Land")
-                as.character(param[i,4]) %>% 
-                    TextInputToWert("Fallbeispiele",as.character(i),"Erläuterung")
-            }
+            input$Erl1 %>% 
+              TextInputToWert("Fallbeispiele","1","Erläuterung")
+            input$Erl2 %>% 
+              TextInputToWert("Fallbeispiele","2","Erläuterung")
+            input$Erl3 %>% 
+              TextInputToWert("Fallbeispiele","3","Erläuterung")
+            
+            # param <- isolate(values[["DF3"]])
+            # 
+            # for (i in 1:3) {
+            #     TextInputToWert("NA","Fallbeispiele",as.character(i),"Projektname")
+            #     TextInputToWert("NA","Fallbeispiele",as.character(i),"Stadt")
+            #     TextInputToWert("NA","Fallbeispiele",as.character(i),"Land")
+            #     TextInputToWert("NA","Fallbeispiele",as.character(i),"Erläuterung")
+            # }
+            # 
+            # for (i in 1:nrow(param)) {
+            #     as.character(param[i,1]) %>% 
+            #         TextInputToWert("Fallbeispiele",as.character(i),"Projektname")
+            #     as.character(param[i,2]) %>% 
+            #         TextInputToWert("Fallbeispiele",as.character(i),"Stadt")
+            #     as.character(param[i,3]) %>% 
+            #         TextInputToWert("Fallbeispiele",as.character(i),"Land")
+            #     as.character(param[i,4]) %>% 
+            #         TextInputToWert("Fallbeispiele",as.character(i),"Erläuterung")
+            # }
             
             
             ###################################################
